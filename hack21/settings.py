@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+# import user
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -21,6 +23,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'yq85+kmg8v4m0c1c&l$jg%)mpgj_-9_nbq0u=&xzxwj+h2h*9o'
+
+import django
+# django.setup()
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -119,3 +124,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# from user.models import CustomUser
+AUTH_USER_MODEL='user.CustomUser'
