@@ -3,28 +3,6 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 
 # Create your models here.
 
-GENDER_CHOICES=(
-    ('m','Male'),
-    ('f','Female'),
-    ('n',"Non Binary"),
-    ('na', 'Prefer not to say',)
-)
-T_SHIRT_SIZE_CHOICES=(
-    ('S','S'),
-    ('M','M'),
-    ('L','L'),
-    ('XL','XL'),
-    ('XXL','XXL')
-)
-FIELD_OF_STUDY_CHOICES=(
-    ('cs','Computer Science'),
-    ('ec','Electronics and Communication'),
-    ('me','Mechanical Engineering'),
-    ('ce','Civil Engineering'),
-    ('ee','Electrical and Electronis Engineering'),
-    ('it','Information Technology')
-)
-
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, password=None):
         """
@@ -58,17 +36,7 @@ class CustomUserManager(BaseUserManager):
         return user
 
 class CustomUser(AbstractBaseUser):
-    # name = models.CharField(max_length=256, blank=False)
     email = models.EmailField(max_length=256, blank=False, unique=True)
-    # contact = models.IntegerField( blank=False)
-    # dob = models.DateField()
-    # gender = models.CharField(max_length=2, choices=GENDER_CHOICES, blank=False)
-    # bio = models.TextField()
-    # tshirt_size = models.CharField(max_length=3, choices=T_SHIRT_SIZE_CHOICES, verbose_name='T-Shirt Size')
-    # #emergency conatct
-    # skills = models.TextField()
-    # educational_institution = models.CharField(max_length= 128)
-    # field_of_study = models.CharField(max_length=64, choices=FIELD_OF_STUDY_CHOICES, blank=True, verbose_name='Field of Study')
 
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
