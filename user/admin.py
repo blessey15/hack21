@@ -6,7 +6,7 @@ from user.models import CustomUser #, CustomUserManager
 from .forms import CustomUserAdminChangeForm, CustomUserAdminCreationForm
 # Register your models here.
 
-class CustomUserAdmin(UserAdmin):
+class CustomUserAdmin(UserAdmin): 
     # The forms to add and change user instances
     form = CustomUserAdminChangeForm
     add_form = CustomUserAdminCreationForm

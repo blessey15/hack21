@@ -36,7 +36,7 @@ CLASS_CHOICES=(
 class ParticipantProfile(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     name = models.CharField(max_length=256, blank=False)
-    # email = models.EmailField(max_length=256, blank=False, unique=True)
+    email = models.EmailField(max_length=256, blank=False, unique=True)
     contact = models.IntegerField( blank=False)
     dob = models.DateField()
     gender = models.CharField(max_length=2, choices=GENDER_CHOICES, blank=False)
@@ -51,10 +51,16 @@ class VolunteerProfile(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     batch = models.CharField(max_length=4, blank=False, default=' ', choices=CLASS_CHOICES)
     name = models.CharField(max_length=256, blank=False)
+    email = models.EmailField(max_length=256, blank=False, unique=True)
     contact = models.IntegerField( blank=False)
     dob = models.DateField()
     gender = models.CharField(max_length=2, choices=GENDER_CHOICES, blank=False)
     tshirt_size = models.CharField(max_length=3, choices=T_SHIRT_SIZE_CHOICES, verbose_name='T-Shirt Size')
 
-
-
+# class OrganizerProfile(moels.Model):
+#     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+#     batch = models.CharField(max_length=4, blank=False, default=' ', choices=CLASS_CHOICES)
+#     name = models.CharField(max_length=256, blank=False)
+#     contact = models.IntegerField( blank=False)
+#     dob = models.DateField()
+#     gender = models.CharField(max_length=2, choices=GENDER_CHOICES, blank=False)
