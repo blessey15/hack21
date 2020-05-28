@@ -17,7 +17,12 @@
   				<div class="card-body">
   					<h3 class="card-title">Sign Up</h3>
   					<form method="post" novalidate>
-      					{% csrf_token %}
+						  {% csrf_token %}
+						  <!-- <input type="email" name="email" placeholder="email"><br>
+						  <input type="password" name="password1" placeholder="password"><br>
+						  <input type="password" name="password2" placeholder="confirm password"><br> -->
+						  {{ form }}
+
      					 <button type="submit" class="btn btn-primary">Create an account</button>
     				</form>
   				</div>
