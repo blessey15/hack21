@@ -4,6 +4,24 @@ from django.contrib.auth.forms import UserCreationForm
 
 from .models import CustomUser
 
+# class RegisterForm(UserCreationForm):
+#     # email = forms.EmailField(required=True)
+#     password = forms.CharField(widget=forms.PasswordInput)
+#     password2 = forms.CharField(label='Confirm password', widget=forms.PasswordInput)
+
+
+#     class Meta:
+#         model = CustomUser
+#         fields = ('email',)#, 'password1', 'password2')
+
+#     def save(self, commit=True):
+#         user = super(RegisterForm, self).save(commit=False)
+#         def save(self, commit=True):
+#             user = super(RegisterForm, self).save(commit=False)
+#             user.email = self.cleaned_data['email']
+#             if commit:
+#                 user.save()
+#             return user
 
 
 class RegisterForm(forms.ModelForm):
@@ -26,7 +44,7 @@ class RegisterForm(forms.ModelForm):
         password1 = self.cleaned_data.get("password1")
         password2 = self.cleaned_data.get("password2")
         if password1 and password2 and password1 != password2:
-            raise forms.ValidationError("Passwords don't match")
+            raise forms.ValidationError("Passwords! don't match")
         return password2
     def save(self, commit=True):
         # Save the provided password in hashed format
@@ -60,7 +78,8 @@ class CustomUserAdminCreationForm(forms.ModelForm):
     def save(self, commit=True):
         # Save the provided password in hashed format
         user = super(CustomUserAdminCreationForm, self).save(commit=False)
-        user.set_password(clean_password2)
+        user.set_password(self.cleaned_data["password2"])
+        # user.set_password(self.clean_password2)
         if commit:
             user.save()
         return user
@@ -77,7 +96,7 @@ class CustomUserAdminChangeForm(forms.ModelForm):
         model = CustomUser
         fields = ('email', 'password', 'is_active', 'is_admin')
 
-    def clean_password(self):
+    def clean_password2(self):
         # Regardless of what the user provides, return the initial value.
         # This is done here, rather than on the field, because the
         # field does not have access to the initial value
