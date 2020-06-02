@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'user',
     'accounts',
     'profiles',
 ]
@@ -131,4 +132,4 @@ os.path.join(BASE_DIR, 'static'),
 ]
 
 # from user.models import CustomUser
-AUTH_USER_MODEL='user.CustomUser'
+AUTH_USER_MODEL='accounts.Account'

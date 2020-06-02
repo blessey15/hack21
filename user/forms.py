@@ -55,24 +55,24 @@ class CustomUserAdminChangeForm(forms.ModelForm):
         return self.initial["password"]
 
 
-# class RegisterForm(UserCreationForm):
-#     # email = forms.EmailField(required=True)
-#     password = forms.CharField(widget=forms.PasswordInput)
-#     password2 = forms.CharField(label='Confirm password', widget=forms.PasswordInput)
+class RegisterForm(UserCreationForm):
+    # email = forms.EmailField(required=True)
+    password = forms.CharField(widget=forms.PasswordInput)
+    password2 = forms.CharField(label='Confirm password', widget=forms.PasswordInput)
 
 
-#     class Meta:
-#         model = CustomUser
-#         fields = ('email',)#, 'password1', 'password2')
+    class Meta:
+        model = CustomUser
+        fields = ('email',)#, 'password1', 'password2')
 
-#     def save(self, commit=True):
-#         user = super(RegisterForm, self).save(commit=False)
-#         def save(self, commit=True):
-#             user = super(RegisterForm, self).save(commit=False)
-#             user.email = self.cleaned_data['email']
-#             if commit:
-#                 user.save()
-#             return user
+    def save(self, commit=True):
+        user = super(RegisterForm, self).save(commit=False)
+        def save(self, commit=True):
+            user = super(RegisterForm, self).save(commit=False)
+            user.email = self.cleaned_data['email']
+            if commit:
+                user.save()
+            return user
 
 
 # class RegisterForm(forms.ModelForm):
