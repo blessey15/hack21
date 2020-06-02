@@ -19,10 +19,10 @@ def registration_view(request):
             login(request, account)
             return redirect('home')
         else:
-            context['registration form'] = form
+            context['registration_form'] = form
     else:
         form = RegistrationForm()
-        context['registration form'] = form
+        context['registration_form'] = form
     return render(request, 'register.html', context)
         
             
