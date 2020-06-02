@@ -12,28 +12,52 @@
     {% block body %}
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
   <div class="container">
-    <a class="navbar-brand" href="{% url 'home' %}">Django Boards</a>
+    <a class="navbar-brand" href="{% url 'home' %}">.Hack( ); 2021</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainMenu" aria-controls="mainMenu" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="mainMenu">
-      {% if user.is_authenticated %}
+      {% if request.user.is_authenticated %}
         <ul class="navbar-nav ml-auto">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              {{ user.username }}
+              Hello {{ user.username }} 
             </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userMenu">
+            <div class="dropdown-menu dropdown-menu-left" aria-labelledby="userMenu">
               <a class="dropdown-item" href="#">My account</a>
               <a class="dropdown-item" href="#">Change password</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="{% url 'home' %}">Log out</a>
+              <a class="dropdown-item" href="{% url 'logout' %}">Log out</a>
             </div>
           </li>
         </ul>
       {% else %}
+      <div style="position: relative; float: right; width: fit-content;">
+        <ul class="navbar-nav ml-auto" >
+          <li style="margin-left: 10px; float: left;">
+            <a href="{% url 'register' %}">Register</a>
+            <!-- <a class="nav-link dropdown-toggle" href="#" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Hello {{ user.username }} 
+            </a> -->
+            <!-- <div class="dropdown-menu dropdown-menu-left" aria-labelledby="userMenu">
+              <a class="dropdown-item" href="#">My account</a>
+              <a class="dropdown-item" href="#">Change password</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{% url 'logout' %}">Log out</a>
+            </div> -->
+          </li>
+          <li style="margin-left: 10px; float: left;">
+            <p style="color: bisque;">|</p>
+          </li>
+          <li style="margin-left: 10px; float: left;">
+            <a href="#">Login</a>
+          </li>
+        </ul>
+      </div>
+      
+        <!-- 
         <form class="form-inline ml-auto">
-        </form>
+        </form> -->
       {% endif %}
     </div>
   </div>
