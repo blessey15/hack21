@@ -30,6 +30,7 @@ class CustomUserManager(BaseUserManager):
         user = self.create_user(
             email,
             password=password)
+        user.is_active = True
         user.is_admin = True
         user.is_staff = True
         user.save(using=self._db)
@@ -38,14 +39,16 @@ class CustomUserManager(BaseUserManager):
 class CustomUser(AbstractBaseUser):
     email = models.EmailField(max_length=256, blank=False, unique=True)
 
+    date_joined = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     # is_confirmed = models.BooleanField(default=False)
 
+    USERNAME_FIELD = 'email'
+
     objects = CustomUserManager()
 
-    USERNAME_FIELD = 'email'
 
     def __str__(self):
         return self.email
