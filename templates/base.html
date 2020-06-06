@@ -9,7 +9,6 @@
     {% block stylesheet %}{% endblock %}  
   </head>
   <body>
-    {% block body %}
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
   <div class="container">
     <a class="navbar-brand" href="{% url 'home' %}">.Hack( ); 2021</a>
@@ -24,7 +23,7 @@
               Hello {{ user.username }} 
             </a>
             <div class="dropdown-menu dropdown-menu-left" aria-labelledby="userMenu">
-              <a class="dropdown-item" href="#">My account</a>
+              <a class="dropdown-item" href="{% url 'account' %}">My account</a>
               <a class="dropdown-item" href="#">Change password</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="{% url 'logout' %}">Log out</a>
@@ -63,6 +62,8 @@
     </div>
   </div>
 </nav>
+{% block body %}
+
 
   <div class="container">
     <ol class="breadcrumb my-4">
