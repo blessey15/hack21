@@ -41,9 +41,9 @@ class AccountUpdateForm(forms.ModelForm):
     
     def clean_username(self):
         if self.is_valid():
-            userame = self.cleaned_data['userame']
+            username = self.cleaned_data['username']
             try:
-                account = Account.objects.exclude(pk=self.instance.pk).get(userame=userame)
+                account = Account.objects.exclude(pk=self.instance.pk).get(username=username)
             except Account.DoesNotExist:
-                return userame
-            raise forms.ValidationError('Userame "%s" is already in use' %(account.username))
+                return username
+            raise forms.ValidationError('Username "%s" is already in use' %(account.username))
