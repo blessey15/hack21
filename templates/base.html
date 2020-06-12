@@ -1,4 +1,6 @@
-{% load static %}<!DOCTYPE html>
+{% load static %}
+{% load socialaccount %}
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
@@ -45,6 +47,14 @@
               <a class="dropdown-item" href="{% url 'logout' %}">Log out</a>
             </div> -->
           </li>
+          <li style="margin-left: 10px; float: left;">
+            <p style="color: bisque;">|</p>
+          </li>
+
+          <li style="margin-left: 10px; float: left;">
+            <a href="{% provider_login_url 'google' %}">Login with Google</a>
+          </li>
+
           <li style="margin-left: 10px; float: left;">
             <p style="color: bisque;">|</p>
           </li>
