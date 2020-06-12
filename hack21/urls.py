@@ -22,14 +22,14 @@ from django.views.generic import TemplateView
 from accounts import views
 
 urlpatterns = [
-    path('', TemplateView.as_view(template_name="login.html")),
+    # path('', TemplateView.as_view(template_name="login.html")),
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
     path('register/', views.registration_view, name='register'),
     path('logout/', views.logout_view, name='logout'),
     path('login/', views.login_view, name='login'),
-    # path('account/', views.account_view, name='account'),
-    path('account/', include('allauth.urls')),
+    path('account/', views.account_view, name='account'),
+    path('accounts/', include('allauth.urls')),
 
     path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(template_name='passwordreset/password_change_done.html'), 
         name='password_change_done'),
