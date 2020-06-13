@@ -30,6 +30,7 @@ urlpatterns = [
     path('login/', views.login_view, name='login'),
     path('account/', views.account_view, name='account'),
     path('accounts/', include('allauth.urls')),
+    path('auth/', include('social_django.urls', namespace='social')),
 
     path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(template_name='passwordreset/password_change_done.html'), 
         name='password_change_done'),
