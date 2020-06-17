@@ -41,7 +41,7 @@
               Hello {{ user.username }} 
             </a> -->
             <!-- <div class="dropdown-menu dropdown-menu-left" aria-labelledby="userMenu">
-              <a class="dropdown-item" href="#">My account</a>
+              <a class="dropdown-item" href="#">My account</a>mode
               <a class="dropdown-item" href="#">Change password</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="{% url 'logout' %}">Log out</a>
@@ -65,11 +65,11 @@
             <p style="color: bisque;">|</p>
           </li>
           <li style="margin-left: 10px; float: left;">
-            <a href="{% url 'social:begin' 'twitter' %}">Login with Twitter</a>
+            <!-- <a href="{% url 'social:begin' 'twitter' %}">Login with Twitter</a> -->
           </li>
-          <li style="margin-left: 10px; float: left;">
+          <!-- <li style="margin-left: 10px; float: left;">
             <p style="color: bisque;">|</p>
-          </li>
+          </li> -->
           <li style="margin-left: 10px; float: left;">
             <a href="{% url 'social:begin' 'facebook' %}">Login with Facebook</a>
           </li>

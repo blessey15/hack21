@@ -1,6 +1,9 @@
 from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 from user.models import CustomUser
+from accounts.models import Account
 # Create your models here.
 
 GENDER_CHOICES=(
@@ -34,7 +37,8 @@ CLASS_CHOICES=(
 )
 
 class ParticipantProfile(models.Model):
-    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+    user = models.OneToOneField(Account, on_delete=models.CASCADE)
+
     name = models.CharField(max_length=256, blank=False)
     email = models.EmailField(max_length=256, blank=False, unique=True)
     contact = models.IntegerField( blank=False)
@@ -46,6 +50,16 @@ class ParticipantProfile(models.Model):
     skills = models.TextField()
     educational_institution = models.CharField(max_length= 128)
     field_of_study = models.CharField(max_length=64, choices=FIELD_OF_STUDY_CHOICES, blank=True, verbose_name='Field of Study')
+
+    def __str__(self):
+        return self.user.email
+
+@receiver(post_save, sender=Account)
+def create_or_update_user_profile(sender, instance, created, **kwargs):
+    if created:
+        ParticipantProfile.objects.create(user=instance)
+    instance.ParticipantProfile.save()
+
 
 class VolunteerProfile(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
