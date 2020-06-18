@@ -9,4 +9,4 @@ class VolunteerProfileAdmin(admin.ModelAdmin):
     model = VolunteerProfile
 
 admin.site.register(ParticipantProfile, ParticipantProfileAdmin)
-admin.site.register(VolunteerProfile, VolunteerProfileAdmin)
+admin.site.register(VolunteerProfile, VolunteerProfileAdmin) 

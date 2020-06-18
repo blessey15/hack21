@@ -54,11 +54,11 @@ class ParticipantProfile(models.Model):
     def __str__(self):
         return self.user.email
 
-@receiver(post_save, sender=Account)
-def create_or_update_user_profile(sender, instance, created, **kwargs):
-    if created:
-        ParticipantProfile.objects.create(user=instance)
-    instance.ParticipantProfile.save()
+# @receiver(post_save, sender=Account)
+# def create_or_update_user_profile(sender, instance, created, **kwargs):
+#     if created:
+#         ParticipantProfile.objects.create(user=instance)
+#     instance.ParticipantProfile.save()
 
 
 class VolunteerProfile(models.Model):
