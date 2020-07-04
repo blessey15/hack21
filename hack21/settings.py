@@ -152,15 +152,20 @@ os.path.join(BASE_DIR, 'static'),
 AUTH_USER_MODEL='accounts.Account' #custom user model
 
 AUTHENTICATION_BACKENDS = (
+    
+
+
     'social_core.backends.github.GithubOAuth2', #GitHub Auth
     'social_core.backends.twitter.TwitterOAuth', #Twitter Auth
     'social_core.backends.facebook.FacebookOAuth2', #Facebook Auth
 
+
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend', #allauth for google auth
+    
  )
 
-SITE_ID = 1 
+SITE_ID = 2 
 # LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
