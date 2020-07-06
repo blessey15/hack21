@@ -20,7 +20,7 @@ from django.views.generic import TemplateView
 
 # from user import views 
 from accounts import views
-
+from profiles import views as profileviews
 urlpatterns = [
     # path('', TemplateView.as_view(template_name="login.html")),
     path('admin/', admin.site.urls),
@@ -47,4 +47,9 @@ urlpatterns = [
 
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='passwordreset/password_reset_complete.html'),
      name='password_reset_complete'),
+
+
+    path('profile/', profileviews.participant_profile_creation_view, name='profile'),
+    path('profile_done/', profileviews.participant_profile_updated_view, name='profile_created'),
+
 ]
