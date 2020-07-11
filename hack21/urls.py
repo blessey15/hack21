@@ -50,6 +50,7 @@ urlpatterns = [
 
 
     path('profile/', profileviews.participant_profile_creation_view, name='profile'),
+    
     path('profile_done/', profileviews.participant_profile_updated_view, name='profile_created'),
 
 ]

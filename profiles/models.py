@@ -37,7 +37,7 @@ CLASS_CHOICES=(
 )
 
 class ParticipantProfile(models.Model):
-    user = models.OneToOneField(Account, on_delete=models.CASCADE)
+    user = models.OneToOneField(Account, related_name='profile', on_delete=models.CASCADE)
 
     name = models.CharField(max_length=256, blank=False)
     contact = models.IntegerField( blank=False)
