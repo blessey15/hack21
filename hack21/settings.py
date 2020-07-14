@@ -55,7 +55,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google', #google auth
     'social_django', #gh, fb auth
     'profiles',
-    'teams',
+    'application',
 ]
 
 MIDDLEWARE = [
