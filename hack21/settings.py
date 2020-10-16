@@ -22,15 +22,21 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'yq85+kmg8v4m0c1c&l$jg%)mpgj_-9_nbq0u=&xzxwj+h2h*9o'
+# SECRET_KEY = 'yq85+kmg8v4m0c1c&l$jg%)mpgj_-9_nbq0u=&xzxwj+h2h*9o'
+SECRET_KEY = os.environ.get("SECRET_KEY")
+
 
 import django
 # django.setup()
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+DEBUG = int(os.environ.get("DEBUG", default=0))
 
-ALLOWED_HOSTS = []
+
+# ALLOWED_HOSTS = []
+ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
+
 
 #email backends
 if DEBUG:
