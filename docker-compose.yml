@@ -12,6 +12,7 @@ services:
     #     env_file: 
     #         - ./.env.dev
     app:
+        command: /code/entrypoint.sh
         build: .
         container_name: hack_app
         command: python manage.py runserver 0.0.0.0:8000

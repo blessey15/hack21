@@ -24,6 +24,10 @@ RUN apt-get update && apt-get install -y libgdal-dev g++ --no-install-recommends
 COPY requirements.txt /code/
 RUN pip install -r requirements.txt
 
+# copy entrypoint.sh
+COPY entrypoint.sh /code/
+
+
 #copy project
 COPY manage.py /code/
 COPY accounts /code/accounts
@@ -32,6 +36,14 @@ COPY hack21 /code/hack21
 COPY profiles /code/profiles
 COPY teams /code/teams
 COPY templates /code/templates
+
+
+# run entrypoint.sh
+# RUN chmod 755 entrypoint.sh
+# ENTRYPOINT ["./entrypoint.sh"]
+
+
+
 # COPY . /code/
 # COPY . /code/
 # COPY . /code/
