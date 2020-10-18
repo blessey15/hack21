@@ -39,7 +39,7 @@ COPY templates /code/templates
 
 
 # run entrypoint.sh
-# RUN chmod 755 entrypoint.sh
+# RUN chmod 755 ./entrypoint.sh
 # ENTRYPOINT ["./entrypoint.sh"]
 
 
