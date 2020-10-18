@@ -2,7 +2,9 @@ version: '3.7'
 
 services: 
     hack_app:
-        build: .
+        build:
+            context: ./code
+            dockerfile: Dockerfile.prod
         container_name: hack_app
         command: gunicorn hack21.wsgi:application --bind 0.0.0:8000
         ports: 
