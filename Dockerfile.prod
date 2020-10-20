@@ -1,0 +1,76 @@
+###########
+# Builder #
+###########
+
+# base image
+FROM python:3 as builder
+
+RUN mkdir code/
+
+# set work directory
+WORKDIR /code
+
+# set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+# install psycopg2 dependencies
+RUN apt-get update && apt-get install -y libgdal-dev g++ --no-install-recommends && apt-get clean -y
+
+# install psycopg2 dependencies
+# RUN apk update \
+#     && apk add postgresql-dev gcc python3-dev musl-dev
+
+
+# lint
+RUN pip install --upgrade pip
+RUN pip install flake8
+RUN flake8 --ignore=E501,F401 .
+
+# install dependen/cies
+COPY requirements.txt /code/
+RUN pip wheel --no-cache-dir --no-deps --wheel-dir /code/wheels -r requirements.txt
+
+
+#########
+# FINAL #
+#########
+
+
+FROM python:3
+
+# create directory for the app user
+RUN mkdir -p /home/hack21
+
+# create the app user
+RUN addgroup --system hack21 && adduser --system hack21_user
+# RUN usermod -a -G hack21 hack_21_user
+
+ENV HOME=home/hack21
+ENV APP_HOME=home/hack21/web
+RUN mkdir -p $APP_HOME
+WORKDIR $APP_HOME
+
+# install dependencies
+# RUN apk update && apk add libpq
+RUN apt-get update -y && apt-get install -y libpq-dev
+COPY --from=builder /code/wheels /wheels
+COPY --from=builder /code/requirements.txt .
+RUN pip install --no-cache /wheels/*
+
+# copy entrypoint-prod.sh
+COPY ./entrypoint.prod.sh $APP_HOME
+
+# copy project
+COPY . .
+
+# chown all the files to hack_21_user
+RUN chown -R hack21_user:hack21 $APP_HOME
+
+# change to the app user
+USER hack21_user
+
+
+
+# run entrypoint.prod.sh
+# ENTRYPOINT ["./home/hack21/web/entrypoint.prod.sh"]
