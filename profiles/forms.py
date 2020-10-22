@@ -24,6 +24,10 @@ class PartcicpantProfileForm(forms.ModelForm):
 
     def clean_contact(self):
         contact = self.cleaned_data.get('contact')
+        try:
+            contact = int(contact)
+        except ValueError:
+            raise forms.ValidationError("The mobile number entered is not valid!!")
         return contact
 
     def clean_dob(self):

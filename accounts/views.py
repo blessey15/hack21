@@ -2,9 +2,35 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 
 from accounts.forms import RegistrationForm, AccountAuthenticationForm, AccountUpdateForm
+from application.models import Team
+from application.forms import TeamCreateForm
 
 def home(request):
-    return render(request, 'home.html')
+    context = {}
+    if request.user.is_authenticated:
+        try:
+            team = request.user.team
+        except Team.DoesNotExist:
+            profile = Team(user = request.user)
+    if request.POST:
+        form = TeamCreateForm(request.POST)
+        if form.is_valid():
+            team = form.save(commit=False)
+            team.admin = request.user
+            team.strength = 1
+            team.application_status = 'Not Submitted'
+            team.save()
+        else:
+            context['team_form'] = form
+    else:
+        form = TeamCreateForm(
+            # initial={
+            #     'name': team.name,
+            # }
+        )
+        context['team_form'] = form
+    return render(request, 'home.html', context )
+    # return render(request, 'home.html')
 
 
 def registration_view(request):

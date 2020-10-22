@@ -40,7 +40,7 @@ class ParticipantProfile(models.Model):
     user = models.OneToOneField(Account, related_name='profile', on_delete=models.CASCADE)
 
     name = models.CharField(max_length=256, blank=False)
-    contact = models.IntegerField( blank=False)
+    contact = models.CharField(max_length=13, blank=False)
     dob = models.DateField()
     gender = models.CharField(max_length=2, choices=GENDER_CHOICES, blank=False)
     bio = models.TextField()
