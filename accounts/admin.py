@@ -6,13 +6,13 @@ from profiles.models import ParticipantProfile
 
 class ParticipantProfileInline(admin.StackedInline):
     model = ParticipantProfile
-    can_delete = False
+    can_delete = False 
     verbose_name_plural = 'Participant Profile'
     fk_name = 'user'
 
 class AccountAdmin(UserAdmin):
     inlines = (ParticipantProfileInline, )
-    list_display = ('email', 'username', 'date_joined', 'last_login', 'is_admin', 'is_staff')
+    list_display = ('email', 'username', 'date_joined', 'last_login', 'is_admin', 'is_staff','team_name')
     search_fields = ('email', 'username',)
     readonly_fields = ('date_joined', 'last_login')
 
@@ -24,6 +24,10 @@ class AccountAdmin(UserAdmin):
         if not obj:
             return list()
         return super(AccountAdmin, self).get_inline_instances(request, obj)
+    
+    def team_name(self, obj):
+        return obj.team.name
+    
 
 
 admin.site.register(Account, AccountAdmin)

@@ -11,22 +11,29 @@ def home(request):
         try:
             team = request.user.team
         except Team.DoesNotExist:
-            profile = Team(user = request.user)
+            team = Team(user = request.user)
     if request.POST:
         form = TeamCreateForm(request.POST)
         if form.is_valid():
             team = form.save(commit=False)
             team.admin = request.user
-            team.strength = 1
+            # request.user.team.add(team)
+            # team.strength = 1
             team.application_status = 'Not Submitted'
             team.save()
+            team = form.save()
+            request.user.team.add(team)
+            # user_obj = form.save()
+            # user_obj.team.add(team) 
+            context['success'] = 'Team Created Successfully'
+            return render(request, 'home.html', context )
         else:
             context['team_form'] = form
     else:
         form = TeamCreateForm(
-            # initial={
-            #     'name': team.name,
-            # }
+            initial={
+                'name': team.name,
+            }
         )
         context['team_form'] = form
     return render(request, 'home.html', context )
