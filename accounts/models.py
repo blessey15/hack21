@@ -34,12 +34,16 @@ class AccountManager(BaseUserManager):
 class Account(AbstractBaseUser):
     email = models.EmailField(verbose_name="Email", max_length=64, unique=True)
     username = models.CharField(max_length=32, unique=True,)
+
     date_joined = models.DateTimeField(auto_now_add=True)         
     last_login = models.DateTimeField(auto_now=True)
+
+
     is_admin = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
+    # is_organizer = models.BooleanField(default=False)
     # has_profile = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'

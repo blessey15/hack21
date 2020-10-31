@@ -49,6 +49,7 @@ class ParticipantProfile(models.Model):
     skills = models.TextField()
     educational_institution = models.CharField(max_length= 128)
     field_of_study = models.CharField(max_length=64, choices=FIELD_OF_STUDY_CHOICES, blank=True, verbose_name='Field of Study')
+    # previous_projects
     github_profile_link = models.URLField(verbose_name="GitHub Profile Link", blank=True)
     twitter_profile_link = models.URLField(verbose_name="Twitter Profile Link", blank=True)
     linkedin_profile_link = models.URLField(verbose_name="LinkedIn Profile Link", blank=True)

@@ -19,10 +19,10 @@ def home(request):
             team.admin = request.user
             # request.user.team.add(team)
             # team.strength = 1
-            team.application_status = 'Not Submitted'
+            # team.application_status = 'Not Submitted'
             team.save()
-            team = form.save()
-            request.user.team.add(team)
+            # team = form.save()
+            # request.user.team.add(team)
             # user_obj = form.save()
             # user_obj.team.add(team) 
             context['success'] = 'Team Created Successfully'
