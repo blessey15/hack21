@@ -12,6 +12,12 @@ APPLICATION_STATUS_CHOICES = (
     ('Waitinglist','Waitinglist'),
     ('Accepted','Accepted'),
 )
+
+REQUEST_STATUS_CHOICES = (
+    ("Submitted", "Submitted"),
+    ("Declined", "Declined"),
+    ("Accepted", "Submitted"),
+)
 class Team(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, db_column='id')
     name = models.CharField(max_length=64, blank=False)
@@ -25,7 +31,7 @@ class Team(models.Model):
 
 class Application(models.Model):
     team = models.OneToOneField(Team, related_name='application_team', on_delete=models.CASCADE)
-    members = models.ManyToManyField(Account, related_name='application_user')
+    members = models.ManyToManyField(Account, related_name='application_team')
     # member_count = models.IntegerField(blank=False, default=0)
     application_status = models.CharField(max_length=14, choices=APPLICATION_STATUS_CHOICES, default='Not Submitted')
 
@@ -37,5 +43,5 @@ class Application(models.Model):
 
 class JoinRequest(models.Model):
     team = models.ForeignKey(Team, related_name='request_team', on_delete=models.CASCADE)
-    user = models.OneToOneField(Account, related_name='request_user', on_delete=models.CASCADE)
-    application_status = models.CharField(max_length=14, choices=APPLICATION_STATUS_CHOICES, default='Not Submitted')
+    user = models.OneToOneField(Account, related_name='request_team', on_delete=models.CASCADE)
+    request_status = models.CharField(max_length=14, choices=REQUEST_STATUS_CHOICES, default='Not Submitted')
