@@ -26,9 +26,16 @@ class Team(models.Model):
 class Application(models.Model):
     team = models.OneToOneField(Team, related_name='application_team', on_delete=models.CASCADE)
     members = models.ManyToManyField(Account, related_name='application_user')
+    # member_count = models.IntegerField(blank=False, default=0)
     application_status = models.CharField(max_length=14, choices=APPLICATION_STATUS_CHOICES, default='Not Submitted')
 
+    def team_members(self):
+        return ','.join([str(m) for m in self.members.all()])
+    
+    def member_count(self):
+        return len(self.members.all())
+
 class JoinRequest(models.Model):
-    team = models.OneToOneField(Team, related_name='request_team', on_delete=models.CASCADE)
+    team = models.ForeignKey(Team, related_name='request_team', on_delete=models.CASCADE)
     user = models.OneToOneField(Account, related_name='request_user', on_delete=models.CASCADE)
     application_status = models.CharField(max_length=14, choices=APPLICATION_STATUS_CHOICES, default='Not Submitted')
