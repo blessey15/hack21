@@ -15,7 +15,7 @@ APPLICATION_STATUS_CHOICES = (
 class Team(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, db_column='id')
     name = models.CharField(max_length=64, blank=False)
-    admin = models.ForeignKey(Account, on_delete=models.CASCADE, related_name='team')
+    admin = models.OneToOneField(Account, on_delete=models.CASCADE, related_name='team')
     # strength = models.IntegerField(default=0)
     # application_status = models.CharField(max_length=14, choices=APPLICATION_STATUS_CHOICES, default='Not Submitted')
     # members = models.ManyToManyField(Account, related_name='team_name')
