@@ -2,37 +2,46 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 
 from accounts.forms import RegistrationForm, AccountAuthenticationForm, AccountUpdateForm
-from application.models import Team
+from application.models import Team, Application
 from application.forms import TeamCreateForm
+from  application.views import create_team_view
 
 def home(request):
+    # create_team_view(request)
     context = {}
     if request.user.is_authenticated:
         try:
             team = request.user.team
+            user_has_team = True
+            application = request.user.application_team
         except Team.DoesNotExist:
-            team = Team(user = request.user)
+            team = Team(admin = request.user)
+        except Application.DoesNotExist:
+            application = Application(user = request.user)
     if request.POST:
         form = TeamCreateForm(request.POST)
         if form.is_valid():
-            team = form.save(commit=False)
-            team.admin = request.user
-            # request.user.team.add(team)
-            # team.strength = 1
-            # team.application_status = 'Not Submitted'
-            team.save()
-            # team = form.save()
-            # request.user.team.add(team)
-            # user_obj = form.save()
-            # user_obj.team.add(team) 
-            context['success'] = 'Team Created Successfully'
-            return render(request, 'home.html', context )
+            if user_has_team:
+                context['message'] = 'You already have a team!!'
+            else:
+                team = form.save(commit=False)
+                team.admin = request.user
+                # request.user.team.add(team)
+                # team.strength = 1
+                # team.application_status = 'Not Submitted'
+                team.save()
+                # team = form.save()
+                # request.user.team.add(team)
+                # user_obj = form.save()
+                # user_obj.team.add(team) 
+                context['success'] = 'Team Created Successfully'
+                return render(request, 'home.html', context )
         else:
             context['team_form'] = form
     else:
         form = TeamCreateForm(
             initial={
-                'name': team.name,
+                # 'name': team.name,
             }
         )
         context['team_form'] = form

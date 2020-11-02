@@ -8,15 +8,24 @@
   {% if request.user.team or request.user.team_name %}
   <h2>{{ request.user.team.name }} {{ request.user.team_name.name }} </h2>
   {% endif %}
-  {% if success %}
+  {% if message %}
     <div class="card">
       <div class="card-body">
-        <h3 class="card-title">{{ success }}</h3>
+        <h3 class="card-title">{{ message }}</h3>
         <h4>Go back to <a href="{% url 'home' %}">homepage</a></h4>
       </div>
       <div class="card-footer text-muted text-center">
       </div>
     </div>
+  {% elif success %}
+  <div class="card">
+    <div class="card-body">
+      <h3 class="card-title">{{ success }}</h3>
+      <h4>Go back to <a href="{% url 'home' %}">homepage</a></h4>
+    </div>
+    <div class="card-footer text-muted text-center">
+    </div>
+  </div>
   {% else %}
     <div class="card">
       <div class="card-body">
