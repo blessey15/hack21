@@ -3,7 +3,7 @@ from django.contrib.auth import login, authenticate, logout
 
 from accounts.forms import RegistrationForm, AccountAuthenticationForm, AccountUpdateForm
 from application.models import Team, Application
-from application.forms import TeamCreateForm
+from application.forms import TeamCreateForm, TeamSearchForm
 from  application.views import create_team_view
 
 def home(request):
@@ -13,38 +13,64 @@ def home(request):
         try:
             team = request.user.team
             user_has_team = True
+            context['users_team'] = team
             application = request.user.application_team
         except Team.DoesNotExist:
             team = Team(admin = request.user)
+            user_has_team = False
         except Application.DoesNotExist:
             application = Application(user = request.user)
+        team_form = TeamCreateForm()
+        search_form = TeamSearchForm()
+        context['user_has_team'] = user_has_team
     if request.POST:
-        form = TeamCreateForm(request.POST)
-        if form.is_valid():
-            if user_has_team:
-                context['message'] = 'You already have a team!!'
+        # team_form = TeamCreateForm(request.POST)
+        # search_form = TeamSearchForm(request.POST)
+        if "create_team" in request.POST:
+            team_form = TeamCreateForm(request.POST)
+            if team_form.is_valid(): #TODO searching for teams to join
+                if user_has_team:
+                    context['message'] = 'You already have a team!!'
+                else:
+                    team = team_form.save(commit=False)
+                    team.admin = request.user
+                    # request.user.team.add(team)
+                    # team.strength = 1
+                    # team.application_status = 'Not Submitted'
+                    team.save()
+                    # team = team_form.save()
+                    # request.user.team.add(team)
+                    # user_obj = team_form.save()
+                    # user_obj.team.add(team) 
+                    context['success'] = 'Team Created Successfully'
+                    return render(request, 'home.html', context )
             else:
-                team = form.save(commit=False)
-                team.admin = request.user
-                # request.user.team.add(team)
-                # team.strength = 1
-                # team.application_status = 'Not Submitted'
-                team.save()
-                # team = form.save()
-                # request.user.team.add(team)
-                # user_obj = form.save()
-                # user_obj.team.add(team) 
-                context['success'] = 'Team Created Successfully'
-                return render(request, 'home.html', context )
-        else:
-            context['team_form'] = form
+                context['team_form'] = team_form
+
+        elif "search_team" in request.POST:
+            search_form = TeamSearchForm(request.POST)
+            if search_form.is_valid():
+                team_id = search_form.cleaned_data.get('team_id')
+                try:
+                    searched_team = Team.objects.get(id=team_id)
+                    context['searched_team'] = searched_team
+                except Team.DoesNotExist:
+                    pass
+            else:
+                context['search_form'] = search_form 
     else:
-        form = TeamCreateForm(
+        team_form = TeamCreateForm(
             initial={
                 # 'name': team.name,
             }
         )
-        context['team_form'] = form
+        context['team_form'] = team_form
+        search_form = TeamSearchForm(
+            initial={
+
+            }
+        )
+        context['search_form'] = search_form
     return render(request, 'home.html', context )
     # return render(request, 'home.html')
 

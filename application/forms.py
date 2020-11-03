@@ -1,6 +1,7 @@
 from django import forms
 
 from .models import Team
+from .validators import is_valid_uuid
 
 class TeamCreateForm(forms.ModelForm):
     # team_doesnt_exist = False
@@ -30,3 +31,12 @@ class TeamCreateForm(forms.ModelForm):
     #     if len(team) == 0:
     #         return name
     #     raise forms.ValidationError("You already have a team!!")
+
+class TeamSearchForm(forms.Form):
+    team_id = forms.CharField(max_length=64)
+
+    def clean_team_id(self):
+        team_id = self.cleaned_data.get('team_id')
+        if not is_valid_uuid(team_id):
+            raise forms.ValidationError("Not a valid Team ID!!")
+        return team_id

@@ -30,10 +30,43 @@
     <div class="card">
       <div class="card-body">
         <h3 class="card-title">Create Team</h3>
+        {% if not user_has_team %}
+          <form method="post" novalidate>
+            {% csrf_token %}
+            
+            {% for field in team_form %}
+            <p>
+              {{field.label_tag}}
+              {{field}}
+
+              {% if field.help_text %}
+                <small style="color:grey">{{field.help_text}}</small>
+              {% endif %}
+              
+              {% for error in field.errors %}
+                <p style="color:red">{{error}}</p>
+              {% endfor %}
+            </p>
+            {% endfor %}
+              <button type="submit" name="create_team" class="btn btn-primary">Create Team</button>
+          </form>
+        {% else %}
+        <h6>Team Details:</h6>
+        <p>Team Name: {{ users_team.name }} </p>
+        <p>Team ID: {{ users_team.id }} </p>
+        {% endif %}
+      </div>
+      <div class="card-footer text-muted text-center">
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <h3 class="card-title">Join A Team</h3>
         <form method="post" novalidate>
           {% csrf_token %}
           
-          {% for field in team_form %}
+          {% for field in search_form %}
           <p>
             {{field.label_tag}}
             {{field}}
@@ -47,12 +80,35 @@
             {% endfor %}
           </p>
           {% endfor %}
-            <button type="submit" class="btn btn-primary">Create Team</button>
+            <button type="submit" name="search_team" class="btn btn-primary">Search</button>
         </form>
       </div>
       <div class="card-footer text-muted text-center">
       </div>
     </div>
+    {% if searched_team %}
+      <div class="card">
+        <div class="card-body">
+          <h3 class="card-title">Join A Team</h3>
+          <ol>
+              <li>{{ searched_team.name }}</li>
+          </ol>
+        </div>
+        <div class="card-footer text-muted text-center">
+        </div>
+      </div>
+    {% else %}
+    <div class="card">
+      <div class="card-body">
+        <!-- <h3 class="card-title">Join A Team</h3> -->
+        <h5 style="color: red;">No Team found</h5>
+      </div>
+      <div class="card-footer text-muted text-center">
+      </div>
+    </div>
+    {% endif %}
+
+
   {% endif %}
 {% endif %}
 {% endblock content %}
