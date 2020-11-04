@@ -36,7 +36,7 @@ class Application(models.Model):
     application_status = models.CharField(max_length=14, choices=APPLICATION_STATUS_CHOICES, default='Not Submitted')
 
     def team_members(self):
-        return ','.join([str(m) for m in self.members.all()])
+        return ',  '.join([str(m) for m in self.members.all()])
     
     def member_count(self):
         return len(self.members.all())
