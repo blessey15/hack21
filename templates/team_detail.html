@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item active">.hack( ); 2021</li>
+{% endblock %}
+
+{% block content %}
+
+    {% if request.user.is_authenticated %}
+    <div class="card">
+        <div class="card-body">
+          <h3>{{ team.name }} </h3>
+          <h5>Team Members</h5>
+            <ul>
+                {% for member in application.members.all %}
+                <li>{{ member.profile.name }} </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="card-footer text-muted text-center">
+        </div>
+      </div>
+    {% endif %}
+{% endblock content %}
+

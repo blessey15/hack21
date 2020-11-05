@@ -4,7 +4,7 @@ from django.contrib.auth import login, authenticate, logout
 from accounts.forms import RegistrationForm, AccountAuthenticationForm, AccountUpdateForm
 from application.models import Team, Application
 from application.forms import TeamCreateForm, TeamSearchForm
-from  application.views import create_team_view
+# from  application.views import create_team_view
 
 def home(request):
     # create_team_view(request)

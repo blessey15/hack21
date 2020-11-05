@@ -98,7 +98,7 @@
             <div class="card-body">
               <h3 class="card-title">Join A Team</h3>
               <ol>
-                  <li>{{ searched_team.name }}</li>
+                  <li><a href="{% url 'team_detail' searched_team.id %}"> {{ searched_team.name }} </a></li>
               </ol>
             </div>
             <div class="card-footer text-muted text-center">

@@ -21,6 +21,7 @@ from django.views.generic import TemplateView
 # from user import views 
 from accounts import views
 from profiles import views as profileviews
+from application import views as application_views
 urlpatterns = [
     # path('', TemplateView.as_view(template_name="login.html")),
     path('admin/', admin.site.urls),
@@ -32,6 +33,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('auth/', include('social_django.urls', namespace='social')),
 
+# Password Reset Password Forgot ...
     path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(template_name='passwordreset/password_change_done.html'), 
         name='password_change_done'),
 
@@ -48,9 +50,12 @@ urlpatterns = [
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='passwordreset/password_reset_complete.html'),
      name='password_reset_complete'),
 
-
+# PROFILE
     path('profile/', profileviews.participant_profile_creation_view, name='profile'),
     
     path('profile_done/', profileviews.participant_profile_updated_view, name='profile_created'),
+
+# TEAM DEATAILS
+    path('teams/<uuid:team_id>', application_views.team_detail_view, name='team_detail')
 
 ]
