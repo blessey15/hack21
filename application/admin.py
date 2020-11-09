@@ -15,7 +15,7 @@ class ApplicationAdim(admin.ModelAdmin):
     #     return "\n".join(t.members for t in obj.Team.all()
 
 class JoinRequestAdmin(admin.ModelAdmin):
-    list_display = ('team', 'user', 'request_status',)
+    list_display = ('user', 'team', 'request_status',)
     search_fields = ('team',)
     
 
