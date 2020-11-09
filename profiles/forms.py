@@ -16,7 +16,8 @@ class PartcicpantProfileForm(forms.ModelForm):
     # field_of_study = forms.CharField(max_length=64, choices=FIELD_OF_STUDY_CHOICES, blank=True, verbose_name='Field of Study')
     class Meta:
         model = ParticipantProfile
-        fields = ('name', 'contact', 'dob', 'gender', 'bio', 'tshirt_size' ,'skills', 'educational_institution', 'field_of_study')
+        fields = ('name', 'contact', 'dob', 'gender', 'bio', 'tshirt_size' ,'skills',
+         'educational_institution', 'field_of_study', 'github_profile_link', 'twitter_profile_link', 'linkedin_profile_link', 'resume_link')
 
     def clean_name(self):
         name = self.cleaned_data.get('name')
