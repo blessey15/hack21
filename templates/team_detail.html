@@ -9,13 +9,21 @@
     {% if request.user.is_authenticated %}
     <div class="card">
         <div class="card-body">
-          <h3>{{ team.name }} </h3>
+          <h3>Team Name: {{ team.name }} </h3>
           <h5>Team Members</h5>
             <ul>
                 {% for member in application.members.all %}
-                <li>{{ member.profile.name }} </li>
+                <li>{{ member.profile.name }} - {{member.email }} </li>
                 {% endfor %}
             </ul>
+            {% if sent_request %}
+              <h4>You have sent a request to join this team</h4>
+            {% else %}
+              <a href="{% url 'join_team' team.id %}"> <button name="send_request" class="btn btn-primary">Join Team </button></a>
+            {% endif %}
+            <!-- <form method="POST">
+              <button type="submit" name="send_request" class="btn btn-primary">Join</button>
+            </form> -->
         </div>
         <div class="card-footer text-muted text-center">
         </div>

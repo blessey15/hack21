@@ -56,6 +56,8 @@ urlpatterns = [
     path('profile_done/', profileviews.participant_profile_updated_view, name='profile_created'),
 
 # TEAM DEATAILS
-    path('teams/<uuid:team_id>', application_views.team_detail_view, name='team_detail')
+    path('teams/<uuid:team_id>', application_views.team_detail_view, name='team_detail'),
+
+    path('teams/<uuid:team_id>/join', application_views.join_team_view, name='join_team'),
 
 ]
