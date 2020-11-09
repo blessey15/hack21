@@ -41,6 +41,9 @@ class Application(models.Model):
     def member_count(self):
         return len(self.members.all())
 
+    def __str__(self):
+        return self.team.name
+
 class JoinRequest(models.Model):
     team = models.ForeignKey(Team, related_name='request_team', on_delete=models.CASCADE)
     user = models.OneToOneField(Account, related_name='request_team', on_delete=models.CASCADE)
