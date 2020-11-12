@@ -119,8 +119,49 @@
             {% endfor %}
           </ol>
         <p>{{ application.team.name }} </p>
+
+        {% if join_requests %}
+
+              <!-- <div class="card"> -->
+                <div class="card-body">
+                  <h3 class="card-title"> Join Requests for team {{ team.name }}</h3>
+                  <ol>
+                    {% for req in join_requests %}
+                     <div class="join_req"> 
+                       <li> 
+                         {{ req.user.profile.name }} - {{ req.user.email }} 
+                         <!-- <span>
+                           <button type="submit" name="accept" class="btn btn-primary">Accept</button>
+                          </span>
+                          <span>
+                            <button type="submit" name="decline" class="btn btn-primary">Reject</button>
+                           </span> -->
+
+                           <form method="post" novalidate style="display: inline; margin-left: 10rem;">
+                            {% csrf_token %}
+                              <button type="submit" name="accept_request" class="btn btn-primary">Accept</button>
+                          </form>
+
+                          <form method="post" novalidate style="display: inline; margin-left: 1rem;">
+                            {% csrf_token %}
+                              <button type="submit" name="decline_request" class="btn btn-primary">Decline</button>
+                          </form>
+
+                        </li>
+                    </div>
+                    {% endfor %}
+                  </ol>
+                </div>
+              <!-- </div> -->
+
+          {% endif %}
+
+
         {% endif %}
       
+
+        
+
 
     
 

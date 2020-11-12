@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 
 from accounts.forms import RegistrationForm, AccountAuthenticationForm, AccountUpdateForm
-from application.models import Team, Application
+from application.models import Team, Application, JoinRequest
 from application.forms import TeamCreateForm, TeamSearchForm
 # from  application.views import create_team_view
 
@@ -93,6 +93,20 @@ def home(request):
                         context['no_teams_found'] = no_teams_found
                 else:
                     context['search_form'] = search_form 
+            # elif "accept_request" in request.POST:
+            #     try:
+            #         application = Application.objects.get(team=team)
+            #         # print("has team")
+            #         context['application'] = application
+            #         application.members.add(request.user)
+            #         application.save()
+            #         # request.user.request_team.request_status = "Accepted"
+            #         # request.user.join_request.request_status = "Accepted"
+            #         print(team.application_team.team.name)
+            #     except Application.DoesNotExist:
+            #         pass
+            # elif "decline_request" in request.POST:
+            #     pass
         else:
             team_form = TeamCreateForm(
                 initial={
@@ -114,6 +128,10 @@ def home(request):
             print(team.application_team.team.name)
         except Application.DoesNotExist:
             pass
+
+        if team.admin == request.user:
+            join_requests = JoinRequest.objects.filter(team=team, request_status="Submitted")
+            context['join_requests'] = join_requests
     return render(request, 'home.html', context )
     # return render(request, 'home.html')
 

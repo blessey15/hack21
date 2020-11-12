@@ -16,7 +16,7 @@ APPLICATION_STATUS_CHOICES = (
 REQUEST_STATUS_CHOICES = (
     ("Submitted", "Submitted"),
     ("Declined", "Declined"),
-    ("Accepted", "Submitted"),
+    ("Accepted", "Accepted"),
 )
 class Team(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, db_column='id')
@@ -46,5 +46,5 @@ class Application(models.Model):
 
 class JoinRequest(models.Model):
     team = models.ForeignKey(Team, related_name='request_team', on_delete=models.CASCADE)
-    user = models.OneToOneField(Account, related_name='request_team', on_delete=models.CASCADE)
+    user = models.OneToOneField(Account, related_name='join_request', on_delete=models.CASCADE)
     request_status = models.CharField(max_length=14, choices=REQUEST_STATUS_CHOICES, default='Not Submitted')
