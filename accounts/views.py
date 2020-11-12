@@ -8,17 +8,36 @@ from application.forms import TeamCreateForm, TeamSearchForm
 
 def home(request):
     # create_team_view(request)
-    no_teams_found = False
     context = {}
+    no_teams_found = False
+    # print(application)
+    # print(len(application))
     if request.user.is_authenticated:
-        try:
-            team = request.user.team
+        application = Application.objects.filter(members__id = request.user.id)
+        if not(len(application) == 0):
+            application = application[0]
+            context['application'] = application
+            team = application.team
+            print("team ind")
             user_has_team = True
             context['users_team'] = team
-        except Team.DoesNotExist:
+        else:
             team = Team(admin = request.user)
+            print("team indaakki")
             # team.save() 
             user_has_team = False
+
+            # try:
+            #     application = application[0]
+            #     team = application.team
+            #     print("team ind")
+            #     user_has_team = True
+            #     context['users_team'] = team
+            # except Team.DoesNotExist:
+            #     team = Team(admin = request.user)
+            #     print("team indaakki")
+            #     # team.save() 
+            #     user_has_team = False
 
         # try:
         #     application = Application.objects.get(team=team)
@@ -50,7 +69,7 @@ def home(request):
                         # team.strength = 1
                         # team.application_status = 'Not Submitted'
                         team.save()
-
+                    
                         try:
                             application = Application.objects.get(team=team)
                             print("has team")
@@ -121,17 +140,18 @@ def home(request):
             )
             context['search_form'] = search_form
 
-        try:
-            application = Application.objects.get(team=team)
-            print("has team")
-            context['application'] = application
-            print(team.application_team.team.name)
-        except Application.DoesNotExist:
-            pass
+        # try:
+        #     application = Application.objects.get(team=team)
+        #     # context['user_has_team'] = True
+        #     print("has team")
+        #     context['application'] = application
+        #     print(team.application_team.team.name)
+        # except Application.DoesNotExist:
+        #     print("except of appli in end executed")
 
-        if team.admin == request.user:
-            join_requests = JoinRequest.objects.filter(team=team, request_status="Submitted")
-            context['join_requests'] = join_requests
+        # if team.admin == request.user:
+        #     join_requests = JoinRequest.objects.filter(team=team, request_status="Submitted")
+        #     context['join_requests'] = join_requests
     return render(request, 'home.html', context )
     # return render(request, 'home.html')
 

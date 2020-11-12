@@ -112,13 +112,14 @@
         <h6>Team Details:</h6>
         <p>Team Name: {{ users_team.name }} </p>
         <p>Team ID: {{ users_team.id }} </p>
+        <p>Created By: {{ users_team.admin.profile.name }} </p>
         <h6>Team Members</h6>
           <ol>
             {% for member in application.members.all %}
-              <li>{{ member.email }}</li>
+              <li> {{ member.profile.name }} - {{ member.email }}</li>
             {% endfor %}
           </ol>
-        <p>{{ application.team.name }} </p>
+        <!-- <p>{{ application.team.name }} </p> -->
 
         {% if join_requests %}
 

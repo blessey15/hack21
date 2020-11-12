@@ -40,7 +40,8 @@ def join_team_view(request, team_id):
         else:
             application.members.add(request.user)
             # return redirect('join_team')
-            return render(request, 'team_detail.html', context)
+            # return render(request, 'team_detail.html', context)
+            return team_detail_view(request, team_id)
     #     try:
     #         join_request = JoinRequest.objects.get(team=team, user=request.user)
     #         context['sent_request'] = True
