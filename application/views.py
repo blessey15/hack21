@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 
 from .forms import TeamCreateForm
 from .models import Application, Team, JoinRequest
@@ -13,6 +13,7 @@ def team_detail_view(request, team_id):
         application = Application.objects.get(team=team)
         # print("has team")
         context['application'] = application
+        context['number_of_members'] = len(application.members.all())
         if (request.user in application.members.all()):
             context['in_team'] = True 
         # try:
@@ -33,10 +34,13 @@ def join_team_view(request, team_id):
     try:
         application = Application.objects.get(team=team)
         context['application'] = application
+        context['number_of_members'] = len(application.members.all())
         if (request.user in application.members.all()):
             context['in_team'] = True
         else:
             application.members.add(request.user)
+            # return redirect('join_team')
+            return render(request, 'team_detail.html', context)
     #     try:
     #         join_request = JoinRequest.objects.get(team=team, user=request.user)
     #         context['sent_request'] = True

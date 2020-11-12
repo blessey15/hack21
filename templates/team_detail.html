@@ -10,12 +10,13 @@
     <div class="card">
         <div class="card-body">
           <h3>Team Name: {{ team.name }} </h3>
-          <h5>Team Members</h5>
-            <ul>
+          <h5>Number of Members: {{ number_of_members }} </h5>
+          <h5>Created By: {{ team.admin.profile.name }} - {{ team.admin.email }} </h5>
+            <!-- <ul>
                 {% for member in application.members.all %}
                 <li>{{ member.profile.name }} - {{member.email }} </li>
                 {% endfor %}
-            </ul>
+            </ul> -->
             <!-- <a href="{% url 'join_team' team.id %}"> <button name="send_request" class="btn btn-primary">Join Team </button></a> -->
             {% if in_team %}
               <h4>You are member of this team</h4>
