@@ -16,15 +16,15 @@
                 <li>{{ member.profile.name }} - {{member.email }} </li>
                 {% endfor %}
             </ul>
-            <a href="{% url 'join_team' team.id %}"> <button name="send_request" class="btn btn-primary">Join Team </button></a>
-            <!-- {% if sent_request %}
-              <h4>You have sent a request to join this team</h4>
+            <!-- <a href="{% url 'join_team' team.id %}"> <button name="send_request" class="btn btn-primary">Join Team </button></a> -->
+            {% if in_team %}
+              <h4>You are member of this team</h4>
             {% else %}
               <a href="{% url 'join_team' team.id %}"> <button name="send_request" class="btn btn-primary">Join Team </button></a>
-            {% endif %} -->
+            {% endif %}
             <!-- <form method="POST">
               <button type="submit" name="send_request" class="btn btn-primary">Join</button>
-            </form> -->
+            </form>
         </div>
         <div class="card-footer text-muted text-center">
         </div>
