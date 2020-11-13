@@ -57,21 +57,39 @@ def join_team_view(request, team_id):
     return render(request, 'team_detail.html', context)
 
 
-def accept_to_team(request, team_id):
+# def accept_to_team(request, team_id):
+#     context = {}
+#     try:
+#         team = Team.objects.get(id=team_id)
+#     except Team.DoesNotExist:
+#         pass
+#     try:
+#         application = Application.objects.get(team=team)
+#         # print("has team")
+#         context['application'] = application
+#         application.members.add(request.user)
+#         application.save()
+#         # request.user.request_team.request_status = "Accepted"
+#         # request.user.join_request.request_status = "Accepted"
+#         print(team.application_team.team.name)
+#     except Application.DoesNotExist:
+#         pass
+#     return render(request, 'messages.html', context)
+
+def leave_team_view(request, team_id):
     context = {}
-    try:
-        team = Team.objects.get(id=team_id)
-    except Team.DoesNotExist:
-        pass
-    try:
-        application = Application.objects.get(team=team)
-        # print("has team")
-        context['application'] = application
-        application.members.add(request.user)
-        application.save()
-        # request.user.request_team.request_status = "Accepted"
-        # request.user.join_request.request_status = "Accepted"
-        print(team.application_team.team.name)
-    except Application.DoesNotExist:
-        pass
-    return render(request, 'messages.html', context)
+    team = get_object_or_404(Team, id=team_id)
+    application = team.application_team
+    # application = Application.objects.filter(members__id = request.user.id)
+    # if not (len(application) == 0):
+    #     application = application[0]
+    context['application'] = application
+    # team = application.team
+    if request.user == team.admin:
+        application.delete()
+        team.delete()
+    else:
+        application.members.remove(request.user)
+        return team_detail_view(request, team_id)
+    
+    return render(request, 'team_detail.html', context)

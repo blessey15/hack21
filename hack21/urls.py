@@ -62,6 +62,8 @@ urlpatterns = [
 
     path('teams/<uuid:team_id>/join', application_views.join_team_view, name='join_team'),
 
+    path('teams/<uuid:team_id>/leave', application_views.leave_team_view, name='leave_team'),
+
     # path('test', views.test_view,  name='test_home'),
 
 
