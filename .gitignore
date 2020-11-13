@@ -2,6 +2,8 @@
 .env.prod
 .env.prod.db
 
+# VSCode File
+.vscode
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

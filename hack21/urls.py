@@ -25,6 +25,7 @@ from application import views as application_views
 urlpatterns = [
     # path('', TemplateView.as_view(template_name="login.html")),
     path('admin/', admin.site.urls),
+    path('sponsor', views.sponsor_view,  name='sponsors'),
     path('', views.home, name='home'),
     path('register/', views.registration_view, name='register'),
     path('logout/', views.logout_view, name='logout'),
@@ -59,5 +60,8 @@ urlpatterns = [
     path('teams/<uuid:team_id>', application_views.team_detail_view, name='team_detail'),
 
     path('teams/<uuid:team_id>/join', application_views.join_team_view, name='join_team'),
+
+    path('test', views.test_view,  name='test_home'),
+
 
 ]

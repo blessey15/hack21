@@ -6,6 +6,12 @@ from application.models import Team, Application, JoinRequest
 from application.forms import TeamCreateForm, TeamSearchForm
 # from  application.views import create_team_view
 
+def test_view(request):
+    return render(request, 'index.html', {})
+
+def sponsor_view(request):
+    return render(request, 'sponsor.html', {})
+
 def home(request):
     # create_team_view(request)
     context = {}
