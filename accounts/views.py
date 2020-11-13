@@ -6,7 +6,7 @@ from application.models import Team, Application, JoinRequest
 from application.forms import TeamCreateForm, TeamSearchForm
 # from  application.views import create_team_view
 
-def test_view(request):
+def landing_page_view(request):
     return render(request, 'index.html', {})
 
 def sponsor_view(request):
