@@ -110,7 +110,8 @@
         {% if application %}
           <h2>{{ application.team.name }} </h2>
           {% if request.user == application.team.admin %}
-              <a href="{% url 'leave_team' application.team.id %}"> <button name="leave_team" class="btn btn-primary">Delete Team </button></a>
+          <a href="{% url 'leave_team' application.team.id %}"> <button name="leave_team" class="btn btn-primary">Delete Team </button></a>
+          <a href="{% url 'submit_application' %}"> <button name="leave_team" class="btn btn-primary">Submit Application </button></a>
           {% else %}
               <a href="{% url 'leave_team' application.team.id %}"> <button name="leave_team" class="btn btn-primary">Leave Team </button></a>
           {% endif %}

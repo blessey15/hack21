@@ -97,3 +97,21 @@ def leave_team_view(request, team_id):
         return redirect('home')
     
     return render(request, 'team_detail.html', context)
+
+def submit_aplication_view(request):
+    context = {}
+    application = Application.objects.filter(members__id = request.user.id)
+    if len(application) > 0:
+        application = application[0]
+        if request.user == application.team.admin:
+            if len(application.members.all()) == 4:
+                application.application_status = 'Submitted'
+                application.save()
+            else:
+                context['message'] = "You need 4 people in a team to submit the application."
+                return render(request, 'messages.html', context)
+        else:
+            context['message'] = "Only Team Admin can submit the application"
+            return render(request, 'messages.html', context)
+    return redirect('home')
+

@@ -64,6 +64,9 @@ urlpatterns = [
 
     path('teams/<uuid:team_id>/leave', application_views.leave_team_view, name='leave_team'),
 
+    path('submit', application_views.submit_aplication_view, name='submit_application'),
+
+
     # path('test', views.test_view,  name='test_home'),
 
 
