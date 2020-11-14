@@ -5,9 +5,7 @@
 {% endblock %}
 {% block content %}
 {% if request.user.is_authenticated %}
-  {% if request.user.team or request.user.team_name %}
-  <h2>{{ request.user.team.name }} {{ request.user.team_name.name }} </h2>
-  {% endif %}
+  
   {% if message %}
     <div class="card">
       <div class="card-body">
@@ -109,6 +107,18 @@
       
         {% else %}
 
+        {% if application %}
+          <h2>{{ application.team.name }} </h2>
+          {% if request.user == application.team.admin %}
+              <a href="{% url 'leave_team' application.team.id %}"> <button name="leave_team" class="btn btn-primary">Delete Team </button></a>
+          {% else %}
+              <a href="{% url 'leave_team' application.team.id %}"> <button name="leave_team" class="btn btn-primary">Leave Team </button></a>
+          {% endif %}
+        {% endif %}
+
+
+
+
         <h6>Team Details:</h6>
         <p>Team Name: {{ users_team.name }} </p>
         <p>Team ID: {{ users_team.id }} </p>
@@ -116,7 +126,9 @@
         <h6>Team Members</h6>
           <ol>
             {% for member in application.members.all %}
-              <li> {{ member.profile.name }} - {{ member.email }}</li>
+              <li> 
+                {{ member.profile.name }} - {{ member.email }}
+              </li>
             {% endfor %}
           </ol>
         <!-- <p>{{ application.team.name }} </p> -->
