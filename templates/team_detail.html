@@ -7,6 +7,7 @@
 {% block content %}
 
     {% if request.user.is_authenticated %}
+    {% if team %}
     <div class="card">
         <div class="card-body">
           <h3>Team Name: {{ team.name }} </h3>
@@ -23,13 +24,15 @@
             {% else %}
               <a href="{% url 'join_team' team.id %}"> <button name="send_request" class="btn btn-primary">Join Team </button></a>
             {% endif %}
+            {% endif %}
             <!-- <form method="POST">
               <button type="submit" name="send_request" class="btn btn-primary">Join</button>
-            </form>
+            </form> -->
         </div>
         <div class="card-footer text-muted text-center">
         </div>
       </div>
     {% endif %}
+    
 {% endblock content %}
 

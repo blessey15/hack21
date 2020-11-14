@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 from .forms import TeamCreateForm
 from .models import Application, Team, JoinRequest
+from accounts.views import home
 
 # Create your views here.
 
@@ -87,9 +88,12 @@ def leave_team_view(request, team_id):
     # team = application.team
     if request.user == team.admin:
         application.delete()
+        context['application'] = None
         team.delete()
+        context['team'] = None
+        return redirect('home')
     else:
         application.members.remove(request.user)
-        return team_detail_view(request, team_id)
+        return redirect('home')
     
     return render(request, 'team_detail.html', context)
