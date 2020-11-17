@@ -24,7 +24,7 @@ def participant_profile_creation_view(request):
             profile.user = request.user
             # profile.user.has_profile = True
             profile.save()
-            return redirect('profile_created')
+            return redirect('home')
 
         else:
             context['participant_profile_creation_form'] = form
