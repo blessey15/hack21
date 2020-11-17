@@ -104,12 +104,19 @@ def submit_aplication_view(request):
     if len(application) > 0:
         application = application[0]
         if request.user == application.team.admin:
-            if len(application.members.all()) == 4:
+            if len(application.members.all()) > 4:
+                context['message'] = "You can have a maximum of 4 people only in a team!!."
+                return render(request, 'messages.html', context)
+                # application.application_status = 'Submitted'
+                # application.save()
+            elif len(application.members.all()) < 2:
+                context['message'] = "You need atleast 2 people in a team!!."
+                return render(request, 'messages.html', context)
+            else:
                 application.application_status = 'Submitted'
                 application.save()
-            else:
-                context['message'] = "You need 4 people in a team to submit the application."
-                return render(request, 'messages.html', context)
+                # context['message'] = "You need 4 people in a team to submit the application."
+                # return render(request, 'messages.html', context)
         else:
             context['message'] = "Only Team Admin can submit the application"
             return render(request, 'messages.html', context)
