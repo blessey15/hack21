@@ -39,10 +39,19 @@ def join_team_view(request, team_id):
         if (request.user in application.members.all()):
             context['in_team'] = True
         else:
-            application.members.add(request.user)
-            # return redirect('join_team')
-            # return render(request, 'team_detail.html', context)
-            return team_detail_view(request, team_id)
+            if application.application_status == "Not Submitted":
+                if len(application.members.all())<4:
+                    application.members.add(request.user)
+                    # return redirect('join_team')
+                    # return render(request, 'team_detail.html', context)
+                    # return team_detail_view(request, team_id)
+                    return redirect('home')
+                else:
+                    context['message'] = "This team already has 4 members. You cant join this team!"
+                    return render(request, 'messages.html', context)
+            else:
+                context['message'] = "The Application for this team is already submitted. You can no longer Join this team."
+                return render(request, 'messages.html', context)
     #     try:
     #         join_request = JoinRequest.objects.get(team=team, user=request.user)
     #         context['sent_request'] = True
@@ -56,6 +65,7 @@ def join_team_view(request, team_id):
     except Application.DoesNotExist:
         pass
     return render(request, 'team_detail.html', context)
+    # return redirect('home')
 
 
 # def accept_to_team(request, team_id):
@@ -86,15 +96,19 @@ def leave_team_view(request, team_id):
     #     application = application[0]
     context['application'] = application
     # team = application.team
-    if request.user == team.admin:
-        application.delete()
-        context['application'] = None
-        team.delete()
-        context['team'] = None
-        return redirect('home')
+    if application.application_status == 'Not Submitted':
+        if request.user == team.admin:
+            application.delete()
+            context['application'] = None
+            team.delete()
+            context['team'] = None
+            return redirect('home')
+        else:
+            application.members.remove(request.user)
+            return redirect('home')
     else:
-        application.members.remove(request.user)
-        return redirect('home')
+        context['message'] = "The application is already submitted. You cannot leave the team now!!"
+        return render(request, 'messages.html', context)
     
     return render(request, 'team_detail.html', context)
 

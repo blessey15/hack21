@@ -111,7 +111,7 @@
           <h2>{{ application.team.name }} </h2>
           {% if application.application_status == 'Not Submitted'%}
               {% if request.user == application.team.admin %}
-                  <P>Your Application to .hack( ); 2021 has not been submitted yet.</P>>
+                  <P>Your Application to .hack( ); 2021 has not been submitted yet.</P>
                   <a href="{% url 'leave_team' application.team.id %}"> <button name="leave_team" class="btn btn-primary">Delete Team </button></a>
                   <a href="{% url 'submit_application' %}"> <button name="leave_team" class="btn btn-primary">Submit Application </button></a>
               {% else %}
