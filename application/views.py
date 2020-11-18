@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 
 from .forms import TeamCreateForm
 from .models import Application, Team, JoinRequest
+from accounts.models import Account
 from accounts.views import home
 
 # Create your views here.
@@ -141,4 +142,37 @@ def organizer_dashboard(request):
     context = {}
     applications = Application.objects.all()
     context['applications'] = applications
+    number_of_applications = len(applications)
+    context['number_of_applications'] = number_of_applications
+    number_of_accounts = len(Account.objects.all())
+    context['number_of_accounts'] = number_of_accounts
+    number_of_teams = len(Team.objects.all())
+    context['number_of_teams'] = number_of_teams
+    # incomplete_applications = Application.objects.filter(application_status='Not Submitted')
+    incomplete_applications = len(Application.objects.filter(application_status='Not Submitted'))
+    context['incomplete_applications'] = incomplete_applications
+
+    review_pending_applications = len(Application.objects.filter(application_status='Submitted'))
+    context['review_pending_applications'] = review_pending_applications
+    review_pending_applications_percent = int((review_pending_applications/number_of_applications)*100)
+    context['review_pending_applications_percent'] = review_pending_applications_percent
+
+    accepted_applications = len(Application.objects.filter(application_status='Accepted'))
+    context['accepted_applications'] = accepted_applications
+    accepted_applications_percent = int((accepted_applications/number_of_applications)*100)
+    context['accepted_applications_percent'] = accepted_applications_percent
+
+    declined_applications = len(Application.objects.filter(application_status='Declined'))
+    context['declined_applications'] = declined_applications
+    declined_applications_percent = int((declined_applications/number_of_applications)*100)
+    context['declined_applications_percent'] = declined_applications_percent
+
+    Waitinglist_applications = len(Application.objects.filter(application_status='Waitinglist'))
+    context['Waitinglist_applications'] = Waitinglist_applications
+    # Waitinglist_applications_percent = 100-accepted_applications_percent-declined_applications_percent
+    Waitinglist_applications_percent = int((Waitinglist_applications/number_of_applications)*100)
+    context['Waitinglist_applications_percent'] = Waitinglist_applications_percent
+    
+    progress = 100 - int((incomplete_applications/number_of_applications)*100)
+    context['progress'] = progress
     return render(request, 'org_db.html', context)
