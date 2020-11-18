@@ -136,3 +136,9 @@ def submit_aplication_view(request):
             return render(request, 'messages.html', context)
     return redirect('home')
 
+
+def organizer_dashboard(request):
+    context = {}
+    applications = Application.objects.all()
+    context['applications'] = applications
+    return render(request, 'organizer_db.html', context)

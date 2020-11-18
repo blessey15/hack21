@@ -67,6 +67,10 @@ urlpatterns = [
     path('submit', application_views.submit_aplication_view, name='submit_application'),
 
 
+    path('orgdb', application_views.organizer_dashboard, name='organizer_dashboard'),
+
+
+
     # path('test', views.test_view,  name='test_home'),
 
 

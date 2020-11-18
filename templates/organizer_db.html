@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item active">.hack( ); 2021</li>
+{% endblock %}
+
+{% block content %}
+
+    {% if request.user.is_authenticated %}
+        {% if applications %}
+            <div class="card">
+                <div class="card-body">
+                    <table class="table table-responsive-sm table-hover table-outline mb-0 events-table">
+                        <thead class="thead-light">
+                            <tr>
+                                <th  style="width: %;"class="text-center">Team Name</th>
+                                <th style="width: %25;">Created By</th>
+                                <th style="width: 25%;">Number of Members</th>
+                                <th  style="width:25 %;" class="text-center">Application Status</th>
+                            </tr>
+                        </thead>
+                        {% for application in applications %}
+                        <tbody>
+                            <tr>
+                                <td  style="width: 25%;" class="text-center">
+                                    {{ application.team.name }}
+                                </td>
+                                <td  style="width: 25%;" class="text-center">
+                                    {{ application.team.admin.profile.name }}
+                                </td>
+                                <td  style="width: 25%;">
+                                    {{ application.member_count }}
+                                </td>
+                                <td  style="width: 25%;" class="text-center">
+                                    {{ application.application_status }} 
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    <!-- <ol>
+                        {% for application in applications%}
+                            <li>{{ application.team.name }} </li>
+                        {% endfor %}
+                    </ol> -->
+                <!-- <div class="card-footer text-muted text-center">
+                </div> -->
+            </div>
+        {% endif %}
+    {% endif %}
+    
+{% endblock content %}
+
