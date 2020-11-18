@@ -10,12 +10,13 @@
         {% if applications %}
             <div class="card">
                 <div class="card-body">
+                    <h2>All Applications</h2>
                     <table class="table table-responsive-sm table-hover table-outline mb-0 events-table">
                         <thead class="thead-light">
                             <tr>
-                                <th  style="width: %;"class="text-center">Team Name</th>
-                                <th style="width: %25;">Created By</th>
-                                <th style="width: 25%;">Number of Members</th>
+                                <th  style="width: %;" class="text-center">Team Name</th>
+                                <th style="width: %25;" class="text-center">Created By</th>
+                                <th style="width: 25%;" class="text-center">Number of Members</th>
                                 <th  style="width:25 %;" class="text-center">Application Status</th>
                             </tr>
                         </thead>
@@ -28,7 +29,7 @@
                                 <td  style="width: 25%;" class="text-center">
                                     {{ application.team.admin.profile.name }}
                                 </td>
-                                <td  style="width: 25%;">
+                                <td  style="width: 25%;" class="text-center">
                                     {{ application.member_count }}
                                 </td>
                                 <td  style="width: 25%;" class="text-center">
