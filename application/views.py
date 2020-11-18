@@ -141,4 +141,4 @@ def organizer_dashboard(request):
     context = {}
     applications = Application.objects.all()
     context['applications'] = applications
-    return render(request, 'organizer_db.html', context)
+    return render(request, 'org_db.html', context)
