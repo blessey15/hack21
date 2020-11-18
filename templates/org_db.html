@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title> Organizer Dashboard - .hack( ); 2021</title>
 
     <!-- Custom fonts for this template-->
     <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
@@ -168,7 +168,7 @@
                     </button>
 
                     <!-- Topbar Search -->
-                    <form
+                    <!-- <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
                             <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
@@ -179,7 +179,7 @@
                                 </button>
                             </div>
                         </div>
-                    </form>
+                    </form> -->
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -536,6 +536,45 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="align-content-center" style="width: 100%;">
+                            <div class="card shadow mb-4 mr-3 ml-3 alig">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Team Name</th>
+                                                    <th>Team Admin</th>
+                                                    <th>Email</th>
+                                                    <th>Member Count</th>
+                                                    <th>Application Status</th>
+                                                    <!-- <th>Salary</th> -->
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for application in applications %}
+                                                    <tr>
+                                                        <td>{{ application.team.name }}</td>
+                                                        <td>{{ application.team.admin.profile.name }}</td>
+                                                        <td>{{ application.team.admin.email }}</td>
+                                                        <td>{{ application.member_count }}</td>
+                                                        <td>{{ application.application_status }}</td>
+                                                        <!-- <td>$320,800</td> -->
+                                                    </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
                     </div>
 
                     <!-- Content Row -->
@@ -738,6 +777,7 @@
         </div>
     </div>
 
+    
     <!-- Bootstrap core JavaScript-->
     <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
     <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
@@ -750,10 +790,13 @@
 
     <!-- Page level plugins -->
     <script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script>
+    <script src="{% static 'vendor/datatables/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
 
     <!-- Page level custom scripts -->
     <script src="{% static 'js/demo/chart-area-demo.js' %}"></script>
     <script src="{% static 'js/demo/chart-pie-demo.js' %}"></script>
+    <script src="{% static 'js/demo/datatables-demo.js' %}"></script>
 
 </body>
 
