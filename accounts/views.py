@@ -68,6 +68,7 @@ def home(request):
                 if team_form.is_valid(): #TODO searching for teams to join
                     if user_has_team:
                         context['message'] = 'You already have a team!!'
+                        return render(request, 'messages.html', context )
                     else:
                         team = team_form.save(commit=False)
                         team.admin = request.user
@@ -100,8 +101,8 @@ def home(request):
                         # request.user.team.add(team)
                         # user_obj = team_form.save()
                         # user_obj.team.add(team) 
-                        context['success'] = 'Team Created Successfully'
-                        return render(request, 'home.html', context )
+                        context['message'] = 'Team Created Successfully'
+                        return render(request, 'messages.html', context )
                 else:
                     context['team_form'] = team_form
 
