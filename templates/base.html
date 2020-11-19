@@ -114,15 +114,18 @@
 
                 <!-- Begin Page Content -->
                 {% block body %}
-                <div class="container-fluid">
 
-                    <!-- Page Heading -->
-                    <!-- <h1 class="h3 mb-4 text-gray-800">Blank Page</h1> -->
+
+                <div class="container">
+                    <ol class="breadcrumb my-4">
+                    {% block breadcrumb %}
+                    {% endblock %}
+                    </ol>
                     {% block content %}
                     {% endblock %}
-
                 </div>
-                {% endblock %}
+                {% endblock body %}
+
                 <!-- /.container-fluid -->
 
             </div>
