@@ -23,6 +23,12 @@
 
 </head>
 
+<style>
+    .filtershow{
+        display: block;
+    }
+</style>
+
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -562,6 +568,15 @@
                                 <div class="card-header py-3">
                                     <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
                                 </div>
+                                <div id="myBtnContainer">
+                                    <button class="btn active" onclick="filterSelection('all')"> Show all</button>
+                                    <button class="btn" onclick="filterSelection('Not')"> Not Submitted</button>
+                                    <button class="btn" onclick="filterSelection('Submitted')"> Submitted</button>
+                                    <button class="btn" onclick="filterSelection('Accepted')"> Accepted</button>
+                                    <button class="btn" onclick="filterSelection('Declined')"> Declined</button>
+                                    <button class="btn" onclick="filterSelection('Waitinglist')"> Waitinglist</button>
+                                </div>
+
                                 <div class="card-body">
                                     <div class="table-responsive">
                                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -577,14 +592,25 @@
                                             </thead>
                                             <tbody>
                                                 {% for application in applications %}
-                                                    <tr>
-                                                        <td><a href="{% url 'team_detail' application.team.id %}">{{ application.team.name }}</a></td>
-                                                        <td>{{ application.team.admin.profile.name }}</td>
-                                                        <td>{{ application.team.admin.email }}</td>
-                                                        <td>{{ application.member_count }}</td>
-                                                        <td>{{ application.application_status }}</td>
-                                                        <!-- <td>$320,800</td> -->
-                                                    </tr>
+                                                    {% if application.application_status == "Not Submitted"%}
+                                                        <tr class="FilterRow Not">
+                                                            <td><a href="{% url 'team_detail' application.team.id %}">{{ application.team.name }}</a></td>
+                                                            <td>{{ application.team.admin.profile.name }}</td>
+                                                            <td>{{ application.team.admin.email }}</td>
+                                                            <td>{{ application.member_count }}</td>
+                                                            <td>{{ application.application_status }}</td>
+                                                            <!-- <td>$320,800</td> -->
+                                                        </tr>
+                                                    {% else %}
+                                                        <tr class="FilterRow {{ application.application_status }}">
+                                                            <td><a href="{% url 'team_detail' application.team.id %}">{{ application.team.name }}</a></td>
+                                                            <td>{{ application.team.admin.profile.name }}</td>
+                                                            <td>{{ application.team.admin.email }}</td>
+                                                            <td>{{ application.member_count }}</td>
+                                                            <td>{{ application.application_status }}</td>
+                                                            <!-- <td>$320,800</td> -->
+                                                        </tr>
+                                                    {% endif %}
                                                 {% endfor %}
                                             </tbody>
                                         </table>
@@ -803,6 +829,51 @@
         var declined = "{{ declined_applications_percent }}";
         var waitinglist = "{{ Waitinglist_applications_percent }}";
         var pending = "{{ review_pending_applications_percent }}";
+
+        filterSelection("all")
+        function filterSelection(c) {
+        var x, i;
+        x = document.getElementsByClassName("FilterRow");
+        if (c == "all") c = "";
+        for (i = 0; i < x.length; i++) {
+            RemoveClass(x[i], "filtershow");
+            if (x[i].className.indexOf(c) > -1) AddClass(x[i], "filtershow");
+        }
+        }
+
+        function AddClass(element, name) {
+        var i, arr1, arr2;
+        arr1 = element.className.split(" ");
+        arr2 = name.split(" ");
+        for (i = 0; i < arr2.length; i++) {
+            if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
+        }
+        }
+
+        function RemoveClass(element, name) {
+        var i, arr1, arr2;
+        arr1 = element.className.split(" ");
+        arr2 = name.split(" ");
+        for (i = 0; i < arr2.length; i++) {
+            while (arr1.indexOf(arr2[i]) > -1) {
+            arr1.splice(arr1.indexOf(arr2[i]), 1);     
+            }
+        }
+        element.className = arr1.join(" ");
+        }
+
+        // Add active class to the current button (highlight it)
+        var btnContainer = document.getElementById("myBtnContainer");
+        var btns = btnContainer.getElementsByClassName("btn");
+        for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function(){
+            var current = document.getElementsByClassName("active");
+            current[0].className = current[0].className.replace(" active", "");
+            this.className += " active";
+        });
+        }
+
+
     </script>
 
     
