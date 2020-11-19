@@ -11,6 +11,7 @@
       <div class="card">
           <div class="card-body">
             <h3>Team Name: {{ team.name }} </h3>
+            <p>Application Status: {{ application.application_status }} </p>
                 {% if request.user.is_organizer %}
 
                     <h5>Number of Members: {{ number_of_members }} </h5>
