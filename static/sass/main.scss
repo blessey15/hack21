@@ -1,0 +1,24 @@
+@import "abstracts/mixins";
+@import "abstracts/variables";
+
+@import "bootstrap/bootstrap-grid.scss";
+
+@import "base/base";
+@import "base/typography";
+@import "base/utilities";
+@import "base/keyframes";
+
+@import "components/button";
+@import "components/img-grid";
+@import "components/get-notified";
+@import "components/loader";
+@import "components/scheduler";
+@import "components/shapes";
+@import "components/testimonial";
+
+@import "layout/footer";
+// @import "layout/grid";
+@import "layout/header";
+@import "layout/navigation";
+
+@import "pages/home";

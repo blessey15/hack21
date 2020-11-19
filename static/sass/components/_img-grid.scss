@@ -1,0 +1,50 @@
+.img-grid {
+  &__container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    
+    &::after {
+      content: "";
+      position: absolute;
+      background-color: $color-red;
+      width: 30rem;
+      height: 40rem;
+      z-index: -1;
+      transform: translate(-1rem, 1rem);
+    }
+  }
+
+  &__image {
+    height: 40rem;
+    width: 30rem;
+    object-fit: cover;
+    transform: translate(1rem, -.8rem);
+  }
+
+  &__text {
+    position: absolute;
+    bottom: -5.36rem;
+    right: 13rem;
+
+    &--main {
+      display: block;
+      font-size: 2.8rem;
+    }
+
+    &--sub {
+      display: block;
+      font-size: $default-font-size;
+      font-weight: 300;
+    }
+  }
+}
+
+@media(max-width: 768px){
+  .img-grid{
+    &__container{
+      margin-bottom: 9rem;
+    }
+  }
+}
+

@@ -1,0 +1,50 @@
+.btn {
+  display: inline-block;
+
+  &:not(:last-child) {
+    margin-right: 3rem;
+  }
+  
+  &--large {
+    // clip-path: polygon(8% 0, 100% 1%, 100% 78%, 91% 100%, 0 100%, 0 22%);
+    font-size: $default-font-size;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-weight: 400;
+    width: 23.4rem;
+    height: 6rem;
+    border-radius: 4px;
+    text-align: center;
+    line-height: calc(6rem - 1px);
+    vertical-align: center;
+  }
+
+  &--red {
+    background-color: $color-red;
+  }
+
+  &--ring {
+    border: 2px solid $color-blue;
+    position: relative;
+  }
+}
+
+@media(max-width: 768px){
+  .btn{
+    &--large {
+      width: 16.5rem;
+      letter-spacing: 2px;
+    }
+  }
+}
+@media(max-width: 425px){
+  .btn{
+    &:not(:last-child) {
+      margin-right: 2.5rem;
+    }
+    &--large {
+      width: 15.5rem;
+      letter-spacing: 2px;
+    }
+  }
+}

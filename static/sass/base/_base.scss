@@ -1,0 +1,35 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+// .why-table{
+//   display: none;
+// }
+// .testimonial{
+//   display: none;
+// }
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+body {
+  box-sizing: border-box;
+  background-color: $color-black;
+  overflow-x: hidden;
+  // overflow-y: hidden;
+  &::-webkit-scrollbar{
+    width: 2px;
+    height: 4px;
+  }
+  &::-webkit-scrollbar-thumb{
+    background-color: $color-red;
+    border-radius: 100px;
+  }
+}
+
+.main-container{
+  background: url(../../img/lines.png);
+}
