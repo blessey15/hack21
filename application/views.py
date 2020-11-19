@@ -112,7 +112,7 @@ def leave_team_view(request, team_id):
         return render(request, 'messages.html', context)
     
     return render(request, 'team_detail.html', context)
-
+ 
 def submit_aplication_view(request):
     context = {}
     application = Application.objects.filter(members__id = request.user.id)

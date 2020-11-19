@@ -17,7 +17,8 @@ class PartcicpantProfileForm(forms.ModelForm):
     class Meta:
         model = ParticipantProfile
         fields = ('name', 'contact', 'dob', 'gender', 'bio', 'tshirt_size' ,'skills',
-         'educational_institution', 'field_of_study', 'github_profile_link', 'twitter_profile_link', 'linkedin_profile_link', 'resume_link')
+         'educational_institution', 'field_of_study', 'is_ieee', 'shipping_address',
+          'github_profile_link', 'twitter_profile_link', 'linkedin_profile_link')
 
     def clean_name(self):
         name = self.cleaned_data.get('name')
