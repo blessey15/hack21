@@ -64,6 +64,13 @@ urlpatterns = [
 
     path('teams/<uuid:team_id>/leave', application_views.leave_team_view, name='leave_team'),
 
+# ACCEPT| DECLINE | WAITINGLIST
+    path('teams/<uuid:team_id>/accept', application_views.accept_team_view, name='accept_team'),
+
+    path('teams/<uuid:team_id>/decline', application_views.decline_team_view, name='decline_team'),
+
+    path('teams/<uuid:team_id>/waitinglist', application_views.waitinglist_team_view, name='waitinglist_team'),
+
     path('submit', application_views.submit_aplication_view, name='submit_application'),
 
 

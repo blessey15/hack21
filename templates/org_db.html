@@ -578,7 +578,7 @@
                                             <tbody>
                                                 {% for application in applications %}
                                                     <tr>
-                                                        <td>{{ application.team.name }}</td>
+                                                        <td><a href="{% url 'team_detail' application.team.id %}">{{ application.team.name }}</a></td>
                                                         <td>{{ application.team.admin.profile.name }}</td>
                                                         <td>{{ application.team.admin.email }}</td>
                                                         <td>{{ application.member_count }}</td>

@@ -176,3 +176,70 @@ def organizer_dashboard(request):
     progress = 100 - int((incomplete_applications/number_of_applications)*100)
     context['progress'] = progress
     return render(request, 'org_db.html', context)
+
+def accept_team_view(request, team_id):
+    context = {}
+    team = get_object_or_404(Team, id=team_id)
+    application = team.application_team
+    if application.application_status == 'Not Submitted':
+        context['message'] = "The aplication has not been submitted yet"
+        return (request, 'messages.html', context)
+    else:
+        application.application_status = 'Accepted'
+        application.save()
+        return redirect("organizer_dashboard")
+    return render(request, 'team_detail.html', context)
+
+def decline_team_view(request, team_id):
+    context = {}
+    team = get_object_or_404(Team, id=team_id)
+    application = team.application_team
+    if application.application_status == 'Not Submitted':
+        context['message'] = "The aplication has not been submitted yet"
+        return (request, 'messages.html', context)
+    else:
+        application.application_status = 'Declined'
+        application.save()
+        return redirect("organizer_dashboard")
+    return render(request, 'team_detail.html', context)
+
+def waitinglist_team_view(request, team_id):
+    context = {}
+    team = get_object_or_404(Team, id=team_id)
+    application = team.application_team
+    if application.application_status == 'Not Submitted':
+        context['message'] = "The aplication has not been submitted yet"
+        return (request, 'messages.html', context)
+    else:
+        application.application_status = 'Waitinglist'
+        application.save()
+        return redirect("organizer_dashboard")
+    return render(request, 'team_detail.html', context)
+
+
+# def application_status_update_view(request, team_id):
+#     context = {}
+#     application = Application.objects.filter(members__id = request.user.id)
+#     if request.POST:
+#         status = request.POST.get('application_status')
+#         if status == "Accepted":
+#             application.application_status = "Accepted"
+#             application.save()
+#             return redirect ('organizer_dashboard')
+#         elif status == "Declined":
+#             application.application_status = "Declined"
+#             application.save()
+#             return redirect ('organizer_dashboard')
+#         elif status == "Waitinglist":
+#             application.application_status = "Waitinglist"
+#             application.save()
+#             return redirect ('organizer_dashboard')
+#     return redirect('team_detail')
+    # if application.application_status == 'Not Submitted':
+    #     context['message'] = "The aplication has not been submitted yet"
+    #     return (request, 'messages.html', context)
+    # else:
+    #     application.application_status = 'Accepted'
+    #     application.save()
+    #     return redirect("organizer_dashboard")
+    # return render(request, 'team_detail.html', context)

@@ -6,25 +6,60 @@
 
 {% block content %}
 
-    {% if request.user.is_authenticated %}
-    {% if team %}
-    <div class="card">
-        <div class="card-body">
-          <h3>Team Name: {{ team.name }} </h3>
-          <h5>Number of Members: {{ number_of_members }} </h5>
-          <h5>Created By: {{ team.admin.profile.name }} - {{ team.admin.email }} </h5>
-            <!-- <ul>
-                {% for member in application.members.all %}
-                <li>{{ member.profile.name }} - {{member.email }} </li>
-                {% endfor %}
-            </ul> -->
-            <!-- <a href="{% url 'join_team' team.id %}"> <button name="send_request" class="btn btn-primary">Join Team </button></a> -->
-            {% if in_team %}
-              <h4>You are member of this team</h4>
-            {% else %}
-              <a href="{% url 'join_team' team.id %}"> <button name="send_request" class="btn btn-primary">Join Team </button></a>
-            {% endif %}
-            {% endif %}
+  {% if request.user.is_authenticated %}
+      {% if team %}
+      <div class="card">
+          <div class="card-body">
+            <h3>Team Name: {{ team.name }} </h3>
+                {% if request.user.is_organizer %}
+
+                    <h5>Number of Members: {{ number_of_members }} </h5>
+                    <h5>Created By: {{ team.admin.profile.name }} - {{ team.admin.email }} </h5>
+                    <h5>Members</h5>
+                    <ol>
+                      {% for member in application.members.all %}
+                        <li> 
+                          {{ member.profile.name }} - {{ member.email }}
+                        </li>
+                      {% endfor %}
+                    </ol>
+                   <a href="{% url 'accept_team' team.id %}" ><button type="submit" name="application_status_update" class="btn btn-primary mr-2">Accept</button></a>
+                   <a href="{% url 'decline_team' team.id %}" ><button type="submit" name="application_status_update" class="btn btn-primary mr-2">Decline</button></a>
+                   <a href="{% url 'waitinglist_team' team.id %}" ><button type="submit" name="application_status_update" class="btn btn-primary mr-2">Waiting List</button></a>
+
+
+                    <!-- <form method="POST" action="">
+                      {% csrf_token %}
+
+                      <label for="appli_status">Application Status:</label>
+                      <select id="appli_status" name="application_status">
+                        <option value="Accepted">Accepted</option>
+                        <option value="Declined">Declined</option>
+                        <option value="Waitinglist">Waitinglist</option>
+                      </select>
+                      <button type="submit" name="application_status_update" class="btn btn-primary">Update Status</button>
+
+                    </form> -->
+                {% else %} <!-- if is orgganizer -->
+                    {% if in_team %}
+                    <h5>Number of Members: {{ number_of_members }} </h5>
+                    <h5>Created By: {{ team.admin.profile.name }} - {{ team.admin.email }} </h5>
+                    <h5>Members</h5>
+                    <ol>
+                      {% for member in application.members.all %}
+                        <li> 
+                          {{ member.profile.name }} - {{ member.email }}
+                        </li>
+                      {% endfor %}
+                    </ol>
+                    <h4>You are member of this team</h4>
+                    {% else %}
+                        <h5>Number of Members: {{ number_of_members }} </h5>
+                        <h5>Created By: {{ team.admin.profile.name }} - {{ team.admin.email }} </h5>
+                        <a href="{% url 'join_team' team.id %}"> <button name="send_request" class="btn btn-primary">Join Team </button></a>
+                    {% endif %} <!-- if in_team -->
+                {% endif %} <!-- if is orgganizer -->
+      {% endif %} <!--if team -->
             <!-- <form method="POST">
               <button type="submit" name="send_request" class="btn btn-primary">Join</button>
             </form> -->
@@ -32,7 +67,7 @@
         <div class="card-footer text-muted text-center">
         </div>
       </div>
-    {% endif %}
+  {% endif %}
     
 {% endblock content %}
 
