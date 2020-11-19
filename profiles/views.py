@@ -45,7 +45,7 @@ def participant_profile_creation_view(request):
         
         context['participant_profile_creation_form'] = form
     
-    return render(request, 'profile.html', context)
+    return render(request, 'create_profile.html', context)
 
 
 

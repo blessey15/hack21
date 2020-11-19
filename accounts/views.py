@@ -12,6 +12,9 @@ def landing_page_view(request):
 def sponsor_view(request):
     return render(request, 'sponsor.html', {})
 
+def base_view(request):
+    return render(request, 'base.html', {})
+
 def home(request):
     # create_team_view(request)
     context = {}
