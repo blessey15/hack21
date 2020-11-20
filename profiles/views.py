@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 
 from .forms import PartcicpantProfileForm
 from .models import ParticipantProfile
 
 # Create your views here.
 
+@login_required(login_url='login')
 def participant_profile_creation_view(request):
     context = {}
     try:
@@ -58,6 +60,6 @@ def participant_profile_creation_view(request):
     return render(request, 'create_profile.html', context)
 
 
-
+@login_required(login_url='login')
 def participant_profile_updated_view(request):
     return render(request, 'profile_created.html')

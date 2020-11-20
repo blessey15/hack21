@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.decorators import login_required
 
 from accounts.forms import RegistrationForm, AccountAuthenticationForm, AccountUpdateForm
 from application.models import Team, Application, JoinRequest
 from application.forms import TeamCreateForm, TeamSearchForm
+from hack21.decorators import unauthenticated_user, participant_view
 # from  application.views import create_team_view
 
 def landing_page_view(request):
@@ -15,6 +17,8 @@ def sponsor_view(request):
 def base_view(request):
     return render(request, 'base.html', {})
 
+@login_required(login_url='login')
+@participant_view
 def home(request):
     # create_team_view(request)
     context = {}
@@ -165,7 +169,7 @@ def home(request):
     return render(request, 'home.html', context )
     # return render(request, 'home.html')
 
-
+@unauthenticated_user
 def registration_view(request):
     context = {}
     if request.POST:
@@ -184,10 +188,12 @@ def registration_view(request):
         context['registration_form'] = form
     return render(request, 'register.html', context)
 
+@login_required(login_url='login')
 def logout_view(request):
     logout(request)
     return redirect('home')
 
+@unauthenticated_user
 def login_view(request):
     context = {}
 
@@ -213,6 +219,7 @@ def login_view(request):
     return render(request, 'login.html', context)
 
 
+@login_required(login_url='login')
 def account_view(request):
     if not request.user.is_authenticated:
         return redirect('login')
