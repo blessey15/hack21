@@ -69,7 +69,7 @@
       }
     </style>
     <div class="preloader">
-      <!-- <div class="preloader-ring"></div> -->
+      <div class="preloader-ring"></div>
     </div>
 
     <!-- three.js -->
@@ -864,6 +864,7 @@
     <script src="{% static 'vendor/bitrix/js/page.js' %}"></script>
 
     <script>
+      document.getElementById("nav").style.display="none";
       window.addEventListener("load", function () {
         var el = document.querySelector(".preloader");
         el.style.opacity = 1;
@@ -872,6 +873,7 @@
           if ((el.style.opacity -= 0.15) < 0) {
             window.scrollTo(0, 0);
             el.style.display = "none";
+            document.getElementById("nav").style.display="flex";
             controls.redraw();
             controls.rend();
             controls.start();
