@@ -3,18 +3,140 @@ from django import forms
 from .models import ParticipantProfile
 from .choices import *
 
+
+DOB_CHOICES = []
+for i in range(1901, 2099):
+    DOB_CHOICES.append(str(i))
+    
 class PartcicpantProfileForm(forms.ModelForm):
-    # name = forms.CharField(max_length=256, blank=False)
-    # # email = forms.EmailField(max_length=256, blank=False, unique=True)
-    # contact = forms.IntegerField( blank=False)
-    # dob = forms.DateField()
-    # gender = forms.CharField(max_length=2, choices=GENDER_CHOICES, blank=False)
-    # bio = forms.TextField()
-    # tshirt_size = forms.CharField(max_length=3, choices=T_SHIRT_SIZE_CHOICES, verbose_name='T-Shirt Size')
-    # #emergency conatct
-    # skills = forms.TextField()
-    # educational_institution = forms.CharField(max_length= 128)
-    # field_of_study = forms.CharField(max_length=64, choices=FIELD_OF_STUDY_CHOICES, blank=True, verbose_name='Field of Study')
+    team_status = forms.ChoiceField(choices=TEAM_STATUS_CHOICES,
+        widget = forms.Select(
+            attrs={
+                "class": "form-control py-1"
+            }
+        )
+    )
+    name = forms.CharField(
+        widget = forms.TextInput(
+            attrs={
+                "class": "form-control py-1"
+            }
+        )
+    )
+    contact = forms.CharField(
+        widget = forms.TextInput(
+            attrs={
+                "class": "form-control py-1"
+            }
+        )
+    )
+    dob = forms.DateField( required=False,
+        widget=forms.SelectDateWidget(years=DOB_CHOICES,
+            attrs={
+                "class": "form-control py-1 dob-form"
+            }
+        )
+    )
+    gender = forms.ChoiceField( choices=GENDER_CHOICES,
+        widget = forms.Select(
+            attrs={
+                "class": "form-control py-1"
+            }
+        )
+    )
+    bio = forms.CharField( required=False,
+        widget = forms.Textarea(
+            attrs={
+                "placeholder": "Your short bio",
+                "class": "form-control py-1"
+            }
+        )
+    )
+    tshirt_size = forms.ChoiceField( choices=T_SHIRT_SIZE_CHOICES,
+        widget = forms.Select(
+            attrs={
+                "class": "form-control py-1"
+            }
+        )
+    )
+    #emergency conatct
+    skills = forms.CharField( required=False,
+        widget = forms.TextInput(
+            attrs={
+                "class": "form-control py-1"
+            }
+        )
+    )
+    educational_institution =forms.CharField( required=False,
+        widget = forms.TextInput(
+            attrs={
+                "class": "form-control py-1"
+            }
+        )
+    )
+    field_of_study = forms.ChoiceField( required=False, choices=FIELD_OF_STUDY_CHOICES,
+        widget = forms.Select(
+            attrs={
+                "class": "form-control py-1",
+            }
+        )
+    )
+    is_ieee = forms.ChoiceField(choices=BOOLEAN_CHOICES,
+        widget = forms.Select(
+            attrs={
+                "class": 'form-control',
+            }
+        )
+    )
+    shipping_address = forms.CharField( required=False,
+        widget = forms.Textarea(
+            attrs={
+                "class": "form-control py-1"
+            }
+        )
+    )
+    state = forms.ChoiceField( choices=STATE_OF_RESIDENCE_CHOICES,
+        widget = forms.Select(
+            attrs={
+                "class": "form-control py-1"
+            }
+        )
+    )
+    educational_status = forms.ChoiceField(choices=EDUCATIONAL_STATUS_CHOICES,
+        widget = forms.Select(
+            attrs={
+                "class": "form-control py-1"
+            }
+        )
+    )
+    year_of_graduation = forms.ChoiceField(choices=YEAR_OF_GRADUATION_CHOICES,
+        widget = forms.Select(
+            attrs={
+                "class": "form-control py-1"
+            }
+        )
+    )
+    github_profile_link = forms.URLField( required=False,
+        widget = forms.URLInput(
+            attrs={
+                "class": "form-control py-1"
+            }
+        )
+    )
+    twitter_profile_link = forms.URLField( required=False,
+        widget = forms.URLInput(
+            attrs={
+                "class": "form-control py-1"
+            }
+        )
+    )
+    linkedin_profile_link = forms.URLField( required=False,
+        widget = forms.URLInput(
+            attrs={
+                "class": "form-control py-1"
+            }
+        )
+    )
     class Meta:
         model = ParticipantProfile
         fields = ('team_status', 'name', 'contact', 'dob', 'gender', 'bio', 'tshirt_size' ,'skills', 'educational_status',

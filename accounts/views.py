@@ -195,7 +195,7 @@ def registration_view(request):
 @login_required(login_url='login')
 def logout_view(request):
     logout(request)
-    return redirect('home')
+    return redirect('landing_page')
 
 @unauthenticated_user
 def login_view(request):

@@ -1,13 +1,28 @@
 {% extends 'base.html' %}
 
 {% load static %}
-{% load widget_tweaks %}
 
 {% block stylesheet %}
 <link rel="stylesheet" href="{% static 'css/accounts.css' %}">
 {% endblock%}
 
 {% block body %}
+<style>
+	#id_dob_month {
+		width: 33% !important;
+		display: inline;
+	}
+
+	#id_dob_day {
+		width: 33% !important;
+		display: inline;
+	}
+
+	#id_dob_year{
+		width: 33% !important;
+		display: inline;
+	}
+</style>
   <div class="container">
   	<h1 class= "text-center logo my-4">
   		<a href="{% url 'home' %}">.hack( ); 2021</a>
@@ -20,10 +35,10 @@
   					<form method="post" novalidate>
 						  {% csrf_token %}
 						  
-						  {% for field in participant_profile_creation_form %}
+						  {% for field in form %}
 							<p>
-								{{field.label_tag}}
-								{{field |add_class:"form-control py-3"}}
+								{{field.label_tag}}<br>
+								{{field }}
 
 								{% if field.help_text %}
 									<small style="color:grey">{{field.help_text}}</small>

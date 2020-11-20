@@ -33,7 +33,7 @@ def participant_profile_creation_view(request):
             return redirect('home')
 
         else:
-            context['participant_profile_creation_form'] = form
+            context['form'] = form
     else:
         form = PartcicpantProfileForm(
             initial= {
@@ -59,7 +59,7 @@ def participant_profile_creation_view(request):
             }
         )
         
-        context['participant_profile_creation_form'] = form
+        context['form'] = form
     
     return render(request, 'create_profile.html', context)
 
@@ -67,6 +67,9 @@ def participant_profile_creation_view(request):
 @login_required(login_url='login')
 def participant_profile_updated_view(request):
     return render(request, 'profile_created.html')
+
+
+
 
 
 # DATA EXPORTING
