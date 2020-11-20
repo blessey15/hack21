@@ -21,7 +21,7 @@ class ParticipantProfile(models.Model):
     skills = models.TextField()
     educational_institution = models.CharField(max_length= 128)
     field_of_study = models.CharField(max_length=64, choices=FIELD_OF_STUDY_CHOICES, blank=True, verbose_name='Field of Study')
-    is_ieee = models.BooleanField(default=False, blank=False, verbose_name="Are you an IEEE member?")
+    is_ieee = models.IntegerField(choices=BOOLEAN_CHOICES, default=0, blank=False, verbose_name="Are you an IEEE member?")
     shipping_address = models.TextField(blank=False, default=' ')
     state = models.CharField(max_length=41, choices=STATE_OF_RESIDENCE_CHOICES, blank=False, default='Kerala', verbose_name='State/Province of Residence')
     educational_status = models.CharField(max_length=12, blank=False, choices=EDUCATIONAL_STATUS_CHOICES, default='Bachelors')

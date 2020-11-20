@@ -1,0 +1,48 @@
+@import "../sass/abstracts/variables";
+$primary-font-family: 'Roboto Mono', monospace;
+
+body{
+    font-family: $primary-font-family;
+    color: #36313d !important;
+}
+.custom-navbar{
+    &-title-container{
+        background-color: transparent;
+        display: flex;
+        // justify-content: center;
+        font-family: 'Roboto';
+    }
+    &-title{
+        font-size: 2.5rem;
+        padding-left: 1rem;
+        letter-spacing: 3px;
+        font-weight: 700;
+        li{
+            font-family: $primary-font-family;
+            color: #36313d !important;
+        }
+    }
+}
+
+.custom-card{
+    padding-left: 1rem;
+    background: transparent;
+    border: none;
+    .card-title{
+        // font-weight: 700;
+        margin: 0 0 2rem 0;
+        font-size: 2.2rem;
+    }
+    h2{
+        font-weight: 600;
+        margin-bottom: 2rem;
+        text-transform: capitalize;
+    }
+    .btn{
+        margin-bottom: 2rem;
+    }
+    .btn-primary{
+        border-radius: 4px;
+
+    }
+}
