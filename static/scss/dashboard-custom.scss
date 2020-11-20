@@ -15,12 +15,12 @@ body{
     &-title{
         font-size: 2.5rem;
         padding-left: 1rem;
-        letter-spacing: 3px;
+        // letter-spacing: 3px;
         font-weight: 700;
         li{
             font-family: $primary-font-family;
-            color: #36313d !important;
-            // color: white !important;
+            // color: #36313d !important;
+            color: white !important;
         }
     }
 }
@@ -44,5 +44,13 @@ body{
     }
     .btn-primary{
         border-radius: 4px;
+        background-color: white;
+        border: 3px solid $color-red-dark;
+        font-weight: 700;
+        color: #36313d;
+        &:hover{
+            background-color: $color-red-dark;
+            color: white;
+        }
     }
 }
