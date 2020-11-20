@@ -7,7 +7,7 @@ body{
 }
 .custom-navbar{
     &-title-container{
-        background-color: transparent;
+        // background-color: transparent;
         display: flex;
         // justify-content: center;
         font-family: 'Roboto';
@@ -26,8 +26,8 @@ body{
 
 .custom-card{
     padding-left: 1rem;
-    background: transparent;
-    border: none;
+    // background: transparent;
+    // border: none;
     .card-title{
         // font-weight: 700;
         margin: 0 0 2rem 0;
@@ -43,6 +43,5 @@ body{
     }
     .btn-primary{
         border-radius: 4px;
-
     }
 }
