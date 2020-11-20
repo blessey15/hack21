@@ -78,6 +78,14 @@ urlpatterns = [
 
     path('base', views.base_view, name='base'),
 
+    # path('export/users/csv', views.export_csv, name='export_user_csv'),
+
+    # path('export/users/xls', views.export_xls, name='export_user_xls'),
+
+    path('export/profile/csv', profileviews.export_csv, name='export_profile_csv'),
+
+    path('export/profile/xls', profileviews.export_xls, name='export_profile_xls'),
+
 
 
 
