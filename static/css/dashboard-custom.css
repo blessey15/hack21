@@ -3,7 +3,6 @@ body {
   color: #36313d !important; }
 
 .custom-navbar-title-container {
-  background-color: transparent;
   display: flex;
   font-family: 'Roboto'; }
 
@@ -17,9 +16,7 @@ body {
     color: #36313d !important; }
 
 .custom-card {
-  padding-left: 1rem;
-  background: transparent;
-  border: none; }
+  padding-left: 1rem; }
   .custom-card .card-title {
     margin: 0 0 2rem 0;
     font-size: 2.2rem; }
