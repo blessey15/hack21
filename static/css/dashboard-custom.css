@@ -3,6 +3,7 @@ body {
   color: #36313d !important; }
 
 .custom-navbar-title-container {
+  background-color: #1bb35f;
   display: flex;
   font-family: 'Roboto'; }
 

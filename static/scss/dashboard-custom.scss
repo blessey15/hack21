@@ -7,7 +7,7 @@ body{
 }
 .custom-navbar{
     &-title-container{
-        // background-color: transparent;
+        background-color: $color-red;
         display: flex;
         // justify-content: center;
         font-family: 'Roboto';
@@ -20,6 +20,7 @@ body{
         li{
             font-family: $primary-font-family;
             color: #36313d !important;
+            // color: white !important;
         }
     }
 }
