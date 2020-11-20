@@ -3659,7 +3659,7 @@ a {
 }
 
 .btn--ring {
-  border: 2px solid #1bb35f;
+  border: 2px solid #fff;
   position: relative;
 }
 
@@ -4528,7 +4528,6 @@ a {
 
 .sponsors .row {
   justify-content: center;
-  margin-bottom: 8rem;
 }
 
 .sponsors__img {
