@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 {% load static %}
+{% load widget_tweaks %}
 
 {% block stylesheet %}
 <link rel="stylesheet" href="{% static 'css/accounts.css' %}">
@@ -22,7 +23,7 @@
 						  {% for field in participant_profile_creation_form %}
 							<p>
 								{{field.label_tag}}
-								{{field}}
+								{{field |add_class:"form-control py-3"}}
 
 								{% if field.help_text %}
 									<small style="color:grey">{{field.help_text}}</small>
