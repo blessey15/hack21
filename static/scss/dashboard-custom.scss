@@ -7,19 +7,20 @@ body{
 }
 .custom-navbar{
     &-title-container{
-        // background-color: transparent;
+        background-color: $color-red;
         display: flex;
-        // justify-content: center;
+        justify-content: center;
         font-family: 'Roboto';
     }
     &-title{
-        font-size: 2.5rem;
+        font-size: 2.2rem;
         padding-left: 1rem;
-        letter-spacing: 3px;
+        // letter-spacing: 3px;
         font-weight: 700;
         li{
             font-family: $primary-font-family;
-            color: #36313d !important;
+            // color: #36313d !important;
+            color: white !important;
         }
     }
 }
@@ -43,5 +44,13 @@ body{
     }
     .btn-primary{
         border-radius: 4px;
+        background-color: white;
+        border: 3px solid $color-red-dark;
+        font-weight: 700;
+        color: #36313d;
+        &:hover{
+            background-color: $color-red-dark;
+            color: white;
+        }
     }
 }

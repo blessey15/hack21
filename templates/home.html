@@ -10,7 +10,7 @@
 {% if request.user.is_authenticated %}
     <div class="card custom-card">
       <div class="card-body">
-        <h3 class="card-title">Create Team</h3>
+        <!-- <h3 class="card-title">Create Team</h3> -->
         {% if not user_has_team %}
           <form method="post" novalidate>
             {% csrf_token %}
