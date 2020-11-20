@@ -17,9 +17,12 @@
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300;1,400&display=swap" rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/dashboard-custom.css' %}" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
 
 </head>
 
@@ -93,8 +96,8 @@
 
 
                 <div class="container">
-                    <ol class="breadcrumb my-4">
-                        <a class="navbar-brand" href="{% url 'home' %}"> <li class="breadcrumb-item active">.hack( ); 2021</li></a>
+                    <ol class="breadcrumb my-4 custom-navbar-title-container">
+                        <a class="navbar-brand custom-navbar-title" href="{% url 'home' %}"> <li class="breadcrumb-item active">Welcome to .hack( );</li></a>
                     {% block breadcrumb %}
 
 
@@ -114,7 +117,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
+                        <span>Copyadi banned! Copyright &copy; Njangade Mathram Swath</span>
                     </div>
                 </div>
             </footer>
