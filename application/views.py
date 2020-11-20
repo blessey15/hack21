@@ -16,6 +16,8 @@ def team_detail_view(request, team_id):
         # print("has team")
         context['application'] = application
         context['number_of_members'] = len(application.members.all())
+        if len(Application.objects.filter(members__id = request.user.id))>0:
+            context['has_a_team'] = True
         if (request.user in application.members.all()):
             context['in_team'] = True 
         # try:
@@ -40,19 +42,24 @@ def join_team_view(request, team_id):
         if (request.user in application.members.all()):
             context['in_team'] = True
         else:
-            if application.application_status == "Not Submitted":
-                if len(application.members.all())<4:
-                    application.members.add(request.user)
-                    # return redirect('join_team')
-                    # return render(request, 'team_detail.html', context)
-                    # return team_detail_view(request, team_id)
-                    return redirect('home')
-                else:
-                    context['message'] = "This team already has 4 members. You cant join this team!"
-                    return render(request, 'messages.html', context)
+            if len(Application.objects.filter(members__id = request.user.id))>0:
+                context['message'] = "You are already part of a team!!"
+                return  render(request, 'messages.html', context)
             else:
-                context['message'] = "The Application for this team is already submitted. You can no longer Join this team."
-                return render(request, 'messages.html', context)
+
+                if application.application_status == "Not Submitted":
+                    if len(application.members.all())<4:
+                        application.members.add(request.user)
+                        # return redirect('join_team')
+                        # return render(request, 'team_detail.html', context)
+                        # return team_detail_view(request, team_id)
+                        return redirect('home')
+                    else:
+                        context['message'] = "This team already has 4 members. You cant join this team!"
+                        return render(request, 'messages.html', context)
+                else:
+                    context['message'] = "The Application for this team is already submitted. You can no longer Join this team."
+                    return render(request, 'messages.html', context)
     #     try:
     #         join_request = JoinRequest.objects.get(team=team, user=request.user)
     #         context['sent_request'] = True
