@@ -96,3 +96,8 @@ TEAM_STATUS_CHOICES = (
     ('Need Team', 'I would like to participate as a team, but I haven\'t found a team yet'),
     ('Has Team', 'I would like to participate as a team and I already have a team.'),
 )
+
+BOOLEAN_CHOICES = (
+    (0,'No'),
+    (1,'Yes'),
+)
