@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
 
 {% block breadcrumb %}
-  <li class="breadcrumb-item active">.hack( ); 2021</li>
+<!-- <a class="navbar-brand" href="{% url 'home' %}"> <li class="breadcrumb-item active">.hack( ); 2021</li></a> -->
+
+
+ 
 {% endblock %}
 {% block content %}
 {% if request.user.is_authenticated %}

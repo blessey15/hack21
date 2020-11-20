@@ -11,6 +11,7 @@
       <div class="card">
           <div class="card-body">
             <h3>Team Name: {{ team.name }} </h3>
+            <p>Application Status: {{ application.application_status }} </p>
                 {% if request.user.is_organizer %}
 
                     <h5>Number of Members: {{ number_of_members }} </h5>
@@ -20,6 +21,20 @@
                       {% for member in application.members.all %}
                         <li> 
                           {{ member.profile.name }} - {{ member.email }}
+                          <!-- -  <a href="{{ member.profile.github_profile_link }}" target="_blank">GitHub</a>
+                          | <a href="{{ member.profile.twitter_profile_link }}" target="_blank">Twitter</a>
+                          | <a href="{{ member.profile.linkedin_profile_link }}" target="_blank"> | LinkedIn</a> -->
+                          {% if member.profile.github_profile_link %}
+                              - <a href="{{ member.profile.github_profile_link }}" target="_blank">GitHub</a>
+                          {% endif %}
+
+                          {% if member.profile.twitter_profile_link %}
+                               | <a href="{{ member.profile.twitter_profile_link }}" target="_blank">Twitter</a>
+                          {% endif %}
+
+                          {% if member.profile.linkedin_profile_link %}
+                               | <a href="{{ member.profile.linkedin_profile_link }}" target="_blank"> | LinkedIn</a>
+                          {% endif %}
                         </li>
                       {% endfor %}
                     </ol>
@@ -47,16 +62,34 @@
                     <h5>Members</h5>
                     <ol>
                       {% for member in application.members.all %}
-                        <li> 
-                          {{ member.profile.name }} - {{ member.email }}
-                        </li>
+                      <li> 
+                        {{ member.profile.name }} - {{ member.email }}
+                        <!-- -  <a href="{{ member.profile.github_profile_link }}" target="_blank">GitHub</a>
+                        | <a href="{{ member.profile.twitter_profile_link }}" target="_blank">Twitter</a>
+                        | <a href="{{ member.profile.linkedin_profile_link }}" target="_blank"> | LinkedIn</a> -->
+                        {% if member.profile.github_profile_link %}
+                            - <a href="{{ member.profile.github_profile_link }}" target="_blank">GitHub</a>
+                        {% endif %}
+
+                        {% if member.profile.twitter_profile_link %}
+                             | <a href="{{ member.profile.twitter_profile_link }}" target="_blank">Twitter</a>
+                        {% endif %}
+
+                        {% if member.profile.linkedin_profile_link %}
+                             | <a href="{{ member.profile.linkedin_profile_link }}" target="_blank">LinkedIn</a>
+                        {% endif %}
+                      </li>
                       {% endfor %}
                     </ol>
                     <h4>You are member of this team</h4>
                     {% else %}
                         <h5>Number of Members: {{ number_of_members }} </h5>
                         <h5>Created By: {{ team.admin.profile.name }} - {{ team.admin.email }} </h5>
-                        <a href="{% url 'join_team' team.id %}"> <button name="send_request" class="btn btn-primary">Join Team </button></a>
+                        {% if not has_a_team %}
+                            <a href="{% url 'join_team' team.id %}"> <button name="send_request" class="btn btn-primary">Join Team </button></a>
+                        {% else %}
+                            <h4>You are already a member of another team and can't join this team</h4>
+                        {% endif %}
                     {% endif %} <!-- if in_team -->
                 {% endif %} <!-- if is orgganizer -->
       {% endif %} <!--if team -->

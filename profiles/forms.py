@@ -1,6 +1,7 @@
 from django import forms
  
-from .models import ParticipantProfile, GENDER_CHOICES,T_SHIRT_SIZE_CHOICES, FIELD_OF_STUDY_CHOICES
+from .models import ParticipantProfile
+from .choices import *
 
 class PartcicpantProfileForm(forms.ModelForm):
     # name = forms.CharField(max_length=256, blank=False)
@@ -16,8 +17,8 @@ class PartcicpantProfileForm(forms.ModelForm):
     # field_of_study = forms.CharField(max_length=64, choices=FIELD_OF_STUDY_CHOICES, blank=True, verbose_name='Field of Study')
     class Meta:
         model = ParticipantProfile
-        fields = ('name', 'contact', 'dob', 'gender', 'bio', 'tshirt_size' ,'skills',
-         'educational_institution', 'field_of_study', 'is_ieee', 'shipping_address',
+        fields = ('team_status', 'name', 'contact', 'dob', 'gender', 'bio', 'tshirt_size' ,'skills', 'educational_status',
+         'educational_institution', 'field_of_study', 'year_of_graduation', 'is_ieee', 'shipping_address', 'state',
           'github_profile_link', 'twitter_profile_link', 'linkedin_profile_link')
 
     def clean_name(self):
