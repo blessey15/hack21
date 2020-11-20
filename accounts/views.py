@@ -1,11 +1,15 @@
+import csv,xlwt
+
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 
 from accounts.forms import RegistrationForm, AccountAuthenticationForm, AccountUpdateForm
 from application.models import Team, Application, JoinRequest
 from application.forms import TeamCreateForm, TeamSearchForm
-from hack21.decorators import unauthenticated_user, participant_view
+from hack21.decorators import unauthenticated_user, participant_view, organizer_view
+from .models import Account
 # from  application.views import create_team_view
 
 def landing_page_view(request):
@@ -240,3 +244,52 @@ def account_view(request):
     context['account_form'] = form
     return render(request, 'account.html', context)
 
+
+
+# # DATA EXPORTING THE WORKS FINE, BUT COMMENTED OUT BECUSE THIS MIGHT NOT BE EXACTLY WHAT WE NEED
+# @login_required(login_url='login')
+# @organizer_view
+# def export_csv(request):
+#     response = HttpResponse(content_type='text/csv')
+#     response['Content-Disposition'] = 'attachment; filename="users.csv"'
+
+#     writer = csv.writer(response)
+#     writer.writerow(['Username', 'Email address'])
+
+#     users = Account.objects.all().values_list('username', 'email')
+#     for user in users:
+#         writer.writerow(user)
+
+#     return response
+
+# @login_required(login_url='login')
+# @organizer_view
+# def export_xls(request):
+#     response = HttpResponse(content_type='application/ms-excel')
+#     response['Content-Disposition'] = 'attachment; filename="users.xls"'
+
+#     wb = xlwt.Workbook(encoding='utf-8')
+#     ws = wb.add_sheet('Users')
+
+#     # Sheet header, first row
+#     row_num = 0
+
+#     font_style = xlwt.XFStyle()
+#     font_style.font.bold = True
+
+#     columns = ['Username', 'Email address', ]
+
+#     for col_num in range(len(columns)):
+#         ws.write(row_num, col_num, columns[col_num], font_style)
+
+#     # Sheet body, remaining rows
+#     font_style = xlwt.XFStyle()
+
+#     rows = Account.objects.all().values_list('username', 'email')
+#     for row in rows:
+#         row_num += 1
+#         for col_num in range(len(row)):
+#             ws.write(row_num, col_num, row[col_num], font_style)
+
+#     wb.save(response)
+#     return response
