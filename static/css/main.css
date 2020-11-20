@@ -3724,7 +3724,7 @@ a {
 }
 
 .btn--anim a:hover {
-  color: #7719aa;
+  color: #f0803c;
 }
 
 .btn--anim a:hover::before, .btn--anim a:hover::after {
@@ -3734,14 +3734,14 @@ a {
 }
 
 .btn--anim a:hover::before {
-  border-top-color: #7719aa;
-  border-right-color: #7719aa;
+  border-top-color: #f0803c;
+  border-right-color: #f0803c;
   transition: width 0.25s ease-out, height 0.25s ease-out 0.25s;
 }
 
 .btn--anim a:hover::after {
-  border-bottom-color: #7719aa;
-  border-left-color: #7719aa;
+  border-bottom-color: #f0803c;
+  border-left-color: #f0803c;
   transition: border-color 0s ease-out 0.5s, width 0.25s ease-out 0.5s, height 0.25s ease-out 0.75s;
 }
 
@@ -3751,7 +3751,7 @@ a {
 }
 
 .btn--anim a:hover {
-  color: #7719aa;
+  color: #f0803c;
 }
 
 .btn--anim a::after {
@@ -3760,13 +3760,13 @@ a {
 }
 
 .btn--anim a:hover::before {
-  border-top-color: #7719aa;
-  border-right-color: #7719aa;
+  border-top-color: #f0803c;
+  border-right-color: #f0803c;
 }
 
 .btn--anim a:hover::after {
-  border-bottom-color: #7719aa;
-  border-left-color: #7719aa;
+  border-bottom-color: #f0803c;
+  border-left-color: #f0803c;
   transition: height 0.25s ease-out, width 0.25s ease-out 0.25s;
 }
 
