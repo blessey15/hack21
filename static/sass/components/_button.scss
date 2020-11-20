@@ -28,14 +28,14 @@
     position: relative;
   }
 
-  &--anim{
-    box-shadow: none;
-    transition: all 0.3s;
-    &:hover{
-      box-shadow: 0 0px 20px rgba($color-red, 0.4);
-      background-color: transparent;
-    }
-  }
+  // &--anim{
+  //   box-shadow: none;
+  //   transition: all 0.3s;
+  //   &:hover{
+  //     box-shadow: 0 0px 20px rgba($color-red, 0.4);
+  //     background-color: transparent;
+  //   }
+  // }
 }
 
 @media(max-width: 768px){
