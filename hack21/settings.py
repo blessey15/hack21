@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     'social_django', #gh, fb auth
     'profiles',
     'application',
+    'widget_tweaks'
 ]
 
 MIDDLEWARE = [
