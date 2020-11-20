@@ -3659,18 +3659,8 @@ a {
 }
 
 .btn--ring {
-  border: 2px solid #1bb35f;
+  border: 2px solid #fff;
   position: relative;
-}
-
-.btn--anim {
-  box-shadow: none;
-  transition: all 0.3s;
-}
-
-.btn--anim:hover {
-  box-shadow: 0 0px 20px rgba(27, 179, 95, 0.4);
-  background-color: transparent;
 }
 
 @media (max-width: 768px) {
@@ -3688,6 +3678,96 @@ a {
     width: 15.5rem;
     letter-spacing: 2px;
   }
+}
+
+.btn--anim a {
+  background: none;
+  border: 0;
+  box-sizing: border-box;
+  margin: 1rem;
+  padding: 1rem 2rem;
+  box-shadow: inset 0 0 0 2px #1bb35f;
+  color: #1bb35f;
+  font-size: inherit;
+  font-weight: 700;
+  position: relative;
+  vertical-align: middle;
+}
+
+.btn--anim a::before, .btn--anim a::after {
+  box-sizing: inherit;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.btn--anim a {
+  transition: color 0.25s;
+  border-radius: 4px;
+}
+
+.btn--anim a::before, .btn--anim a::after {
+  border: 2px solid transparent;
+  width: 0;
+  height: 0;
+}
+
+.btn--anim a::before {
+  top: 0;
+  left: 0;
+}
+
+.btn--anim a::after {
+  bottom: 0;
+  right: 0;
+}
+
+.btn--anim a:hover {
+  color: #f0803c;
+}
+
+.btn--anim a:hover::before, .btn--anim a:hover::after {
+  border-radius: 4px;
+  width: 100%;
+  height: 100%;
+}
+
+.btn--anim a:hover::before {
+  border-top-color: #f0803c;
+  border-right-color: #f0803c;
+  transition: width 0.25s ease-out, height 0.25s ease-out 0.25s;
+}
+
+.btn--anim a:hover::after {
+  border-bottom-color: #f0803c;
+  border-left-color: #f0803c;
+  transition: border-color 0s ease-out 0.5s, width 0.25s ease-out 0.5s, height 0.25s ease-out 0.75s;
+}
+
+.btn--anim a {
+  color: white;
+  font-weight: 500;
+}
+
+.btn--anim a:hover {
+  color: #f0803c;
+}
+
+.btn--anim a::after {
+  top: 0;
+  left: 0;
+}
+
+.btn--anim a:hover::before {
+  border-top-color: #f0803c;
+  border-right-color: #f0803c;
+}
+
+.btn--anim a:hover::after {
+  border-bottom-color: #f0803c;
+  border-left-color: #f0803c;
+  transition: height 0.25s ease-out, width 0.25s ease-out 0.25s;
 }
 
 .img-grid__container {
@@ -4448,7 +4528,6 @@ a {
 
 .sponsors .row {
   justify-content: center;
-  margin-bottom: 8rem;
 }
 
 .sponsors__img {
