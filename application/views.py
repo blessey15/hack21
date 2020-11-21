@@ -211,6 +211,44 @@ def organizer_dashboard(request):
     context['others_count'] = others_count
     context['bar_graph_upper_limit'] = max(science_count, arts_count, engg_count, comm_count, school_count, others_count)
 
+    # GENDER CHART
+    total_profile = len(ParticipantProfile.objects.all())
+
+    male_count = len(ParticipantProfile.objects.filter(gender='m'))
+    # male_percent = int((male_count/total_profile)*100)
+    context['male_count'] = male_count
+
+    female_count = len(ParticipantProfile.objects.filter(gender='f'))
+    # female_percent = int((female_count/total_profile)*100)
+    context['female_count'] = female_count
+
+    non_binary_count = len(ParticipantProfile.objects.filter(gender='n'))
+    # non_binary_percent = int((non_binary_count/total_profile)*100)
+    context['non_binary_count'] = non_binary_count
+
+    pnts_count = len(ParticipantProfile.objects.filter(gender='na'))
+    # pnts_percent = int((pnts_count/total_profile)*100)
+    # pnts_percent = 100-male_percent-female_percent-non_binary_percent
+    context['pnts_count'] = pnts_count
+
+    # IEEE CHART
+    is_ieee_count = len(ParticipantProfile.objects.filter(is_ieee=1))
+    # is_ieee_percent = int((is_ieee_count/total_profile)*100)
+    context['is_ieee_count'] = is_ieee_count
+    not_ieee_count = len(ParticipantProfile.objects.filter(is_ieee=0))
+    # not_ieee_percent = int((not_ieee_count/total_profile)*100)
+    context['not_ieee_count'] = not_ieee_count
+
+    # BOTTOM CARDS
+    highschool_count = len(ParticipantProfile.objects.filter(educational_status='High School'))
+    context['highschool_count'] = highschool_count
+    bachelors_count = len(ParticipantProfile.objects.filter(educational_status='Bachelors'))
+    context['bachelors_count'] = bachelors_count
+    masters_count = len(ParticipantProfile.objects.filter(educational_status='Masters'))
+    context['masters_count'] = masters_count
+    phd_count = len(ParticipantProfile.objects.filter(educational_status='PhD'))
+    context['phd_count'] = phd_count
+
     return render(request, 'org_db.html', context)
 
 @login_required(login_url='login')
