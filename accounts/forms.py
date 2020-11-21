@@ -74,6 +74,24 @@ class AccountAuthenticationForm(forms.ModelForm):
 
 class AccountUpdateForm(forms.ModelForm):
 
+    username = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "placeholder" : "Username",                
+                "class": "form-control form-control-user",
+                "id": "exampleInputUsername"
+            }
+        ))
+
+    email = forms.EmailField(
+        widget=forms.EmailInput(
+            attrs={
+                "placeholder" : "Email",                
+                "class": "form-control form-control-user",
+                "id": "exampleInputEmail"
+            }
+        ))
+
     class Meta:
         model = Account
         fields = ('email', 'username')
