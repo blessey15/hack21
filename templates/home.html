@@ -7,7 +7,8 @@
  
 {% endblock %}
 {% block content %}
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <style>
   .form-field-custom{
     width: 45%;
@@ -114,7 +115,12 @@
         
         <h6>Team Details:</h6>
         <p>Team Name: {{ users_team.name }} </p>
-        <p>Team ID: {{ users_team.id }} </p>
+        <p>Team ID:{{ users_team.id }}
+          <button class="btn clippy btn-primary" data-clipboard-text="{{ users_team.id }}">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-clippy.svg" alt="Copy to clipboard"
+              width="13">
+          </button>
+        </p>
         <p>Created By: {{ users_team.admin.profile.name }} </p>
         <h6>Team Members</h6>
           <ol>
@@ -129,5 +135,23 @@
 
     
 {% endif %}
+<script>
+  var clipboard = new ClipboardJS('.btn');
+
+  clipboard.on('success', function(e) {
+      console.log(e);
+  });
+
+  clipboard.on('error', function(e) {
+      console.log(e);
+  });
+  $(document).ready(function(){
+    $('.clippy').tooltip({title: "Copied!", trigger: "click"}); 
+     
+  });
+  $(".clippy").mouseleave(function(){
+        $(".clippy").tooltip('hide');
+    });
+  </script>
 {% endblock content %}
 
