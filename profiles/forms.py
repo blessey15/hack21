@@ -12,35 +12,35 @@ class PartcicpantProfileForm(forms.ModelForm):
     team_status = forms.ChoiceField(choices=TEAM_STATUS_CHOICES,
         widget = forms.Select(
             attrs={
-                "class": "form-control py-1"
+                "class": "form-control py-1 form-control-user"
             }
         )
     )
     name = forms.CharField(
         widget = forms.TextInput(
             attrs={
-                "class": "form-control py-1"
+                "class": "form-control py-1 form-control-user"
             }
         )
     )
     contact = forms.CharField(
         widget = forms.TextInput(
             attrs={
-                "class": "form-control py-1"
+                "class": "form-control py-1 form-control-user"
             }
         )
     )
     dob = forms.DateField( required=False,
         widget=forms.SelectDateWidget(years=DOB_CHOICES,
             attrs={
-                "class": "form-control py-1 dob-form"
+                "class": "form-control py-1 form-control-user dob-form"
             }
         )
     )
     gender = forms.ChoiceField( choices=GENDER_CHOICES,
         widget = forms.Select(
             attrs={
-                "class": "form-control py-1"
+                "class": "form-control py-1 form-control-user"
             }
         )
     )
@@ -55,7 +55,7 @@ class PartcicpantProfileForm(forms.ModelForm):
     tshirt_size = forms.ChoiceField( choices=T_SHIRT_SIZE_CHOICES,
         widget = forms.Select(
             attrs={
-                "class": "form-control py-1"
+                "class": "form-control py-1 form-control-user"
             }
         )
     )
@@ -63,21 +63,21 @@ class PartcicpantProfileForm(forms.ModelForm):
     skills = forms.CharField( required=False,
         widget = forms.TextInput(
             attrs={
-                "class": "form-control py-1"
+                "class": "form-control py-1 form-control-user"
             }
         )
     )
     educational_institution =forms.CharField( required=False,
         widget = forms.TextInput(
             attrs={
-                "class": "form-control py-1"
+                "class": "form-control py-1 form-control-user"
             }
         )
     )
     field_of_study = forms.ChoiceField( required=False, choices=FIELD_OF_STUDY_CHOICES,
         widget = forms.Select(
             attrs={
-                "class": "form-control py-1",
+                "class": "form-control py-1 form-control-user",
             }
         )
     )
@@ -98,42 +98,42 @@ class PartcicpantProfileForm(forms.ModelForm):
     state = forms.ChoiceField( choices=STATE_OF_RESIDENCE_CHOICES,
         widget = forms.Select(
             attrs={
-                "class": "form-control py-1"
+                "class": "form-control py-1 form-control-user"
             }
         )
     )
     educational_status = forms.ChoiceField(choices=EDUCATIONAL_STATUS_CHOICES,
         widget = forms.Select(
             attrs={
-                "class": "form-control py-1"
+                "class": "form-control py-1 form-control-user"
             }
         )
     )
     year_of_graduation = forms.ChoiceField(choices=YEAR_OF_GRADUATION_CHOICES,
         widget = forms.Select(
             attrs={
-                "class": "form-control py-1"
+                "class": "form-control py-1 form-control-user"
             }
         )
     )
     github_profile_link = forms.URLField( required=False,
         widget = forms.URLInput(
             attrs={
-                "class": "form-control py-1"
+                "class": "form-control py-1 form-control-user"
             }
         )
     )
     twitter_profile_link = forms.URLField( required=False,
         widget = forms.URLInput(
             attrs={
-                "class": "form-control py-1"
+                "class": "form-control py-1 form-control-user"
             }
         )
     )
     linkedin_profile_link = forms.URLField( required=False,
         widget = forms.URLInput(
             attrs={
-                "class": "form-control py-1"
+                "class": "form-control py-1 form-control-user"
             }
         )
     )

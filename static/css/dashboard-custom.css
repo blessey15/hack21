@@ -17,7 +17,9 @@ body {
     color: white !important; }
 
 .custom-card {
-  padding-left: 1rem; }
+  padding-left: 1rem;
+margin-bottom: 2rem;
+ }
   .custom-card .card-title {
     margin: 0 0 2rem 0;
     font-size: 2.2rem; }
@@ -30,9 +32,9 @@ body {
   .custom-card .btn-primary {
     border-radius: 4px;
     background-color: white;
-    border: 3px solid #169b52;
+    /* border: 3px solid #169b52; */
     font-weight: 700;
     color: #36313d; }
     .custom-card .btn-primary:hover {
-      background-color: #169b52;
+      background-color: #1bb35f;
       color: white; }

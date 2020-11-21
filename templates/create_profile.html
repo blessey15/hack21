@@ -31,8 +31,11 @@
   		<div class="col-lg-8 col-md-10 col-sm-12">
   			<div class="card">
   				<div class="card-body">
-  					<h3 class="card-title">Profile</h3>
-  					<form method="post" novalidate>
+					  <h3 class="card-title">Update you Profile</h3>
+					  <div style="font-size: small; margin-top: .2rem; margin-bottom: 1rem;">
+						  <span><a href="{% url 'home' %}">Back to Dashboard</a></span>
+					  </div>
+  					<form method="post" novalidate class="user">
 						  {% csrf_token %}
 						  
 						  {% for field in form %}
@@ -49,7 +52,7 @@
 								{% endfor %}
 							</p>
 						  {% endfor %}
-     					 <button type="submit" class="btn btn-primary">Update Profile</button>
+     					 <button type="submit" class="btn btn-primary btn-user">Update Profile</button>
     				</form>
   				</div>
   				<div class="card-footer text-muted text-center">

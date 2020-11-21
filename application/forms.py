@@ -9,6 +9,14 @@ class TeamCreateForm(forms.ModelForm):
     # def __init__(self, user, *args, **kwargs):
     #     self.user  = user
     #     super(TeamCreateForm, self).__init__(self.user,*args, **kwargs)
+
+    name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "placeholder" : "Enter Team Name",                
+                "class": "form-control form-control-user form-field-custom"
+            }
+        ))
     class Meta:
         model = Team
         fields = ('name',)
@@ -33,7 +41,13 @@ class TeamCreateForm(forms.ModelForm):
     #     raise forms.ValidationError("You already have a team!!")
 
 class TeamSearchForm(forms.Form):
-    team_id = forms.CharField(max_length=64)
+    team_id = forms.CharField(max_length=64,
+        widget=forms.TextInput(
+            attrs={
+                "placeholder" : "Enter Team Name",                
+                "class": "form-control form-control-user form-field-custom"
+            }
+        ))
 
     def clean_team_id(self):
         team_id = self.cleaned_data.get('team_id')
