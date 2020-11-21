@@ -15,13 +15,20 @@ T_SHIRT_SIZE_CHOICES=(
     ('XXL','XXL')
 )
 
+
+
+
 FIELD_OF_STUDY_CHOICES=(
-    ('cs','Computer Science'),
-    ('ec','Electronics and Communication'),
-    ('me','Mechanical Engineering'),
-    ('ce','Civil Engineering'),
-    ('ee','Electrical and Electronis Engineering'),
-    ('it','Information Technology')
+    ('School', 'School Student'),
+    ('BSc', 'Bachelor of Science'),
+    ('BA', 'Bachelor of Arts'),
+    ('BTech', 'Bachelor of Technology'),
+    ('BCom', 'Bachelor of Commerce'),
+    ('MSc', 'Master of Science'),
+    ('MA', 'Master of Arts'),
+    ('MTech', 'Master of Technology'),
+    ('MCom', 'Master of Commerce'),
+    ('Other', 'Other'),
 )
 
 CLASS_CHOICES=(

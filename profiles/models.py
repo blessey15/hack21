@@ -20,7 +20,7 @@ class ParticipantProfile(models.Model):
     #emergency conatct
     skills = models.TextField()
     educational_institution = models.CharField(max_length= 128)
-    field_of_study = models.CharField(max_length=64, choices=FIELD_OF_STUDY_CHOICES, blank=True, verbose_name='Field of Study')
+    field_of_study = models.CharField(max_length=8, choices=FIELD_OF_STUDY_CHOICES, blank=False, default='BTech', verbose_name='Field of Study')
     is_ieee = models.IntegerField(choices=BOOLEAN_CHOICES, default=0, blank=False, verbose_name="Are you an IEEE member?")
     shipping_address = models.TextField(blank=False, default=' ')
     state = models.CharField(max_length=41, choices=STATE_OF_RESIDENCE_CHOICES, blank=False, default='Kerala', verbose_name='State/Province of Residence')
