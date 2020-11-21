@@ -1,13 +1,15 @@
 {% extends 'base.html' %}
 
 {% load static %}
+{% load socialaccount %}
+
 
 {% block stylesheet %}
 <link rel="stylesheet" href="{% static 'css/accounts.css' %}">
 {% endblock%}
 
-{% block body %}
-  <div class="container">
+{% block body %} 
+  <!-- <div class="container">
   	<h1 class= "text-center logo my-4">
   		<a href="{% url 'home' %}">.hack( ); 2021</a>
   	</h1>
@@ -41,5 +43,121 @@
   			</div>
   		</div>
   	</div>
-  </div>
+  </div> -->
+
+  <div class="container" >
+
+	<div class="card o-hidden border-0 shadow-lg my-5">
+		<div class="card-body p-0">
+			<!-- Nested Row within Card Body -->
+			<div class="row">
+				<div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+				<div class="col-lg-7">
+					<div class="p-5">
+						<div class="text-center">
+							<h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+						</div>
+						<form class="user" method="POST">
+							{% csrf_token %}
+							<div class="form-group row">
+								<!-- <div class="col-sm-6 mb-3 mb-sm-0">
+									<input type="text" class="form-control form-control-user" id="exampleFirstName"
+										placeholder="First Name">
+								</div>
+								<div class="col-sm-6">
+									<input type="text" class="form-control form-control-user" id="exampleLastName"
+										placeholder="Last Name">
+								</div> -->
+							</div>
+							<div class="form-group">
+								<!-- <input type="email" class="form-control form-control-user" id="exampleInputEmail"
+									placeholder="Email Address"> -->
+									{{ registration_form.email }}
+										{% if registration_form.email.help_text %}
+										<small style="color:grey">{{registration_form.email.help_text}}</small>
+										{% endif %}
+										
+										{% for error in registration_form.email.errors %}
+											<p style="color:red">{{error}}</p>
+										{% endfor %}
+
+							</div>
+
+							<div class="form-group">
+								<!-- <input type="email" class="form-control form-control-user" id="exampleInputEmail"
+									placeholder="Email Address"> -->
+									{{ registration_form.username }}
+										{% if registration_form.username.help_text %}
+										<small style="color:grey">{{registration_form.username.help_text}}</small>
+										{% endif %}
+										
+										{% for error in registration_form.username.errors %}
+											<p style="color:red">{{error}}</p>
+										{% endfor %}
+
+							</div>
+
+							<div class="form-group row">
+								<div class="col-sm-6 mb-3 mb-sm-0">
+									<!-- <input type="password" class="form-control form-control-user"
+										id="exampleInputPassword" placeholder="Password"> -->
+										{{ registration_form.password1 }}
+											{% if registration_form.password1.help_text %}
+												<small style="color:grey">{{registration_form.password1.help_text}}</small>
+											{% endif %}
+								
+
+								</div>
+								<div class="col-sm-6">
+									<!-- <input type="password" class="form-control form-control-user"
+										id="exampleRepeatPassword" placeholder="Repeat Password"> -->
+										{{ registration_form.password2 }}
+											{% if registration_form.password2.help_text %}
+												<small style="color:grey">{{registration_form.password2.help_text}}</small>
+											{% endif %}
+								
+								</div>
+							</div>
+							{% for error in registration_form.password1.errors %}
+								<p style="color:red">{{error}}</p>
+							{% endfor %}
+							{% for error in registration_form.password2.errors %}
+								<p style="color:red">{{error}}</p>
+							{% endfor %}
+							<button type="submit" class="btn btn-primary btn-user btn-block">Register</button>
+							<hr>
+							<a href="{% provider_login_url 'google' %}" class="btn btn-google btn-user btn-block">
+								<i class="fab fa-google fa-fw"></i> Register with Google
+							</a>
+							<a href="{% url 'social:begin' 'github' %}" class="btn btn-facebook btn-user btn-block" style="background-color: #333;">
+								<i class="fab fa-github fa-fw"></i> Register with GitHub
+							</a>
+						</form>
+						<hr>
+						<div class="text-center">
+							<a class="small" href="forgot-password.html">Forgot Password?</a>
+						</div>
+						<div class="text-center">
+							<a class="small" href="login.html">Already have an account? Login!</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<!-- Bootstrap core JavaScript-->
+<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+<!-- Core plugin JavaScript-->
+<script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+
+<!-- Custom scripts for all pages-->
+<script src="{% static 'js/sb-admin-2.min.js' %}"></script>
+
+
+
 {% endblock %}
