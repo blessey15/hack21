@@ -32,13 +32,13 @@ var ctx = document.getElementById("myBarChart");
 var myBarChart = new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: ["January", "February", "March", "April", "May", "June"],
+    labels: ["Science", "Arts", "Engineering", "Commerce", "School", "Other"],
     datasets: [{
-      label: "Revenue",
-      backgroundColor: "#4e73df",
-      hoverBackgroundColor: "#2e59d9",
+      label: "Count",
+      backgroundColor: ['#FB8B24', '#1CC88A', '#4E73DF', '#D34AC8', '#E23D28', '#F5FF33'],
+      hoverBackgroundColor: ['#DC6D04', '#17A16E', '#2650CF', '#B52CA9', '#B42B18', '#E9F500'],
       borderColor: "#4e73df",
-      data: [4215, 5312, 6251, 7841, 9821, 14984],
+      data: [science_count, arts_count, engg_count, comm_count, school_count, others_count],
     }],
   },
   options: {
@@ -54,7 +54,7 @@ var myBarChart = new Chart(ctx, {
     scales: {
       xAxes: [{
         time: {
-          unit: 'month'
+          unit: 'Streams'
         },
         gridLines: {
           display: false,
@@ -63,18 +63,19 @@ var myBarChart = new Chart(ctx, {
         ticks: {
           maxTicksLimit: 6
         },
-        maxBarThickness: 25,
+        maxBarThickness: 50,
+        // BarThickness: 20,
       }],
       yAxes: [{
         ticks: {
           min: 0,
-          max: 15000,
+          // max: bar_graph_upper_limit,
           maxTicksLimit: 5,
           padding: 10,
           // Include a dollar sign in the ticks
-          callback: function(value, index, values) {
-            return '$' + number_format(value);
-          }
+          // callback: function(value, index, values) {
+          //   return '$' + number_format(value);
+          // }
         },
         gridLines: {
           color: "rgb(234, 236, 244)",
@@ -103,7 +104,7 @@ var myBarChart = new Chart(ctx, {
       callbacks: {
         label: function(tooltipItem, chart) {
           var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-          return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
+          return datasetLabel + ': ' + number_format(tooltipItem.yLabel);
         }
       }
     },

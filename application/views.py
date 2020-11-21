@@ -1,9 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 
 from .forms import TeamCreateForm
 from .models import Application, Team, JoinRequest
 from accounts.models import Account
+from profiles.models import ParticipantProfile
 from accounts.views import home
 from hack21.decorators import organizer_view, participant_view
 
@@ -155,7 +157,7 @@ def submit_aplication_view(request):
 
 
 @login_required(login_url='login')
-@organizer_view
+# @organizer_view
 def organizer_dashboard(request):
     context = {}
     applications = Application.objects.all()
@@ -193,6 +195,22 @@ def organizer_dashboard(request):
     
     progress = 100 - int((incomplete_applications/number_of_applications)*100)
     context['progress'] = progress
+
+
+    science_count = len(ParticipantProfile.objects.filter(Q(field_of_study='BSc') | Q(field_of_study='MSc')))
+    context['science_count'] = science_count
+    arts_count = len(ParticipantProfile.objects.filter(Q(field_of_study='BA') | Q(field_of_study='MA')))
+    context['arts_count'] = arts_count
+    engg_count = len(ParticipantProfile.objects.filter(Q(field_of_study='BTech') | Q(field_of_study='MTech')))
+    context['engg_count'] = engg_count
+    comm_count = len(ParticipantProfile.objects.filter(Q(field_of_study='BCom') | Q(field_of_study='MCom')))
+    context['comm_count'] = comm_count
+    school_count = len(ParticipantProfile.objects.filter(field_of_study='School'))
+    context['school_count'] = school_count
+    others_count = len(ParticipantProfile.objects.filter(field_of_study='Other'))
+    context['others_count'] = others_count
+    context['bar_graph_upper_limit'] = max(science_count, arts_count, engg_count, comm_count, school_count, others_count)
+
     return render(request, 'org_db.html', context)
 
 @login_required(login_url='login')

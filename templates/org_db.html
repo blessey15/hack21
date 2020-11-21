@@ -28,10 +28,24 @@
         display: table-row !important;
     }
 
+    .btn{
+        margin-left: .5em;
+    }
     .btn.active {
-    background-color: #1bb35f;
+    background-color: #4E73DF;
     color: white;
 }
+    #myBtnContainer{
+        margin-left: 2rem;
+        margin-top: 2rem;
+    }
+    #dataTable_filter{
+        text-align: right;
+    }
+    #dataTable_filter >label{
+        width: 40%;
+        text-align: left;
+    }
 </style>
 
 <body id="page-top">
@@ -174,9 +188,9 @@
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
                     <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                    <!-- <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
-                    </button>
+                    </button> -->
 
                     <!-- Topbar Search -->
                     <!-- <form
@@ -196,13 +210,13 @@
                     <ul class="navbar-nav ml-auto">
 
                         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <li class="nav-item dropdown no-arrow d-sm-none">
+                        <!-- <li class="nav-item dropdown no-arrow d-sm-none">
                             <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-search fa-fw"></i>
-                            </a>
+                            </a> -->
                             <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                            <!-- <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
                                 aria-labelledby="searchDropdown">
                                 <form class="form-inline mr-auto w-100 navbar-search">
                                     <div class="input-group">
@@ -217,7 +231,7 @@
                                     </div>
                                 </form>
                             </div>
-                        </li>
+                        </li>  -->
 
                         <!-- Nav Item - Alerts -->
                         <!-- <li class="nav-item dropdown no-arrow mx-1">
@@ -379,7 +393,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Organizer Dashboard</h1>
                         <div class="dropdown no-arrow">
                             <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                                     class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
@@ -657,13 +671,13 @@
                     </div>
 
                     <!-- Content Row -->
-                    <div class="row">
+                    <!-- <div class="row"> -->
 
                         <!-- Content Column -->
-                        <div class="col-lg-6 mb-4">
+                        <!-- <div class="col-lg-6 mb-4"> -->
 
                             <!-- Project Card Example -->
-                            <div class="card shadow mb-4">
+                            <!-- <div class="card shadow mb-4">
                                 <div class="card-header py-3">
                                     <h6 class="m-0 font-weight-bold text-primary">Projects</h6>
                                 </div>
@@ -699,10 +713,10 @@
                                             aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <!-- Color System -->
-                            <div class="row">
+                            <!-- <div class="row">
                                 <div class="col-lg-6 mb-4">
                                     <div class="card bg-primary text-white shadow">
                                         <div class="card-body">
@@ -771,10 +785,10 @@
 
                         </div>
 
-                        <div class="col-lg-6 mb-4">
+                        <div class="col-lg-6 mb-4"> -->
 
                             <!-- Illustrations -->
-                            <div class="card shadow mb-4">
+                            <!-- <div class="card shadow mb-4">
                                 <div class="card-header py-3">
                                     <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
                                 </div>
@@ -790,10 +804,10 @@
                                     <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on
                                         unDraw &rarr;</a>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <!-- Approach -->
-                            <div class="card shadow mb-4">
+                            <!-- <div class="card shadow mb-4">
                                 <div class="card-header py-3">
                                     <h6 class="m-0 font-weight-bold text-primary">Development Approach</h6>
                                 </div>
@@ -806,8 +820,8 @@
                                 </div>
                             </div>
 
-                        </div>
-                    </div>
+                        </div> 
+                    </div> -->
 
                 </div>
                 <!-- /.container-fluid -->
@@ -858,10 +872,20 @@
 
 
     <script>
+        // data for pie chart
         var accepted = "{{ accepted_applications_percent }}";
         var declined = "{{ declined_applications_percent }}";
         var waitinglist = "{{ Waitinglist_applications_percent }}";
         var pending = "{{ review_pending_applications_percent }}";
+
+        // Data for bar graph
+        var science_count = "{{ science_count }}";
+        var arts_count = "{{ arts_count }}";
+        var engg_count = "{{ engg_count }}";
+        var comm_count = "{{ comm_count }}";
+        var school_count = "{{ school_count }}";
+        var others_count = "{{ others_count }}";
+        var bar_graph_upper_limit = "{{ bar_graph_upper_limit }}";
 
         filterSelection("all")
         function filterSelection(c) {

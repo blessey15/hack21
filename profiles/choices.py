@@ -15,9 +15,6 @@ T_SHIRT_SIZE_CHOICES=(
     ('XXL','XXL')
 )
 
-
-
-
 FIELD_OF_STUDY_CHOICES=(
     ('School', 'School Student'),
     ('BSc', 'Bachelor of Science'),
