@@ -1,19 +1,41 @@
+
 {% extends 'base.html' %}
 
-{% block breadcrumb %}
-  <!-- <li class="breadcrumb-item active">.hack( ); 2021</li> -->
-{% endblock %}
 
 {% block content %}
-        {% if request.user.is_authenticated %}
-            <div class="card">
-                <div class="card-body">
-                    <h3 class="card-title">{{ message }}</h3>
-                    <h4>Go back to <a href="{% url 'home' %}">Dashboard</a></h4>
-                </div>
-                <div class="card-footer text-muted text-center">
-                </div>
-            </div>
-        {% endif %}
-{% endblock content %}
 
+  <div class="container">
+
+      <!-- Outer Row -->
+      <div class="row justify-content-center">
+
+          <div class="col-xl-10 col-lg-12 col-md-9">
+
+              <div class="card o-hidden border-0 shadow-lg my-5">
+                  <div class="card-body p-0">
+                      <!-- Nested Row within Card Body -->
+                      <div class="row">
+                          <div class="col-lg-6 d-none d-lg-block bg-password-image"></div>
+                          <div class="col-lg-6">
+                              <div class="p-5">
+                                  <div class="text-center">
+                                      <!-- <h1 class="h4 text-gray-900 mb-2">Forgot Your Password?</h1> -->
+                                      <h3 class="mb-4">{{ message }}</h3>
+                                  </div>
+                                  <hr>
+                                  <div class="text-center">
+                                      <a class="small" href="{% url 'home' %}">Back to Dashborad</a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+          </div>
+
+      </div>
+
+  </div>
+
+{% endblock %}
