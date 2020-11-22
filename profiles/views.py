@@ -84,9 +84,9 @@ def export_csv(request):
 
     writer = csv.writer(response)
     writer.writerow(['Name', 'Contact', 'Date of Birth', 'Gender', 'Educational Status', 'Educational Institution', 
-    'Field of study', 'Year of Graduation', 'Is IEEE', 'Shipping Address', 'State of Residence', 'GitHub','Twitter', 'LinkedIn'])
+    'Field of study', 'Year of Graduation', 'Is IEEE', 'Shipping Address', 'State of Residence', 'Personal Website', 'GitHub','Twitter', 'LinkedIn'])
 
-    profiles = ParticipantProfile.objects.all().values_list('name', 'contact', 'dob', 'gender', 'educational_status',
+    profiles = ParticipantProfile.objects.all().values_list('name', 'contact', 'dob', 'gender', 'educational_status','website_link',
     'educational_institution', 'field_of_study', 'year_of_graduation', 'is_ieee', 'shipping_address', 'state', 
       'github_profile_link', 'twitter_profile_link', 'linkedin_profile_link',)
     for profile in profiles:
@@ -110,7 +110,7 @@ def export_xls(request):
     font_style.font.bold = True
 
     columns = ['Name', 'Contact', 'Gender', 'Educational Status', 'Educational Institution', 
-    'Field of study', 'Year of Graduation', 'Is IEEE', 'Shipping Address', 'State of Residence', 'GitHub','Twitter', 'LinkedIn']
+    'Field of study', 'Year of Graduation', 'Is IEEE', 'Shipping Address', 'State of Residence', 'Personal Website', 'GitHub','Twitter', 'LinkedIn']
 
     for col_num in range(len(columns)):
         ws.write(row_num, col_num, columns[col_num], font_style)
@@ -119,7 +119,7 @@ def export_xls(request):
     font_style = xlwt.XFStyle()
 
     rows = ParticipantProfile.objects.all().values_list('name', 'contact', 'gender', 'educational_status',
-    'educational_institution', 'field_of_study', 'year_of_graduation', 'is_ieee', 'shipping_address', 'state', 
+    'educational_institution', 'field_of_study', 'year_of_graduation', 'is_ieee', 'shipping_address', 'state', 'website_link',
       'github_profile_link', 'twitter_profile_link', 'linkedin_profile_link',)
     for row in rows:
         row_num += 1

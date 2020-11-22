@@ -116,6 +116,13 @@ class PartcicpantProfileForm(forms.ModelForm):
             }
         )
     )
+    website_link = forms.URLField( required=False,
+        widget = forms.URLInput(
+            attrs={
+                "class": "form-control py-1 form-control-user"
+            }
+        )
+    )
     github_profile_link = forms.URLField( required=False,
         widget = forms.URLInput(
             attrs={
@@ -141,7 +148,7 @@ class PartcicpantProfileForm(forms.ModelForm):
         model = ParticipantProfile
         fields = ('team_status', 'name', 'contact', 'dob', 'gender', 'bio', 'tshirt_size' ,'skills', 'educational_status',
          'educational_institution', 'field_of_study', 'year_of_graduation', 'is_ieee', 'shipping_address', 'state',
-          'github_profile_link', 'twitter_profile_link', 'linkedin_profile_link')
+          'website_link','github_profile_link', 'twitter_profile_link', 'linkedin_profile_link')
 
     def clean_name(self):
         name = self.cleaned_data.get('name')

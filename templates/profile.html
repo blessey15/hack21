@@ -60,6 +60,11 @@
                   <i class="fab fa-linkedin-in fa-fw"></i> LinkedIn
                 </a>
                 {% endif %}
+                {% if request.user.profile.website_link %}
+                <a href="{{ request.user.profile.website_link }}" class="btn btn-facebook btn-user btn-block" target="_blank" style="background-color: #1bb35f;">
+                  <i class="fab fa-globe-asia fa-fw"></i> Personal Website
+                </a>
+                {% endif %}
               </form>
               
               <!-- <ul class="list-group list-group-flush">
