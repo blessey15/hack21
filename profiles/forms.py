@@ -81,7 +81,7 @@ class PartcicpantProfileForm(forms.ModelForm):
             }
         )
     )
-    is_ieee = forms.ChoiceField(choices=BOOLEAN_CHOICES,
+    is_ieee = forms.ChoiceField(choices=BOOLEAN_CHOICES, label="Are you an IEEE Member?",
         widget = forms.Select(
             attrs={
                 "class": 'form-control',

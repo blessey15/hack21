@@ -13,8 +13,8 @@ class TeamCreateForm(forms.ModelForm):
     name = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                "placeholder" : "Enter Team Name",                
-                "class": "form-control form-control-user form-field-custom"
+                "placeholder" : "Enter a Team Name",                
+                "class": "form-control form-control-user"
             }
         ))
     class Meta:
@@ -44,8 +44,8 @@ class TeamSearchForm(forms.Form):
     team_id = forms.CharField(max_length=64,
         widget=forms.TextInput(
             attrs={
-                "placeholder" : "Enter Team Name",                
-                "class": "form-control form-control-user form-field-custom"
+                "placeholder" : "Enter Team ID to Search",                
+                "class": "form-control form-control-user"
             }
         ))
 

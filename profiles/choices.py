@@ -1,10 +1,10 @@
 #Choices for charfields in profile app.
 
 GENDER_CHOICES=(
-    ('m','Male'),
-    ('f','Female'),
-    ('n',"Non Binary"),
-    ('na', 'Prefer not to say',)
+    ('Male','Male'),
+    ('Female','Female'),
+    ('Non-Binary',"Non Binary"),
+    ('N/A', 'Prefer not to say',)
 )
 
 T_SHIRT_SIZE_CHOICES=(
@@ -16,15 +16,15 @@ T_SHIRT_SIZE_CHOICES=(
 )
 
 FIELD_OF_STUDY_CHOICES=(
-    ('School', 'School Student'),
-    ('BSc', 'Bachelor of Science'),
-    ('BA', 'Bachelor of Arts'),
-    ('BTech', 'Bachelor of Technology'),
-    ('BCom', 'Bachelor of Commerce'),
-    ('MSc', 'Master of Science'),
-    ('MA', 'Master of Arts'),
-    ('MTech', 'Master of Technology'),
-    ('MCom', 'Master of Commerce'),
+    ('School Student', 'School Student'),
+    ('Bachelor of Science', 'Bachelor of Science'),
+    ('Bachelor of Arts', 'Bachelor of Arts'),
+    ('Bachelor of Technology', 'Bachelor of Technology'),
+    ('Bachelor of Commerce', 'Bachelor of Commerce'),
+    ('Master of Science', 'Master of Science'),
+    ('Master of Arts', 'Master of Arts'),
+    ('Master of Technology', 'Master of Technology'),
+    ('Master of Commerce', 'Master of Commerce'),
     ('Other', 'Other'),
 )
 

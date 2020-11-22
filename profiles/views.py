@@ -70,6 +70,9 @@ def participant_profile_updated_view(request):
 
 
 
+@login_required(login_url='login')
+def participant_profile_view(request):
+    return render(request, 'profile.html')
 
 
 # DATA EXPORTING

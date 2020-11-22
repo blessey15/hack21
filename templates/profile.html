@@ -39,63 +39,7 @@
               </div>
             </div>
 
-            <div class="card mb-3 mt-3">
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-sm-4">
-                    <h6 class="mb-0">Full Name</h6>
-                  </div>
-                  <div class="col-sm-8 text-secondary">
-                    {{ request.user.profile.name }}
-                  </div>
-                </div>
-                <hr>
-                <div class="row">
-                  <div class="col-sm-4">
-                    <h6 class="mb-0">Email</h6>
-                  </div>
-                  <div class="col-sm-8 text-secondary">
-                    {{ request.user.email }}
-                  </div>
-                </div>
-                <hr>
-                <div class="row">
-                  <div class="col-sm-4">
-                    <h6 class="mb-0">Phone</h6>
-                  </div>
-                  <div class="col-sm-8 text-secondary">
-                    {{ request.user.profile.contact }}
-                  </div>
-                </div>
-                <hr>
-                <!-- <div class="row">
-                  <div class="col-sm-4">
-                    <h6 class="mb-0">Mobile</h6>
-                  </div>
-                  <div class="col-sm-8 text-secondary">
-                    (320) 380-4539
-                  </div>
-                </div> -->
-                <!-- <hr> -->
-                <div class="row">
-                  <div class="col-sm-4">
-                    <h6 class="mb-0">Address</h6>
-                  </div>
-                  <div class="col-sm-8 text-secondary">
-                    {{ request.user.profile.shipping_address }}
-                  </div>
-                </div>
-                <hr>
-                <div class="row">
-                  <div class="col-sm-4">
-                    <h6 class="mb-0">Skills</h6>
-                  </div>
-                  <div class="col-sm-8 text-secondary">
-                    {{ request.user.profile.skills }}
-                  </div>
-                </div>
-              </div>
-            </div>
+            
 
 
             <div class="card mt-3">
@@ -146,175 +90,86 @@
 
           </div> <!-- SIDE OF PROFILE PAGE END-->
 
-
+          <!-- <div class="col-md-8">
+            <div class="card mb-3 mt-3">
+                <div class="card-body">
+                    <div class="row">
+                        <P>{{ request.user.profile.bio }}</P>
+                    </div>
+                </div>
+                <hr>
+            </div>
+          </div> -->
           
           
           <div class="col-md-8">
+
             <div class="card mb-3">
-              <div class="card-body">
-            {% if not user_has_team %}
-            <span>Create a team to get started</span>
-          <form method="post" novalidate class="user mt-3 mb-3">
-            {% csrf_token %}
-            
-            {% for field in team_form %}
-            <!-- <p> -->
-              <!-- {{field.label_tag}} -->
-              
-              <div class="row">
-                <!-- <div class="col-sm-3">
-                  <h6 class="mb-0">Team Name</h6>
-                </div> -->
-                <div class="col-sm-9 text-secondary">
-                  {{field}}
+                <div class="card-body">
+                    <div class="row">
+                        <P>{{ request.user.profile.bio }}</P>
+                    </div>
                 </div>
-                
-                {% if field.help_text %}
-                <small style="color:grey">{{field.help_text}}</small>
-                {% endif %}
-                
-                {% for error in field.errors %}
-                <p style="color:red">{{error}}</p>
-                {% endfor %}
-              </p>
-              {% endfor %}
-              <button type="submit" name="create_team" class="btn btn-primary btn-user mt-xs-3">Create Team</button>
             </div>
-            <!-- <hr> -->
-          </form>
-                        <h3 style="text-align: center; color: #1bb35f;">OR</h3>
-          <span class="card-title mb-3">Join A Team if someone in your team has already created one</span>
-          <form method="post" novalidate class="user mt-3">
-            {% csrf_token %}
-            
-            {% for field in search_form %}
-            <div class="row">
-              <!-- <div class="col-sm-3">
-                <h6 class="mb-0">Team Name</h6>
-              </div> -->
-              <div class="col-sm-9 text-secondary">
-                {{field}}
-              </div>
-              
-              {% if field.help_text %}
-              <small style="color:grey">{{field.help_text}}</small>
-              {% endif %}
-              
-              {% for error in field.errors %}
-              <p style="color:red">{{error}}</p>
-              {% endfor %}
-            </p>
-            {% endfor %}
-            <button type="submit" name="search_team" class="btn btn-primary btn-user mt-xs-3">Search Team</button>
-          </div>
-          <!-- <hr> -->
-          </form>
-        
-        {% if no_teams_found %}
 
-          <div class="card custom-card">
-            <div class="card-body">
-              <!-- <h3 class="card-title">Join A Team</h3> -->
-              <h5 style="color: red;">No Team found</h5>
-            </div>
-            <div class="card-footer text-muted text-center">
-            </div>
-          </div>
 
-        {% elif searched_team %}
-          
-          <div class="card custom-card">
-            <div class="card-body">
-              <h3 class="card-title">Join A Team</h3>
-              <ol>
-                  <li><a href="{% url 'team_detail' searched_team.id %}"> {{ searched_team.name }} </a></li>
-              </ol>
-            </div>
-            <div class="card-footer text-muted text-center">
-            </div>
-          </div>
 
-          {% endif %}
-      
-        {% else %}
-
-        {% if application %}
-          <h2>Team Details </h2>
-          {% if application.application_status == 'Not Submitted'%}
-          <p class="btn btn-info btn-icon-split mb-3">Your Application to .hack( ); 2021 has not been submitted yet.</p>
-          {% if request.user == application.team.admin %}
-          <a href="{% url 'leave_team' application.team.id %}"> <button name="leave_team" class="btn btn-primary mb-3">Delete Team </button></a>
-          <a href="{% url 'submit_application' %}"> <button name="leave_team" class="btn btn-primary mb-3">Submit Application </button></a>
-          {% else %}
-              <p>Ask your Team admin to submit the application as soon as your team is complete</p>
-              <a href="{% url 'leave_team' application.team.id %}"> <button name="leave_team" class="btn btn-primary">Leave Team </button></a>
-              {% endif %}
-              {% elif application.application_status == 'Accepted' %}
-              <P class="btn btn-primary btn-icon-split">YEAYY!! Your Application to .hack( ); 2021 has been ACCEPTED.</P>
-              <p>We received an overwhelming amount of rrsponses for .hack(); this year and we were impressed by the applications.
-                We are happy you are part of the brilliant team of innovators that will be solving problems at .hack(); this year.
-              </p>
-              {% elif application.application_status == 'Declined' %}
-              <P class="btn btn-danger btn-icon-split">Uh Oh! Your Application to  .hack(); has been Declined.</P>
-              <p>We received an overwhelming amount of applications and all of them were very impressive. But unfortunately we cannot accept all of them. 
-                We had a very hard time choosing the teams. Thank you for your application. You can still attend all the webinars and workshops and skill up.
-                And hey, <span class="text-danger" style="text-align: center;"> YOU DON'T NEED A HACKATHON TO HACK PROBLEMS...</span> 
-              </p>
-              {% else %}
-                  <P class="btn btn-warning btn-icon-split">Your Application to .hack( ); 2021 has been submitted.</P>
-                  <p> We are reviewing the applications as fast as we can. We will keep you updated about you application progress. 
-                    Come back here to check up on your application status.
-                  </p>
-          
-          {% endif %}
-        {% endif %}
-        
-        <!-- ####################################################################################################################### -->
-        <!-- <h6>Team Details:</h6> -->
-        <!-- <div class="col-md-8"> -->
-          <div class="card mb-3 mt-3">
-            <div class="card-body">
-              <div class="row">
-                <div class="col-sm-3">
-                  <h6 class="mb-0">Team Name</h6>
-                </div>
-                <div class="col-sm-9 text-secondary">
-                  {{ users_team.name }}
-                </div>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col-sm-3">
-                  <h6 class="mb-0">Team ID</h6>
-                </div>
-                <div class="col-sm-9 text-secondary">
-                  {{ users_team.id }}
-                </div>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col-sm-3">
-                  <h6 class="mb-0">Created By</h6>
-                </div>
-                <div class="col-sm-9 text-secondary">
-                  {{ users_team.admin.profile.name }}
-                </div>
-              </div>
-              <hr>
-              <h6>Team Members</h6>
-              <ol>
-                {% for member in application.members.all %}
-                  <li> 
-                    {{ member.profile.name }} - {{ member.email }}
-                  </li>
-                {% endfor %}
-              </ol>
-              {% endif %}
-      </div>
-          </div>
-
-          <div class="card mb-3 mt-3">
-            <div class="card-body">
+            <div class="card mb-3 mt-3">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <h6 class="mb-0">Full Name</h6>
+                    </div>
+                    <div class="col-sm-8 text-secondary">
+                      {{ request.user.profile.name }}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <h6 class="mb-0">Email</h6>
+                    </div>
+                    <div class="col-sm-8 text-secondary">
+                      {{ request.user.email }}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <h6 class="mb-0">Phone</h6>
+                    </div>
+                    <div class="col-sm-8 text-secondary">
+                      {{ request.user.profile.contact }}
+                    </div>
+                  </div>
+                  <hr>
+                  <!-- <div class="row">
+                    <div class="col-sm-4">
+                      <h6 class="mb-0">Mobile</h6>
+                    </div>
+                    <div class="col-sm-8 text-secondary">
+                      (320) 380-4539
+                    </div>
+                  </div> -->
+                  <!-- <hr> -->
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <h6 class="mb-0">Address</h6>
+                    </div>
+                    <div class="col-sm-8 text-secondary">
+                      {{ request.user.profile.shipping_address }}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <h6 class="mb-0">Skills</h6>
+                    </div>
+                    <div class="col-sm-8 text-secondary">
+                      {{ request.user.profile.skills }}
+                    </div>
+                  </div>
+                  <hr>
               <div class="row">
                 <div class="col-sm-4">
                   <h6 class="mb-0">Gender</h6>
@@ -399,15 +254,15 @@
                   {{ request.user.profile.field_of_study }}
                 </div>
               </div>
-              <hr>
-              <div class="row">
+              <!-- <hr> -->
+              <!-- <div class="row">
                 <div class="col-sm-4">
                   <h6 class="mb-0">Bio</h6>
                 </div>
                 <div class="col-sm-8 text-secondary">
                   {{ request.user.profile.bio }}
                 </div>
-              </div>
+              </div> -->
             </div>
         </div>
 

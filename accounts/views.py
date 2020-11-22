@@ -112,8 +112,9 @@ def home(request):
                         # request.user.team.add(team)
                         # user_obj = team_form.save()
                         # user_obj.team.add(team) 
-                        context['message'] = 'Team Created Successfully'
-                        return render(request, 'messages.html', context )
+                        # context['message'] = 'Team Created Successfully'
+                        # return render(request, 'home.html', context )
+                        return redirect('home')
                 else:
                     context['team_form'] = team_form
 

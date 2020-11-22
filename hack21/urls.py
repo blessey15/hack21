@@ -53,7 +53,9 @@ urlpatterns = [
      name='password_reset_complete'),
 
 # PROFILE
-    path('profile/', profileviews.participant_profile_creation_view, name='profile'),
+    path('profile/', profileviews.participant_profile_view, name='profile'),
+
+    path('profile-update/', profileviews.participant_profile_creation_view, name='profile-update'),
     
     path('profile_done/', profileviews.participant_profile_updated_view, name='profile_created'),
 

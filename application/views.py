@@ -142,9 +142,9 @@ def submit_aplication_view(request):
                 return render(request, 'messages.html', context)
                 # application.application_status = 'Submitted'
                 # application.save()
-            elif len(application.members.all()) < 2:
-                context['message'] = "You need atleast 2 people in a team!!."
-                return render(request, 'messages.html', context)
+            # elif len(application.members.all()) < 2:
+            #     context['message'] = "You need atleast 2 people in a team!!."
+            #     return render(request, 'messages.html', context)
             else:
                 application.application_status = 'Submitted'
                 application.save()
