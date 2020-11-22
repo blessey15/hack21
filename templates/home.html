@@ -8,7 +8,8 @@
 {% endblock %}
 {% block content %}
 
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <div class="container">
   <div class="main-body">
   
@@ -251,7 +252,7 @@
               {% endif %}
               {% elif application.application_status == 'Accepted' %}
               <P class="btn btn-primary btn-icon-split">YEAYY!! Your Application to .hack( ); 2021 has been ACCEPTED.</P>
-              <p>We received an overwhelming amount of rrsponses for .hack(); this year and we were impressed by the applications.
+              <p>We received an overwhelming amount of responses for .hack(); this year and we were impressed by the applications.
                 We are happy you are part of the brilliant team of innovators that will be solving problems at .hack(); this year.
               </p>
               {% elif application.application_status == 'Declined' %}
@@ -289,6 +290,12 @@
                 </div>
                 <div class="col-sm-9 text-secondary">
                   {{ users_team.id }}
+                  
+                    <button class="btn clippy btn-primary" data-clipboard-text="{{ users_team.id }}">
+                      <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-clippy.svg" alt="Copy to clipboard"
+                        width="13">
+                    </button>
+
                 </div>
               </div>
               <hr>
@@ -427,6 +434,23 @@
       </div>
   </div>
 
-
+<script>
+    var clipboard = new ClipboardJS('.btn');
+  
+    clipboard.on('success', function(e) {
+        console.log(e);
+    });
+  
+    clipboard.on('error', function(e) {
+        console.log(e);
+    });
+    $(document).ready(function(){
+      $('.clippy').tooltip({title: "Copied!", trigger: "click"}); 
+       
+    });
+    $(".clippy").mouseleave(function(){
+          $(".clippy").tooltip('hide');
+      });
+</script>
 {% endblock content %}
 
