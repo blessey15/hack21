@@ -19,14 +19,16 @@ class PartcicpantProfileForm(forms.ModelForm):
     name = forms.CharField(
         widget = forms.TextInput(
             attrs={
-                "class": "form-control py-1 form-control-user"
+                "class": "form-control py-1 form-control-user",
+                "placeholder": "Enter Your Name"
             }
         )
     )
     contact = forms.CharField(
         widget = forms.TextInput(
             attrs={
-                "class": "form-control py-1 form-control-user"
+                "class": "form-control py-1 form-control-user",
+                "placeholder": "so we can reach out to you"
             }
         )
     )
@@ -44,7 +46,7 @@ class PartcicpantProfileForm(forms.ModelForm):
             }
         )
     )
-    bio = forms.CharField( required=False,
+    bio = forms.CharField( required=False,help_text="Tell us more about yourself and why you want to be a part of .hack();",
         widget = forms.Textarea(
             attrs={
                 "placeholder": "Your short bio",
@@ -52,7 +54,7 @@ class PartcicpantProfileForm(forms.ModelForm):
             }
         )
     )
-    tshirt_size = forms.ChoiceField( choices=T_SHIRT_SIZE_CHOICES,
+    tshirt_size = forms.ChoiceField( choices=T_SHIRT_SIZE_CHOICES, help_text="You got it. We are shipping tshirts and other goodies to top 200 participants.",
         widget = forms.Select(
             attrs={
                 "class": "form-control py-1 form-control-user"
@@ -60,14 +62,14 @@ class PartcicpantProfileForm(forms.ModelForm):
         )
     )
     #emergency conatct
-    skills = forms.CharField( required=False,
+    skills = forms.CharField( required=False,help_text="Tell us about your skills so that we can choose the best candidates",
         widget = forms.TextInput(
             attrs={
                 "class": "form-control py-1 form-control-user"
             }
         )
     )
-    educational_institution =forms.CharField( required=False,
+    educational_institution =forms.CharField( required=False, help_text="Just making sure you are a student.",
         widget = forms.TextInput(
             attrs={
                 "class": "form-control py-1 form-control-user"
@@ -81,14 +83,14 @@ class PartcicpantProfileForm(forms.ModelForm):
             }
         )
     )
-    is_ieee = forms.ChoiceField(choices=BOOLEAN_CHOICES, label="Are you an IEEE Member?",
+    is_ieee = forms.ChoiceField(choices=BOOLEAN_CHOICES, label="Are you an IEEE Member?", help_text=".hack(); is open to all college and school students. We are just curious to know how many IEEEians are among the innovators.",
         widget = forms.Select(
             attrs={
-                "class": 'form-control',
+                "class": 'form-control py-1 form-control-user',
             }
         )
     )
-    shipping_address = forms.CharField( required=False,
+    shipping_address = forms.CharField( required=False,help_text="This will be used to ship your prizes and the goodies for top teams.",
         widget = forms.Textarea(
             attrs={
                 "class": "form-control py-1"
@@ -119,28 +121,32 @@ class PartcicpantProfileForm(forms.ModelForm):
     website_link = forms.URLField( required=False,
         widget = forms.URLInput(
             attrs={
-                "class": "form-control py-1 form-control-user"
+                "class": "form-control py-1 form-control-user",
+                "placeholder": "Link to your Personal Website"
             }
         )
     )
     github_profile_link = forms.URLField( required=False,
         widget = forms.URLInput(
             attrs={
-                "class": "form-control py-1 form-control-user"
+                "class": "form-control py-1 form-control-user",
+                "placeholder": "Link to your GitHub Profile"
             }
         )
     )
     twitter_profile_link = forms.URLField( required=False,
         widget = forms.URLInput(
             attrs={
-                "class": "form-control py-1 form-control-user"
+                "class": "form-control py-1 form-control-user",
+                "placeholder": "Link to your Twitter Profile"
             }
         )
     )
     linkedin_profile_link = forms.URLField( required=False,
         widget = forms.URLInput(
             attrs={
-                "class": "form-control py-1 form-control-user"
+                "class": "form-control py-1 form-control-user",
+                "placeholder": "Link to your LinkedIn Profile"
             }
         )
     )

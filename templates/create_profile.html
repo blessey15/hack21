@@ -24,16 +24,26 @@
 	}
 </style>
   <div class="container">
-  	<h1 class= "text-center logo my-4">
-  		<a href="{% url 'home' %}">.hack( ); 2021</a>
-  	</h1>
+  	<!-- <h1 class= "text-center logo my-4">
+  		<a href="{% url 'home' %}">.hack( ); 2021</a> 
+	  </h1> -->
+	  <!-- <div style="text-align: center;">
+		<a href="{% url 'home' %}"> <img src="{% static 'img/Logo-techie.png' %}" style="  height: auto;
+		 width: auto;
+		 max-height: 72px;
+		 max-width: 150px;" alt="logo" /></a>
+		 </div> -->
+
   	<div class="row justify-content-center">
   		<div class="col-lg-8 col-md-10 col-sm-12">
   			<div class="card">
   				<div class="card-body">
 					  <h3 class="card-title">Update you Profile</h3>
-					  <div style="font-size: small; margin-top: .2rem; margin-bottom: 1rem;">
+					  <div style="font-size: small;margin-bottom: 1rem;">
 						  <span><a href="{% url 'home' %}">Back to Dashboard</a></span>
+					  </div>
+					  <div class="mb-4">
+						  Please fill out this form and comlete your profile. Your application will be accepted only after we review your answers.
 					  </div>
   					<form method="post" novalidate class="user">
 						  {% csrf_token %}

@@ -49,6 +49,14 @@
         width: 40%;
         text-align: left;
     }
+
+    .vertical-center {
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+}
 </style>
 
 <body id="page-top">
@@ -103,7 +111,7 @@
                                 aria-labelledby="userDropdown">
                                 <a class="dropdown-item" href="{% url 'account' %}">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    My Account
+                                    change username or email
                                 </a>
                                 <a class="dropdown-item" href="{% url 'profile-update' %}">
                                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -112,6 +120,10 @@
                                 <a class="dropdown-item" href="{% url 'password_change' %}">
                                     <i class="fas fa-lock fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Change Password
+                                </a>
+                                <a class="dropdown-item" href="{% url 'home' %}">
+                                    <i class="fas fa-box-open fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Dashboard
                                 </a>
 
                                 <a class="dropdown-item" href="{% url 'logout' %}">
@@ -151,9 +163,16 @@
                 {% endblock body %}
 
                 <!-- /.container-fluid -->
+                </div>
 
             </div>
             <!-- End of Main Content -->
+            <!-- </div> -->
+            <!-- End of Content Wrapper -->
+    
+        </div>
+        <!-- End of Page Wrapper -->
+
 
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
@@ -165,11 +184,6 @@
             </footer>
             <!-- End of Footer -->
 
-        </div>
-        <!-- End of Content Wrapper -->
-
-    </div>
-    <!-- End of Page Wrapper -->
 
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">

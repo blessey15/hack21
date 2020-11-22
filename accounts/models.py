@@ -1,5 +1,8 @@
+import uuid
+
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.utils.text import slugify
 
 
 class AccountManager(BaseUserManager):
@@ -34,6 +37,10 @@ class AccountManager(BaseUserManager):
 class Account(AbstractBaseUser):
     email = models.EmailField(verbose_name="Email", max_length=64, unique=True)
     username = models.CharField(max_length=32, unique=True,)
+
+    # slug = slugify(username)
+    # slug = models.SlugField(default=slugify(username))
+    urlid = models.UUIDField(default=uuid.uuid4, editable=False)
 
     date_joined = models.DateTimeField(auto_now_add=True)         
     last_login = models.DateTimeField(auto_now=True)

@@ -1,11 +1,12 @@
 import csv, xlwt
 
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 
 from .forms import PartcicpantProfileForm
 from .models import ParticipantProfile
+from accounts.models import Account
 from hack21.decorators import organizer_view
 
 # Create your views here.
@@ -71,8 +72,23 @@ def participant_profile_updated_view(request):
 
 
 @login_required(login_url='login')
-def participant_profile_view(request):
-    return render(request, 'profile.html')
+# @organizer_view
+def participant_profile_view(request, id):
+    context = {}
+    user = get_object_or_404(Account, id=id)
+    profile = user.profile
+    context['user'] = user
+    context['profile'] = profile
+    return render(request, 'profile.html', context)
+
+@login_required(login_url='login')
+def own_profile_view(request):
+    context = {}
+    user = request.user
+    profile = user.profile
+    context['user'] = user
+    context['profile'] = profile
+    return render(request, 'profile.html', context)
 
 
 # DATA EXPORTING
