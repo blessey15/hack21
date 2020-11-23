@@ -4,6 +4,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
+from django.core.mail import send_mail
+from django.core import mail
 
 from accounts.forms import RegistrationForm, AccountAuthenticationForm, AccountUpdateForm
 from application.models import Team, Application, JoinRequest
@@ -13,6 +15,21 @@ from .models import Account
 # from  application.views import create_team_view
 
 def landing_page_view(request):
+    # send_mail(
+    #     'Mail Client Set',
+    #     'Mail Client set aayi Sackochaaa',
+    #     'postmaster@mg.ieeemace.org',
+    #     ['neenuchacko@ieee.org'],
+    #     fail_silently=False,
+    # )
+    # with mail.get_connection() as connection:
+    #     mail.EmailMessage(
+    #         'TEST MAIL SUBJECT',
+    #          'TEST MAIL BODY', 
+    #          'postmaster@sandbox5e247a864ddc4e418abb514b8d73e12b.mailgun.org',
+    #           ['melvinchooranolil@gmail.com'],
+    #         connection=connection,
+    #     ).send()
     return render(request, 'index.html', {})
 
 def sponsor_view(request):
