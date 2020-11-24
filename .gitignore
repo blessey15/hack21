@@ -1,6 +1,7 @@
 
 .env.prod
 .env.prod.db
+.env.dev
 
 # VSCode File
 .vscode
