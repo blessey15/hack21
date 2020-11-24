@@ -147,19 +147,15 @@
 
                 <!-- Begin Page Content -->
                 {% block body %}
-
-
-                 <div class="container">
-                  <!--  <ol class="breadcrumb my-4 custom-navbar-title-container">
-                        <a class="navbar-brand custom-navbar-title" href="{% url 'home' %}"> <li class="breadcrumb-item active">Welcome to .hack( );</li></a> -->
-                    {% block breadcrumb %}
-
-
-                    {% endblock %}
-                    <!-- </ol> -->
-                    {% block content %}
-                    {% endblock %}
-                </div>
+                    <div class="container">
+                    <!--  <ol class="breadcrumb my-4 custom-navbar-title-container">
+                            <a class="navbar-brand custom-navbar-title" href="{% url 'home' %}"> <li class="breadcrumb-item active">Welcome to .hack( );</li></a> -->
+                        {% block breadcrumb %}
+                        {% endblock %}
+                        <!-- </ol> -->
+                        {% block content %}
+                        {% endblock %}
+                    </div>
                 {% endblock body %}
 
                 <!-- /.container-fluid -->

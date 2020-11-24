@@ -38,6 +38,9 @@ def sponsor_view(request):
 def base_view(request):
     return render(request, 'base.html', {})
 
+def temp_view(request):
+    return render(request, 'home2.html', {})
+
 @login_required(login_url='login')
 @participant_view
 def home(request):
