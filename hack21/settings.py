@@ -50,9 +50,6 @@ EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
 EMAIL_USE_TLS = True
 
-# EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
-# MAILGUN_ACCESS_KEY = '96b9b6eea5c0c710738af0b4e3a2a77e-2af183ba-08f96b81'
-# MAILGUN_SERVER_NAME = 'https://api.mailgun.net/v3/sandbox5e247a864ddc4e418abb514b8d73e12b.mailgun.org'
 
 
 # Application definition
