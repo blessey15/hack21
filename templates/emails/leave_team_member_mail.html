@@ -1,0 +1,14 @@
+{% extends 'email_base.html' %}
+
+{% block content %}
+    <h4>Hello {{ user.profile.name }}, </h4>
+    <h5 class="mt-4"> You have Left the team {{ team_name }}</h5>
+    <h5 class="mt-4"> Team Name: {{ team_name }}</h5>
+    <h5 class="mt-4"> Team ID: {{ team_id }}</h5>
+    <h5 class="mt-4"> In order to participate in .hack(); you must be part of a team. If you are planning to participapte alone,
+        create a team and then submit the applicatin with only you as the member. In any case you MUST BE MEMBER OF A TEAM 
+        to participate in .hack();.
+    </h5>
+    <h5 class="mt-4"> With Best Regards,</h5>
+    <h4> Team .hack();</h4>
+{% endblock %}

@@ -84,6 +84,9 @@ urlpatterns = [
 
     path('temp2', views.temp_view, name='home2'),
 
+    path('mail', views.email_view, name='mail'),
+
+
     # path('export/users/csv', views.export_csv, name='export_user_csv'),
 
     # path('export/users/xls', views.export_xls, name='export_user_xls'),

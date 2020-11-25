@@ -1,0 +1,10 @@
+{% extends 'email_base.html' %}
+
+{% block content %}
+        <h4>Hello {{ admin }}, </h4>
+        <h5 class="mt-4"> A new member has joined your team {{ team_name }}</h5>
+        <h5 class="mt-4"> Member Name: {{ user.profile.name }}</h5>
+        <h5 class="mt-4"> Email: {{ user.email }}</h5>
+        <h5 class="mt-4"> With Best Regards,</h5>
+        <h4> Team .hack();</h4>
+{% endblock %}

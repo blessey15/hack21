@@ -1,6 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
+# HTML MAIL ESSENTIALS
+from django.template import Context
+from django.template.loader import render_to_string, get_template
+from django.core.mail import EmailMessage
+
 
 from .forms import TeamCreateForm
 from .models import Application, Team, JoinRequest
@@ -57,6 +62,35 @@ def join_team_view(request, team_id):
                 if application.application_status == "Not Submitted":
                     if len(application.members.all())<4:
                         application.members.add(request.user)
+                        ctx = {
+                            'user': request.user,
+                            'team_name': application.team.name,
+                            'team_id': application.team.id,
+                            'admin': application.team.admin.profile.name 
+                            }
+                        # MAIL TO TEAM ADMIN NOTIFYING OF NEW MEMBER JOINING
+                        message1 = get_template('emails/join_team_admin_mail.html').render(ctx)
+                        msg1 = EmailMessage(
+                            "New Memeber Notification",
+                            message1,
+                            'hack@mg.ieeemace.org',
+                            [application.team.admin.email],
+                            )
+                        msg1.content_subtype = "html"
+                        # msg1.send()
+                        # print("Team Join message sent to ADMIN")
+
+                        # MAIL TO PARTICIPANT CONFIRMING TEAM JOINING
+                        message2 = get_template('emails/join_team_member_mail.html').render(ctx)
+                        msg2 = EmailMessage(
+                            "Joined Team",
+                            message2,
+                            'hack@mg.ieeemace.org',
+                            [request.user.email],
+                            )
+                        # msg2.content_subtype = "html"
+                        # msg2.send()
+                        print("Team Join message sent to MEMBER")
                         # return redirect('join_team')
                         # return render(request, 'team_detail.html', context)
                         # return team_detail_view(request, team_id)
@@ -113,15 +147,74 @@ def leave_team_view(request, team_id):
     #     application = application[0]
     context['application'] = application
     # team = application.team
+    ctx = {
+        'user': request.user,
+        'team_name': application.team.name,
+        'team_id': application.team.id,
+        'admin': application.team.admin.profile.name 
+        }
     if application.application_status == 'Not Submitted':
         if request.user == team.admin:
+            
+            # MAIL TO TEAM ADMIN NOTIFYING OF TEAM DELETE
+            message1 = get_template('emails/delete_team_admin_mail.html').render(ctx)
+            msg1 = EmailMessage(
+                "Team Deleted",
+                message1,
+                'hack@mg.ieeemace.org',
+                [application.team.admin.email],
+                )
+            msg1.content_subtype = "html"
+            # msg1.send()
+            # print("Team Delete message sent to ADMIN")
+
+            # MAIL TO MEMBER NOTIFYING TEAM DELETE
+            message2 = get_template('emails/delete_team_member_mail.html').render(ctx)
+            to_list = []
+            for member in application.members.all():
+                if not (member == request.user):
+                    to_list.append(member.email)
+            msg2 = EmailMessage(
+                "Your Team was Deleted!",
+                message2,
+                'hack@mg.ieeemace.org',
+                to_list,
+                )
+            msg2.content_subtype = "html"
+            # msg2.send()
+            # print("Team Delete message sent to MEMBER")
             application.delete()
             context['application'] = None
             team.delete()
+
             context['team'] = None
             return redirect('home')
         else:
             application.members.remove(request.user)
+            # MAIL TO TEAM ADMIN NOTIFYING OF NEW MEMBER JOINING
+            message1 = get_template('emails/leave_team_admin_mail.html').render(ctx)
+            msg1 = EmailMessage(
+                "Member Leaving Team",
+                message1,
+                'hack@mg.ieeemace.org',
+                [application.team.admin.email],
+                )
+            msg1.content_subtype = "html"
+            # msg1.send()
+            # print("Member Leaving message sent to ADMIN")
+
+            # MAIL TO PARTICIPANT CONFIRMING TEAM JOINING
+            message2 = get_template('emails/leave_team_member_mail.html').render(ctx)
+            msg2 = EmailMessage(
+                "You Left a Team",
+                message2,
+                'hack@mg.ieeemace.org',
+                [request.user.email],
+                )
+            msg2.content_subtype = "html"
+            # msg2.send()
+            # print("Team Leaving message sent to MEMBER")
+
             return redirect('home')
     else:
         context['message'] = "The application is already submitted. You cannot leave the team now!!"
@@ -148,6 +241,25 @@ def submit_aplication_view(request):
             else:
                 application.application_status = 'Submitted'
                 application.save()
+                ctx = {
+                        'user': request.user,
+                        'team_name': application.team.name,
+                        'team_id': application.team.id,
+                        'admin': application.team.admin.profile.name 
+                        }
+                to_list = []
+                for member in application.members.all():
+                    to_list.append(member.email)
+                message = get_template('emails/application_submitted_mail.html').render(ctx)
+                msg = EmailMessage(
+                    "Application SUbmitted",
+                    message,
+                    'hack@mg.ieeemace.org',
+                    to_list,
+                    )
+                msg.content_subtype = "html"
+                # msg.send()
+                # print("Application Submission message sent")
                 # context['message'] = "You need 4 people in a team to submit the application."
                 # return render(request, 'messages.html', context)
         else:

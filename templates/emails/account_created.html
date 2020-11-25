@@ -1,0 +1,8 @@
+{% extends 'email_base.html' %}
+
+{% block content %}
+    <h4>Hello {{ user.profile.name }}, </h4>
+    <h5 class="mt-4"> Thankyou for registering for .hack(); We hope to see you soon.</h5>
+    <h5 class="mt-4"> With Best Regards,</h5>
+    <h4> Team .hack();</h4>
+{% endblock %}

@@ -1,5 +1,5 @@
 {% extends 'base.html' %} {% block breadcrumb %}
-<li class="breadcrumb-item active">.hack( ); 2021</li>
+<!-- <li class="breadcrumb-item active">.hack( ); 2021</li> -->
 {% endblock %} {% block content %}
 <style>
     .card-box {
@@ -54,9 +54,24 @@
 <div class="row mb-5">
     <div class="col-md-8 mx-auto">
         <div class="card">
+          
             <div class="card-body">
                 <h3>Team Name: {{ team.name }}</h3>
-                <p>Application Status: {{ application.application_status }}</p>
+                <!-- <p>Application Status: {{ application.application_status }}</p> -->
+                <!-- <span>Application Status: </span> -->
+                {% if application.application_status == 'Not Submitted'%}
+                <p class="btn btn-info btn-icon-split mb-3" >Application Status: Not Submitted</p>
+                {% if request.user == application.team.admin %}
+                <a href="{% url 'leave_team' application.team.id %}"> <button name="leave_team" class="btn btn-primary mb-3">Delete Team</button></a>
+                <a href="{% url 'submit_application' %}"> <button name="leave_team" class="btn btn-primary mb-3">Submit Application</button></a>
+                {% endif %} {% elif application.application_status == 'Accepted' %}
+                <p class="btn btn-primary btn-icon-split">Application Status: Accepted</p>
+                {% elif application.application_status == 'Declined' %}
+                <p class="btn btn-danger btn-icon-split">Application Status: Declined.</p>
+                {% else %}
+                <p class="btn btn-warning btn-icon-split">Application Status: Submitted.</p>
+                {% endif %}
+                <hr>
                 {% if request.user.is_organizer %}
 
                 <h5>Number of Members: {{ number_of_members }}</h5>
@@ -93,21 +108,10 @@
                 {% else %}
                 <!-- if is orgganizer -->
                 {% if in_team %}
-                <h5>Number of Members: {{ number_of_members }}</h5>
-                <h5>Created By: {{ team.admin.profile.name }} - {{ team.admin.email }}</h5>
-                <h5>Members</h5>
-                <ol>
-                    {% for member in application.members.all %}
-                    <li>
-                        {{ member.profile.name }} - {{ member.email }}
-                        <!-- -  <a href="{{ member.profile.github_profile_link }}" target="_blank">GitHub</a>
-                            | <a href="{{ member.profile.twitter_profile_link }}" target="_blank">Twitter</a>
-                            | <a href="{{ member.profile.linkedin_profile_link }}" target="_blank"> | LinkedIn</a> -->
-                        {% if member.profile.github_profile_link %} - <a href="{{ member.profile.github_profile_link }}" target="_blank">GitHub</a> {% endif %} {% if member.profile.twitter_profile_link %} | <a href="{{ member.profile.twitter_profile_link }}" target="_blank">Twitter</a> {% endif %} {% if member.profile.linkedin_profile_link %} | <a href="{{ member.profile.linkedin_profile_link }}" target="_blank">LinkedIn</a>
-                        {% endif %}
-                    </li>
-                    {% endfor %}
-                </ol>
+                <h5>Number of Members: {{ number_of_members }}</h5><hr>
+                <h5>Created By: {{ team.admin.profile.name }} - {{ team.admin.email }}</h5><hr>
+                <!-- <h5>Members</h5> -->
+                
                 <h4>You are member of this team</h4>
                 {% else %}
                 <h5>Number of Members: {{ number_of_members }}</h5>
@@ -126,6 +130,10 @@
             </div>
         </div>
     </div>
+</div>
+
+<div class="col-md-8 mx-auto">
+  <h1 class="mb-5" style="text-align: center;">Team Members</h1>
 </div>
 
 <div class="row justify-content-center">
@@ -324,3 +332,4 @@
 <div class="card-footer text-muted text-center"></div>
 
 {% endblock content %}
+\

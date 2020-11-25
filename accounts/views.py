@@ -6,6 +6,12 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from django.core.mail import send_mail
 from django.core import mail
+# HTML MAIL ESSENTIALS
+from django.template import Context
+from django.template.loader import render_to_string, get_template
+from django.core.mail import EmailMessage
+
+
 
 from accounts.forms import RegistrationForm, AccountAuthenticationForm, AccountUpdateForm
 from application.models import Team, Application, JoinRequest
@@ -17,9 +23,9 @@ from .models import Account
 def landing_page_view(request):
     # send_mail(
     #     'Mail Client Set',
-    #     'Mail Client set aayi Sackochaaa',
+    #     'Mail Client set aayi',
     #     'postmaster@mg.ieeemace.org',
-    #     ['neenuchacko@ieee.org'],
+    #     ['melvin_thomas@ieee.org'],
     #     fail_silently=False,
     # )
     # with mail.get_connection() as connection:
@@ -40,6 +46,9 @@ def base_view(request):
 
 def temp_view(request):
     return render(request, 'home2.html', {})
+
+def email_view(request):
+    return render(request, 'emails/account_created.html', {})
 
 @login_required(login_url='login')
 @participant_view
@@ -117,6 +126,17 @@ def home(request):
                             application = Application(team = team)
                             application.save()
                             application.members.add(request.user)
+                            ctx = {'user': request.user, 'team_name': application.team.name, "team_id": application.team.id }
+                            message = get_template('emails/team_created.html').render(ctx)
+                            msg = EmailMessage(
+                                "Team Created",
+                                message,
+                                'hack@mg.ieeemace.org',
+                                [request.user.email],
+                                )
+                            msg.content_subtype = "html"
+                            # msg.send()
+                            # print("Team Created message sent")
                             # application.save()
                             print("created Team")
                             context['application'] = application
@@ -205,6 +225,17 @@ def registration_view(request):
             raw_password = form.cleaned_data.get('password1')
             account = authenticate(email=email, password=raw_password)
             login(request, account)
+            # ctx = {'user': request.user}
+            # message = get_template('emails/account_created.html').render(ctx)
+            # msg = EmailMessage(
+            #     "Welcome to .hack();",
+            #     message,
+            #     'postmaster@mg.ieeemace.org',
+            #     [request.user.email],
+            #     )
+            # msg.content_subtype = "html"
+            # msg.send()
+            # print("message sent")
             return redirect('profile-update')
         else:
             context['registration_form'] = form

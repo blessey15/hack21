@@ -3,6 +3,10 @@ import csv, xlwt
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
+# HTML MAIL ESSENTIALS
+from django.template import Context
+from django.template.loader import render_to_string, get_template
+from django.core.mail import EmailMessage
 
 from .forms import PartcicpantProfileForm
 from .models import ParticipantProfile
@@ -31,6 +35,17 @@ def participant_profile_creation_view(request):
             profile.user = request.user
             # profile.user.has_profile = True
             profile.save()
+            ctx = {'user': request.user}
+            message = get_template('emails/account_created.html').render(ctx)
+            msg = EmailMessage(
+                "Welcome to .hack();",
+                message,
+                'hack@mg.ieeemace.org',
+                [request.user.email],
+                )
+            msg.content_subtype = "html"
+            msg.send()
+            print("Welcome message sent")
             return redirect('home')
 
         else:
