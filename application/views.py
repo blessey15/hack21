@@ -13,6 +13,7 @@ from accounts.models import Account
 from profiles.models import ParticipantProfile
 from accounts.views import home
 from hack21.decorators import organizer_view, participant_view
+from hack21.emailthread import EmailThread
 
 # Create your views here.
 
@@ -70,26 +71,32 @@ def join_team_view(request, team_id):
                             }
                         # MAIL TO TEAM ADMIN NOTIFYING OF NEW MEMBER JOINING
                         message1 = get_template('emails/join_team_admin_mail.html').render(ctx)
-                        msg1 = EmailMessage(
-                            "New Memeber Notification",
-                            message1,
-                            'hack@mg.ieeemace.org',
-                            [application.team.admin.email],
-                            )
-                        msg1.content_subtype = "html"
+                        # msg1 = EmailMessage(
+                        #     "New Memeber Notification",
+                        #     message1,
+                        #     'hack@mg.ieeemace.org',
+                        #     [application.team.admin.email],
+                        #     )
+                        # msg1.content_subtype = "html"
                         # msg1.send()
-                        # print("Team Join message sent to ADMIN")
+                        subject = "New Memeber Notification"
+                        recepient_list = [application.team.admin.email]
+                        EmailThread(subject, message1, recepient_list).start()
+                        print("Team Join message sent to ADMIN")
 
                         # MAIL TO PARTICIPANT CONFIRMING TEAM JOINING
                         message2 = get_template('emails/join_team_member_mail.html').render(ctx)
-                        msg2 = EmailMessage(
-                            "Joined Team",
-                            message2,
-                            'hack@mg.ieeemace.org',
-                            [request.user.email],
-                            )
+                        # msg2 = EmailMessage(
+                        #     "Joined Team",
+                        #     message2,
+                        #     'hack@mg.ieeemace.org',
+                        #     [request.user.email],
+                        #     )
                         # msg2.content_subtype = "html"
                         # msg2.send()
+                        subject = "Joined Team"
+                        recepient_list = [request.user.email]
+                        EmailThread(subject, message2, recepient_list).start()
                         print("Team Join message sent to MEMBER")
                         # return redirect('join_team')
                         # return render(request, 'team_detail.html', context)
@@ -158,31 +165,37 @@ def leave_team_view(request, team_id):
             
             # MAIL TO TEAM ADMIN NOTIFYING OF TEAM DELETE
             message1 = get_template('emails/delete_team_admin_mail.html').render(ctx)
-            msg1 = EmailMessage(
-                "Team Deleted",
-                message1,
-                'hack@mg.ieeemace.org',
-                [application.team.admin.email],
-                )
-            msg1.content_subtype = "html"
+            # msg1 = EmailMessage(
+            #     "Team Deleted",
+            #     message1,
+            #     'hack@mg.ieeemace.org',
+            #     [application.team.admin.email],
+            #     )
+            # msg1.content_subtype = "html"
             # msg1.send()
-            # print("Team Delete message sent to ADMIN")
+            subject = "Team Deleted"
+            recepient_list = [application.team.admin.email]
+            EmailThread(subject, message1, recepient_list).start()
+            print("Team Delete message sent to ADMIN")
 
             # MAIL TO MEMBER NOTIFYING TEAM DELETE
             message2 = get_template('emails/delete_team_member_mail.html').render(ctx)
-            to_list = []
+            recepient_list = []
             for member in application.members.all():
                 if not (member == request.user):
-                    to_list.append(member.email)
-            msg2 = EmailMessage(
-                "Your Team was Deleted!",
-                message2,
-                'hack@mg.ieeemace.org',
-                to_list,
-                )
-            msg2.content_subtype = "html"
+                    recepient_list.append(member.email)
+            # msg2 = EmailMessage(
+            #     "Your Team was Deleted!",
+            #     message2,
+            #     'hack@mg.ieeemace.org',
+            #     recepient_list,
+            #     )
+            # msg2.content_subtype = "html"
             # msg2.send()
-            # print("Team Delete message sent to MEMBER")
+            subject = "Your Team was Deleted!"
+            # recepient_list = [application.team.admin.email]
+            EmailThread(subject, message2, recepient_list).start()
+            print("Team Delete message sent to MEMBER")
             application.delete()
             context['application'] = None
             team.delete()
@@ -193,27 +206,33 @@ def leave_team_view(request, team_id):
             application.members.remove(request.user)
             # MAIL TO TEAM ADMIN NOTIFYING OF NEW MEMBER JOINING
             message1 = get_template('emails/leave_team_admin_mail.html').render(ctx)
-            msg1 = EmailMessage(
-                "Member Leaving Team",
-                message1,
-                'hack@mg.ieeemace.org',
-                [application.team.admin.email],
-                )
-            msg1.content_subtype = "html"
+            # msg1 = EmailMessage(
+            #     "Member Leaving Team",
+            #     message1,
+            #     'hack@mg.ieeemace.org',
+            #     [application.team.admin.email],
+            #     )
+            # msg1.content_subtype = "html"
             # msg1.send()
-            # print("Member Leaving message sent to ADMIN")
+            subject = "Member Leaving Team"
+            recepient_list = [application.team.admin.email]
+            EmailThread(subject, message1, recepient_list).start()
+            print("Member Leaving message sent to ADMIN")
 
             # MAIL TO PARTICIPANT CONFIRMING TEAM JOINING
             message2 = get_template('emails/leave_team_member_mail.html').render(ctx)
-            msg2 = EmailMessage(
-                "You Left a Team",
-                message2,
-                'hack@mg.ieeemace.org',
-                [request.user.email],
-                )
-            msg2.content_subtype = "html"
+            # msg2 = EmailMessage(
+            #     "You Left a Team",
+            #     message2,
+            #     'hack@mg.ieeemace.org',
+            #     [request.user.email],
+            #     )
+            # msg2.content_subtype = "html"
             # msg2.send()
-            # print("Team Leaving message sent to MEMBER")
+            subject = "You Left a Team"
+            recepient_list = [request.user.email]
+            EmailThread(subject, message2, recepient_list).start()
+            print("Team Leaving message sent to MEMBER")
 
             return redirect('home')
     else:
@@ -247,19 +266,22 @@ def submit_aplication_view(request):
                         'team_id': application.team.id,
                         'admin': application.team.admin.profile.name 
                         }
-                to_list = []
+                recepient_list = []
                 for member in application.members.all():
-                    to_list.append(member.email)
+                    recepient_list.append(member.email)
                 message = get_template('emails/application_submitted_mail.html').render(ctx)
-                msg = EmailMessage(
-                    "Application SUbmitted",
-                    message,
-                    'hack@mg.ieeemace.org',
-                    to_list,
-                    )
-                msg.content_subtype = "html"
+                # msg = EmailMessage(
+                #     "Application SUbmitted",
+                #     message,
+                #     'hack@mg.ieeemace.org',
+                #     recepient_list,
+                #     )
+                # msg.content_subtype = "html"
                 # msg.send()
-                # print("Application Submission message sent")
+                subject = "Application Submitted"
+                # recepient_list = [request.user.email]
+                EmailThread(subject, message, recepient_list).start()
+                print("Application Submission message sent")
                 # context['message'] = "You need 4 people in a team to submit the application."
                 # return render(request, 'messages.html', context)
         else:
