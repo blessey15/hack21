@@ -12,7 +12,7 @@ from .forms import PartcicpantProfileForm
 from .models import ParticipantProfile
 from accounts.models import Account
 from hack21.decorators import organizer_view
-
+from hack21.emailthread import EmailThread
 # Create your views here.
 
 @login_required(login_url='login')
@@ -35,17 +35,6 @@ def participant_profile_creation_view(request):
             profile.user = request.user
             # profile.user.has_profile = True
             profile.save()
-            ctx = {'user': request.user}
-            message = get_template('emails/account_created.html').render(ctx)
-            msg = EmailMessage(
-                "Welcome to .hack();",
-                message,
-                'hack@mg.ieeemace.org',
-                [request.user.email],
-                )
-            msg.content_subtype = "html"
-            msg.send()
-            print("Welcome message sent")
             return redirect('home')
 
         else:
@@ -68,6 +57,7 @@ def participant_profile_creation_view(request):
                 'is_ieee': profile.is_ieee,
                 'shipping_address': profile.shipping_address,
                 'state': profile.state,
+                'website_link': profile.website_link,
                 'github_profile_link': profile.github_profile_link,
                 'twitter_profile_link': profile.twitter_profile_link,
                 'linkedin_profile_link': profile.linkedin_profile_link,
