@@ -1,0 +1,12 @@
+{% extends 'email_base.html' %}
+
+{% block content %}
+    <h4>Hello {{ member.profile.name }}, </h4>
+    <h5 class="mt-4"> Your team {{ application.team.name }} has been Declined. We recevied an overwhelming number of applications for
+        .hack(); this year. Unfortunately, we need to limit the number of teams so that we can provide the best experience for all the 
+        teams that are participating. You can still attend all the webinars and workshops that are being conducted as part of .hack();. 
+        And hey, you don't need a hackathon to hack the problems around you.
+    </h5>
+    <h5 class="mt-4"> With Best Regards,</h5>
+    <h4> Team .hack();</h4>
+{% endblock %}

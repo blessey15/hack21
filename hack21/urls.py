@@ -75,18 +75,27 @@ urlpatterns = [
 
     path('teams/<uuid:team_id>/waitinglist', application_views.waitinglist_team_view, name='waitinglist_team'),
 
-    path('submit', application_views.submit_aplication_view, name='submit_application'),
+# MASS MAILING ROUTES
+    path('mail/accepted', application_views.send_accepted_email, name='mail_accepted'),
 
+    path('mail/declined', application_views.send_declined_email, name='mail_declined'),
+
+    path('mail/waitinglist', application_views.send_wtlst_email, name='mail_wtlst'),
+
+    path('mail/nosub', application_views.send_not_submitted_email, name='mail_not_submitted'),
+
+    path('submit', application_views.submit_aplication_view, name='submit_application'),
 
     path('orgdb', application_views.organizer_dashboard, name='organizer_dashboard'),
 
+# TEMPORARY VIEWS
     path('base', views.base_view, name='base'),
 
     path('temp2', views.temp_view, name='home2'),
 
     path('mail', views.email_view, name='mail'),
 
-
+# FILE EXPORT VIEWS
     # path('export/users/csv', views.export_csv, name='export_user_csv'),
 
     # path('export/users/xls', views.export_xls, name='export_user_xls'),

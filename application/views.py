@@ -386,7 +386,7 @@ def organizer_dashboard(request):
     return render(request, 'org_db.html', context)
 
 @login_required(login_url='login')
-@organizer_view
+# @organizer_view
 def accept_team_view(request, team_id):
     context = {}
     team = get_object_or_404(Team, id=team_id)
@@ -401,7 +401,7 @@ def accept_team_view(request, team_id):
     return render(request, 'team_detail.html', context)
 
 @login_required(login_url='login')
-@organizer_view
+# @organizer_view
 def decline_team_view(request, team_id):
     context = {}
     team = get_object_or_404(Team, id=team_id)
@@ -416,7 +416,7 @@ def decline_team_view(request, team_id):
     return render(request, 'team_detail.html', context)
 
 @login_required(login_url='login')
-@organizer_view
+# @organizer_view
 def waitinglist_team_view(request, team_id):
     context = {}
     team = get_object_or_404(Team, id=team_id)
@@ -429,6 +429,78 @@ def waitinglist_team_view(request, team_id):
         application.save()
         return redirect("organizer_dashboard")
     return render(request, 'team_detail.html', context)
+
+@login_required
+# @organizer_view
+def send_accepted_email(request):
+    context = {}
+    applications = Application.objects.filter(application_status="Accepted", received_confirmation_mail=False)
+    subject = "You've been accepted!!"
+    for application in applications:
+        print("mailing "+str(application.team.name))
+        for member in application.members.all():
+            ctx = {'application': application, 'member': member}
+            message = get_template('emails/application_accepted.html').render(ctx)
+            recepient_list = [member.email]
+            EmailThread(subject, message, recepient_list).start()
+            print("Acceptace mail sent")
+        application.received_confirmation_mail = True
+        application.save()
+    return redirect('organizer_dashboard')
+    
+
+@login_required
+# @organizer_view
+def send_declined_email(request):
+    context = {}
+    applications = Application.objects.filter(application_status="Declined", received_confirmation_mail=False)
+    subject = "Uh oh You've been Turned Down"
+    for application in applications:
+        print("mailing "+str(application.team.name))
+        for member in application.members.all():
+            ctx = {'application': application, 'member': member}
+            message = get_template('emails/application_declined.html').render(ctx)
+            recepient_list = [member.email]
+            EmailThread(subject, message, recepient_list).start()
+            print("Declination Mail sent")
+        application.received_confirmation_mail = True
+        application.save()
+    return redirect('organizer_dashboard')
+    
+
+@login_required
+# @organizer_view
+def send_wtlst_email(request):
+    context = {}
+    applications = Application.objects.filter(application_status="Waitinglist")
+    subject = "Uh oh You've been Turned Down"
+    for application in applications:
+        print("mailing "+str(application.team.name))
+        for member in application.members.all():
+            ctx = {'application': application, 'member': member}
+            message = get_template('emails/application_waitinglist.html').render(ctx)
+            recepient_list = [member.email]
+            EmailThread(subject, message, recepient_list).start()
+            print("Waiting List Mail sent")
+    return redirect('organizer_dashboard')
+
+@login_required
+# @organizer_view
+def send_not_submitted_email(request):
+    context = {}
+    applications = Application.objects.filter(application_status="Not Submitted")
+    subject = "Knock Knock Did you forget to submit your application?"
+    for application in applications:
+        ctx = {}
+        ctx['application': application]
+        print("mailing "+str(application.team.name))
+        for member in application.members.all():
+            ctx['member'] = member
+            message = get_template('emails/not_submitted_reminder.html').render(ctx)
+            recepient_list = [member.email]
+            EmailThread(subject, message, recepient_list).start()
+            print("Not SUbmitted Reminder Mail sent")
+    return redirect('organizer_dashboard')
 
 
 # def application_status_update_view(request, team_id):
