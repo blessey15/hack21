@@ -35,6 +35,9 @@ class Application(models.Model):
     # member_count = models.IntegerField(blank=False, default=0)
     application_status = models.CharField(max_length=14, choices=APPLICATION_STATUS_CHOICES, default='Not Submitted')
 
+    received_confirmation_mail = models.BooleanField(blank=False, default=False)
+    created = models.DateTimeField(auto_now_add=True)
+
     def team_members(self):
         return ',  '.join([str(m) for m in self.members.all()])
     

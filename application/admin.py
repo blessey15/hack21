@@ -10,6 +10,8 @@ class ApplicationAdim(admin.ModelAdmin):
     list_display = ('team', 'team_members', 'member_count', 'application_status',)
     search_fields = ('team',)
     list_filter = ('application_status', )
+    readonly_fields = ('created',)
+
 
     # def members(self, obj):
     #     return "\n".join(t.members for t in obj.Team.all()
