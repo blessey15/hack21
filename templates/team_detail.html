@@ -84,14 +84,16 @@
                         <!-- -  <a href="{{ member.profile.github_profile_link }}" target="_blank">GitHub</a>
                             | <a href="{{ member.profile.twitter_profile_link }}" target="_blank">Twitter</a>
                             | <a href="{{ member.profile.linkedin_profile_link }}" target="_blank"> | LinkedIn</a> -->
-                        {% if member.profile.github_profile_link %} - <a href="{{ member.profile.github_profile_link }}" target="_blank">GitHub</a> {% endif %} {% if member.profile.twitter_profile_link %} | <a href="{{ member.profile.twitter_profile_link }}" target="_blank">Twitter</a> {% endif %} {% if member.profile.linkedin_profile_link %} | <a href="{{ member.profile.linkedin_profile_link }}" target="_blank"> | LinkedIn</a>
-                        {% endif %}
-                    </li>
-                    {% endfor %}
-                </ol>
-                <a href="{% url 'accept_team' team.id %}"><button type="submit" name="application_status_update" class="btn btn-primary mr-2">Accept</button></a>
-                <a href="{% url 'decline_team' team.id %}"><button type="submit" name="application_status_update" class="btn btn-primary mr-2">Decline</button></a>
-                <a href="{% url 'waitinglist_team' team.id %}"><button type="submit" name="application_status_update" class="btn btn-primary mr-2">Waiting List</button></a>
+                            {% if member.profile.github_profile_link %} - <a href="{{ member.profile.github_profile_link }}" target="_blank">GitHub</a> {% endif %} {% if member.profile.twitter_profile_link %} | <a href="{{ member.profile.twitter_profile_link }}" target="_blank">Twitter</a> {% endif %} {% if member.profile.linkedin_profile_link %} | <a href="{{ member.profile.linkedin_profile_link }}" target="_blank"> | LinkedIn</a>
+                            {% endif %}
+                        </li>
+                        {% endfor %}
+                    </ol>
+                    <div class="my-3"> 
+                        <a href="{% url 'accept_team' team.id %}"><button type="submit" name="application_status_update" class="btn btn-primary btn-rounded mr-2">Accept</button></a>
+                        <a href="{% url 'decline_team' team.id %}"><button type="submit" name="application_status_update" class="btn btn-primary btn-rounded mr-2">Decline</button></a>
+                        <a href="{% url 'waitinglist_team' team.id %}"><button type="submit" name="application_status_update" class="btn btn-primary btn-rounded mr-2">Waiting List</button></a>
+                    </div>
 
                 <!-- <form method="POST" action="">
                         {% csrf_token %}
@@ -137,194 +139,79 @@
 </div>
 
 <div class="row justify-content-center">
-    <div class="col-lg-4 mx-2">
-        <div class="text-center card-box">
-            <div class="member-card pt-2 pb-2">
-                <div class="thumb-lg member-thumb mx-auto"><img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="rounded-circle img-thumbnail" alt="profile-image" /></div>
-                <div class="">
-                    <h4>Julie L. Arsenault</h4>
-                    <p class="text-muted">
-                        @Programmer <span>| </span><span><a href="#" class="text-pink">websitename.com</a></span>
-                    </p>
-                </div>
-                <ul class="social-links list-inline">
-                    <li class="list-inline-item">
-                        <a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Facebook"><i class="fa fa-facebook"></i></a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Twitter"><i class="fa fa-twitter"></i></a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Skype"><i class="fa fa-skype"></i></a>
-                    </li>
-                </ul>
-                <button type="button" class="btn btn-primary mt-3 btn-rounded waves-effect w-md waves-light">Message Now</button>
-                <div class="mt-4">
-                    <div class="row">
-                        <div class="col-4">
-                            <div class="mt-3">
-                                <h4>8471</h4>
-                                <p class="mb-0 text-muted">Wallets Balance</p>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="mt-3">
-                                <h4>8512</h4>
-                                <p class="mb-0 text-muted">Income amounts</p>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="mt-3">
-                                <h4>4751</h4>
-                                <p class="mb-0 text-muted">Total Transactions</p>
-                            </div>
-                        </div>
+    {% for member in application.members.all %}
+        <div class="col-lg-4 mx-2">
+            <div class="text-center card-box">
+                <div class="member-card pt-2 pb-2">
+                    <div class="thumb-lg member-thumb mx-auto"><img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="rounded-circle img-thumbnail" alt="profile-image" /></div>
+                    <div class="">
+                        <h4>{{ member.profile.name }} </h4>
+                        <p class="text-muted">
+                            <span>{{ member.email }}</span>
+                        </p>
                     </div>
+                    <ul class="social-links list-inline">
+                            {% if member.profile.github_profile_link %}
+                                <li class="list-inline-item hover-green">
+                                    <a title="" 
+                                        data-placement="top" data-toggle="tooltip" class="tooltips hover-green" 
+                                        href="{{ member.profile.github_profile_link }}"
+                                        target="_blank" 
+                                        data-original-title="GitHub">
+                                            <i class="fab fa-github"></i>
+                                    </a>
+                                </li>
+                            {% endif %}
+
+
+                            {% if member.profile.twitter_profile_link %}
+                                <li class="list-inline-item">
+                                    <a title="" 
+                                        data-placement="top" data-toggle="tooltip" class="tooltips hover-green" 
+                                        href="{{ member.profile.twitter_profile_link }}"
+                                        target="_blank" 
+                                        data-original-title="Twitter">
+                                            <i class="fab fa-twitter"></i>
+                                    </a>
+                                </li>
+                            {% endif %}
+
+
+                            {% if member.profile.linkedin_profile_link %}
+                                <li class="list-inline-item">
+                                    <a title="" 
+                                        data-placement="top" data-toggle="tooltip" class="tooltips hover-green" 
+                                        href="{{ member.profile.linkedin_profile_link }}"
+                                        target="_blank" 
+                                        data-original-title="LinkedIn">
+                                            <i class="fab fa-linkedin"></i>
+                                    </a>
+                                </li>
+                            {% endif %}
+
+                            {% if member.profile.website_link %}
+                                <li class="list-inline-item">
+                                    <a title="" 
+                                        data-placement="top" data-toggle="tooltip" class="tooltips hover-green" 
+                                        href="{{ member.profile.website_link }}"
+                                        target="_blank" 
+                                        data-original-title="Website">
+                                            <i class="fa fa-globe"></i>
+                                    </a>
+                                </li>
+                            {% endif %}
+
+                    </ul>
+                    <a href="{% url 'profile' member.id %}">
+                        <button type="button" 
+                            class="btn btn-primary mt-3 btn-rounded waves-effect w-md waves-light">
+                                View Profile
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col-lg-4 mx-2">
-        <div class="text-center card-box">
-            <div class="member-card pt-2 pb-2">
-                <div class="thumb-lg member-thumb mx-auto"><img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="rounded-circle img-thumbnail" alt="profile-image" /></div>
-                <div class="">
-                    <h4>Julie L. Arsenault</h4>
-                    <p class="text-muted">
-                        @Programmer <span>| </span><span><a href="#" class="text-pink">websitename.com</a></span>
-                    </p>
-                </div>
-                <ul class="social-links list-inline">
-                    <li class="list-inline-item">
-                        <a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Facebook"><i class="fa fa-facebook"></i></a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Twitter"><i class="fa fa-twitter"></i></a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Skype"><i class="fa fa-skype"></i></a>
-                    </li>
-                </ul>
-                <button type="button" class="btn btn-primary mt-3 btn-rounded waves-effect w-md waves-light">Message Now</button>
-                <div class="mt-4">
-                    <div class="row">
-                        <div class="col-4">
-                            <div class="mt-3">
-                                <h4>8471</h4>
-                                <p class="mb-0 text-muted">Wallets Balance</p>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="mt-3">
-                                <h4>8512</h4>
-                                <p class="mb-0 text-muted">Income amounts</p>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="mt-3">
-                                <h4>4751</h4>
-                                <p class="mb-0 text-muted">Total Transactions</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-4 mx-2">
-        <div class="text-center card-box">
-            <div class="member-card pt-2 pb-2">
-                <div class="thumb-lg member-thumb mx-auto"><img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="rounded-circle img-thumbnail" alt="profile-image" /></div>
-                <div class="">
-                    <h4>Julie L. Arsenault</h4>
-                    <p class="text-muted">
-                        @Programmer <span>| </span><span><a href="#" class="text-pink">websitename.com</a></span>
-                    </p>
-                </div>
-                <ul class="social-links list-inline">
-                    <li class="list-inline-item">
-                        <a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Facebook"><i class="fa fa-facebook"></i></a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Twitter"><i class="fa fa-twitter"></i></a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Skype"><i class="fa fa-skype"></i></a>
-                    </li>
-                </ul>
-                <button type="button" class="btn btn-primary mt-3 btn-rounded waves-effect w-md waves-light">Message Now</button>
-                <div class="mt-4">
-                    <div class="row">
-                        <div class="col-4">
-                            <div class="mt-3">
-                                <h4>8471</h4>
-                                <p class="mb-0 text-muted">Wallets Balance</p>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="mt-3">
-                                <h4>8512</h4>
-                                <p class="mb-0 text-muted">Income amounts</p>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="mt-3">
-                                <h4>4751</h4>
-                                <p class="mb-0 text-muted">Total Transactions</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-4 mx-2">
-        <div class="text-center card-box">
-            <div class="member-card pt-2 pb-2">
-                <div class="thumb-lg member-thumb mx-auto"><img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="rounded-circle img-thumbnail" alt="profile-image" /></div>
-                <div class="">
-                    <h4>Julie L. Arsenault</h4>
-                    <p class="text-muted">
-                        @Programmer <span>| </span><span><a href="#" class="text-pink">websitename.com</a></span>
-                    </p>
-                </div>
-                <ul class="social-links list-inline">
-                    <li class="list-inline-item">
-                        <a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Facebook"><i class="fa fa-facebook"></i></a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Twitter"><i class="fa fa-twitter"></i></a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Skype"><i class="fa fa-skype"></i></a>
-                    </li>
-                </ul>
-                <button type="button" class="btn btn-primary mt-3 btn-rounded waves-effect w-md waves-light">Message Now</button>
-                <div class="mt-4">
-                    <div class="row">
-                        <div class="col-4">
-                            <div class="mt-3">
-                                <h4>8471</h4>
-                                <p class="mb-0 text-muted">Wallets Balance</p>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="mt-3">
-                                <h4>8512</h4>
-                                <p class="mb-0 text-muted">Income amounts</p>
-                            </div>
-                        </div>
-                        <div class="col-4">
-                            <div class="mt-3">
-                                <h4>4751</h4>
-                                <p class="mb-0 text-muted">Total Transactions</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    {% endfor %}
 </div>
 {% endif %}
 <!--if team -->

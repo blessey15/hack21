@@ -104,10 +104,5 @@ urlpatterns = [
 
     path('export/profile/xls', profileviews.export_xls, name='export_profile_xls'),
 
-
-
-
     # path('test', views.test_view,  name='test_home'),
-
-
 ]
