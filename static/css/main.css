@@ -2688,57 +2688,57 @@ a {
   font-size: inherit;
   font-weight: 700;
   position: relative;
-  vertical-align: middle; }
-  .btn--anim a::before, .btn--anim a::after {
+  vertical-align: middle;
+  border-radius: 4px;
+  color: white; }
+
+.btn--anim-onclick a {
+  transition: color 0.25s;
+  border-radius: 4px;
+  color: white;
+  font-weight: 500; }
+  .btn--anim-onclick a::before, .btn--anim-onclick a::after {
     box-sizing: inherit;
-    content: '';
+    content: "";
     position: absolute;
     width: 100%;
     height: 100%; }
-
-.btn--anim a {
-  transition: color 0.25s;
-  border-radius: 4px; }
-  .btn--anim a::before, .btn--anim a::after {
+  .btn--anim-onclick a::before, .btn--anim-onclick a::after {
     border: 2px solid transparent;
     width: 0;
     height: 0; }
-  .btn--anim a::before {
+  .btn--anim-onclick a::before {
     top: 0;
     left: 0; }
-  .btn--anim a::after {
+  .btn--anim-onclick a::after {
     bottom: 0;
     right: 0; }
-  .btn--anim a:hover {
+  .btn--anim-onclick a:hover {
     color: #f0803c; }
-  .btn--anim a:hover::before, .btn--anim a:hover::after {
+  .btn--anim-onclick a:hover::before, .btn--anim-onclick a:hover::after {
     border-radius: 4px;
     width: 100%;
     height: 100%; }
-  .btn--anim a:hover::before {
+  .btn--anim-onclick a:hover::before {
     border-top-color: #f0803c;
     border-right-color: #f0803c;
     transition: width 0.25s ease-out, height 0.25s ease-out 0.25s; }
-  .btn--anim a:hover::after {
+  .btn--anim-onclick a:hover::after {
     border-bottom-color: #f0803c;
     border-left-color: #f0803c;
     transition: border-color 0s ease-out 0.5s, width 0.25s ease-out 0.5s, height 0.25s ease-out 0.75s; }
-
-.btn--anim a {
-  color: white;
-  font-weight: 500; }
-  .btn--anim a:hover {
+  .btn--anim-onclick a:hover {
     color: #f0803c; }
-  .btn--anim a::after {
+  .btn--anim-onclick a::after {
     top: 0;
     left: 0; }
-  .btn--anim a:hover::before {
+  .btn--anim-onclick a:hover::before {
     border-top-color: #f0803c;
     border-right-color: #f0803c; }
-  .btn--anim a:hover::after {
+  .btn--anim-onclick a:hover::after {
     border-bottom-color: #f0803c;
     border-left-color: #f0803c;
-    transition: height 0.25s ease-out, width 0.25s ease-out 0.25s; }
+    transition: height 0.25s ease-out, width 0.25s ease-out 0.25s; }
 
 .img-grid__container {
   position: relative;

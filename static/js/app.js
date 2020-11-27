@@ -158,3 +158,7 @@ function openNavMenu(){
   navList.classList.add('nav-list-active')
   navCloseIcon.classList.add('menu-active')
 }
+
+document.querySelector('.btn--anim').addEventListener('click', e=>{
+  document.querySelector('.btn--anim').classList.add('btn--anim-onclick');
+})
