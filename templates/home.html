@@ -145,7 +145,7 @@
                                 <p class="btn btn-info btn-icon-split mb-3">Your Application to .hack( ); 2021 has not been submitted yet.</p>
                                 {% if request.user == application.team.admin %}
                                 <a href="{% url 'leave_team' application.team.id %}"> <button name="leave_team" class="btn btn-primary mb-3">Delete Team</button></a>
-                                <a href="{% url 'submit_application' %}"> <button name="leave_team" class="btn btn-primary mb-3">Submit Application</button></a>
+                                <a href="{% url 'submit_application' %}"> <button name="leave_team" class="btn btn-primary mb-3 confirm-submit">Submit Application</button></a>
                                 {% else %}
                                 <p>Ask your Team admin to submit the application as soon as your team is complete</p>
                                 <a href="{% url 'leave_team' application.team.id %}"> <button name="leave_team" class="btn btn-primary">Leave Team</button></a>
@@ -281,6 +281,15 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.querySelector('.confirm-submit').addEventListener('click', e=>{
+        e.preventDefault();
+        if(confirm("Once you submit application no changes can be made again. Make sure all members of the team has joined before you submit your application. No changes will be possible after submit. Are you sure you want to submit? Click 'OK' to submit")){
+            window.location.href="{% url 'submit_application' %}"
+        }
+    })
+</script>
 
 <script>
     var clipboard = new ClipboardJS(".btn");
