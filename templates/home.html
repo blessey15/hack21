@@ -1,4 +1,6 @@
-{% extends 'base.html' %} {% block breadcrumb %}
+{% extends 'base.html' %} 
+{% load static %}
+{% block breadcrumb %}
 <!-- <a class="navbar-brand" href="{% url 'home' %}"> <li class="breadcrumb-item active">.hack( ); 2021</li></a> -->
 {% endblock %} {% block content %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
@@ -12,9 +14,10 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex flex-column align-items-center text-center">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar8.png" alt="Admin" class="rounded-circle" width="150" />
+                            <img src="{% static 'img/avatars' %}/{{ request.user.profile.avatar_choice }}.jpg" alt="Admin" class="rounded-circle" width="150" />
                             <div class="mt-3">
                                 <h4>{{ request.user.profile.name }}</h4>
+                                <h4>{{ request.user.profille.avatar_choice }}</h4>
                                 <p class="text-secondary mb-1">{{ request.user.profile.educational_institution }}</p>
                             </div>
                         </div>
