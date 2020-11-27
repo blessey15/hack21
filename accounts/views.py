@@ -17,6 +17,7 @@ from application.models import Team, Application, JoinRequest
 from application.forms import TeamCreateForm, TeamSearchForm
 from hack21.decorators import unauthenticated_user, participant_view, organizer_view
 from .models import Account
+from profiles.models import ParticipantProfile
 # from  application.views import create_team_view
 
 def landing_page_view(request):
@@ -58,6 +59,10 @@ def home(request):
     # print(application)
     # print(len(application))
     if request.user.is_authenticated:
+        try:
+            profile = ParticipantProfile.objects.get(user=request.user)
+        except ParticipantProfile.DoesNoExist:
+            return redirect('profile-update')
         application = Application.objects.filter(members__id = request.user.id)
         if not(len(application) == 0):
             application = application[0]
