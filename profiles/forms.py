@@ -118,6 +118,14 @@ class PartcicpantProfileForm(forms.ModelForm):
             }
         )
     )
+    avatar_choice = forms.ChoiceField( choices=AVATAR_CHOICES, help_text="Just curious to know more...", 
+    label="Which of the following Characters do you relate yourselves to the most?",
+        widget = forms.Select(
+            attrs={
+                "class": "form-control py-1 form-control-user"
+            }
+        )
+    )
     website_link = forms.URLField( required=False,
         widget = forms.URLInput(
             attrs={
@@ -153,7 +161,7 @@ class PartcicpantProfileForm(forms.ModelForm):
     class Meta:
         model = ParticipantProfile
         fields = ('team_status', 'name', 'contact', 'dob', 'gender', 'bio', 'tshirt_size' ,'skills', 'educational_status',
-         'educational_institution', 'field_of_study', 'year_of_graduation', 'is_ieee', 'shipping_address', 'state',
+         'educational_institution', 'field_of_study', 'year_of_graduation', 'is_ieee', 'shipping_address', 'state','avatar_choice',
           'website_link','github_profile_link', 'twitter_profile_link', 'linkedin_profile_link')
 
     def clean_name(self):
