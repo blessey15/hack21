@@ -131,12 +131,27 @@ const navCloseIcon = navIcons.querySelector('.close-icon')
 
 navIcons.addEventListener('click', e=>{
   if(navMenuIcon.classList.contains('menu-active')){
-    navMenuIcon.classList.remove('menu-active')
-    navList.classList.add('nav-list-active')
-    navCloseIcon.classList.add('menu-active')
+    openNavMenu();
   }else{
-    navCloseIcon.classList.remove('menu-active')
-    navMenuIcon.classList.add('menu-active')
-    navList.classList.remove('nav-list-active')
+    closeNavMenu();
   }
 })
+
+document.body.addEventListener('click', e=>{
+  if(!e.target.classList.contains('nav__list') && !e.target.classList.contains('menu-icon'))
+    closeNavMenu();
+})
+
+window.addEventListener('scroll', closeNavMenu);
+
+function closeNavMenu(){
+  navCloseIcon.classList.remove('menu-active')
+  navMenuIcon.classList.add('menu-active')
+  navList.classList.remove('nav-list-active')
+}
+
+function openNavMenu(){
+  navMenuIcon.classList.remove('menu-active')
+  navList.classList.add('nav-list-active')
+  navCloseIcon.classList.add('menu-active')
+}
