@@ -137,7 +137,7 @@ def home(request):
                             # msg.send()
                             subject = "Team Created"
                             recepient_list = [request.user.email]
-                            EmailThread(subject, message, recepient_list).start()
+                            # EmailThread(subject, message, recepient_list).start()
 
                             print("Team Created message sent")
                             # application.save()
@@ -240,7 +240,7 @@ def registration_view(request):
             # msg.send()
             subject = "Welcome to .hack();"
             recepient_list = [email]
-            EmailThread(subject, message, recepient_list).start()
+            # EmailThread(subject, message, recepient_list).start()
             print("Welcome message sent")
             # ctx = {'user': request.user}
             # message = get_template('emails/account_created.html').render(ctx)
@@ -311,7 +311,8 @@ def account_view(request):
             }
         )
     context['account_form'] = form
-    return render(request, 'account.html', context)
+    # return render(request, 'account.html', context)
+    return redirect("home")
 
 
 
