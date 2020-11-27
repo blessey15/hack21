@@ -1,215 +1,228 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
 
-<head>
+        <title>.hack( ); 2021</title>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+        <!-- Custom fonts for this template-->
+        <link
+            href="{% static 'vendor/fontawesome-free/css/all.min.css' %}"
+            rel="stylesheet"
+            type="text/css"
+        />
+        <link
+            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+            rel="stylesheet"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300;1,400&display=swap"
+            rel="stylesheet"
+        />
 
-    <title>.hack( ); 2021</title>
+        <!-- Custom styles for this template-->
+        <link href="{% static 'css/sb-admin-2.css' %}" rel="stylesheet" />
+        <link href="{% static 'css/dashboard-custom.css' %}" rel="stylesheet" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+    </head>
 
-    <!-- Custom fonts for this template-->
-    <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300;1,400&display=swap" rel="stylesheet">
+    <style>
+        .filtershow {
+            display: table-row !important;
+        }
 
-    <!-- Custom styles for this template-->
-    <link href="{% static 'css/sb-admin-2.css' %}" rel="stylesheet">
-    <link href="{% static 'css/dashboard-custom.css' %}" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
+        .btn {
+            margin-left: 0.5em;
+        }
+        .btn.active {
+            background-color: #4e73df;
+            color: white;
+        }
+        #myBtnContainer {
+            margin-left: 2rem;
+            margin-top: 2rem;
+        }
+        #dataTable_filter {
+            text-align: right;
+        }
+        #dataTable_filter > label {
+            width: 40%;
+            text-align: left;
+        }
 
-</head>
+        .vertical-center {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+        }
 
-<style>
-    .filtershow{
-        display: table-row !important;
-    }
+        .bg-login-image {
+            background: url("{% static 'img/loginpage.png' %}");
+            background-position: center;
+            background-size: cover;
+        }
 
-    .btn{
-        margin-left: .5em;
-    }
-    .btn.active {
-    background-color: #4E73DF;
-    color: white;
-}
-    #myBtnContainer{
-        margin-left: 2rem;
-        margin-top: 2rem;
-    }
-    #dataTable_filter{
-        text-align: right;
-    }
-    #dataTable_filter >label{
-        width: 40%;
-        text-align: left;
-    }
+        .bg-register-image {
+            background: url("{% static 'img/loginpage.png' %}");
+            background-position: center;
+            background-size: cover;
+        }
 
-    .vertical-center {
-        margin: 0;
-        position: absolute;
-        top: 50%;
-        -ms-transform: translateY(-50%);
-        transform: translateY(-50%);
-}
+        .bg-password-image {
+            background: url("{% static 'img/loginpage.png' %}");
+            background-position: center;
+            background-size: cover;
+        }
 
-.bg-login-image{
-    background: url("{% static 'img/loginpage.png' %}");
-    background-position: center;
-    background-size: cover;
-}
+        .hover-green:hover {
+            color: #1bb35f !important;
+        }
+    </style>
 
-.bg-register-image {
-    background: url("{% static 'img/loginpage.png' %}");
-    background-position: center;
-    background-size: cover;
-}
-
-.bg-password-image {
-    background: url("{% static 'img/loginpage.png' %}");
-    background-position: center;
-    background-size: cover;
-}
-
-.hover-green:hover{
-    color: #1bb35f !important;
-}
-</style>
-
-<body id="page-top">
-
-    <!-- Page Wrapper -->
-    <div id="wrapper">
-
-
-
-        <!-- Content Wrapper -->
-        <div id="content-wrapper" class="d-flex flex-column">
-
-            <!-- Main Content -->
-            <div id="content">
-
-                <!-- Topbar -->
-                {% if request.user.is_authenticated %}
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-                    <!-- Sidebar Toggle (Topbar) -->
-                    <!-- <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+    <body id="page-top" style="display: flex; flex-direction: column; min-height: 100vh">
+        <!-- Page Wrapper -->
+        <div id="wrapper" style="flex: 1">
+            <!-- Content Wrapper -->
+            <div id="content-wrapper" class="d-flex flex-column">
+                <!-- Main Content -->
+                <div id="content">
+                    <!-- Topbar -->
+                    {% if request.user.is_authenticated %}
+                    <nav
+                        class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow"
+                    >
+                        <!-- Sidebar Toggle (Topbar) -->
+                        <!-- <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
                         <i class="fa fa-bars"></i>
                     </button> -->
                         <div>
-                       <a href="{% url 'home' %}"> <img src="{% static 'img/Logo-techie.png' %}" style="  height: auto;
-                        width: auto;
-                        max-height: 72px;
-                        max-width: 150px;" alt="logo" /></a>
+                            <a href="{% url 'home' %}">
+                                <img
+                                    src="{% static 'img/Logo-techie.png' %}"
+                                    style="
+                                        height: auto;
+                                        width: auto;
+                                        max-height: 72px;
+                                        max-width: 150px;
+                                    "
+                                    alt="logo"
+                            /></a>
                         </div>
 
-                          
-                     
-                      
+                        <!-- Topbar Navbar -->
+                        <ul class="navbar-nav ml-auto">
+                            <div class="topbar-divider d-none d-sm-block"></div>
 
-                    <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
-
-                        
-
-                        <div class="topbar-divider d-none d-sm-block"></div>
-
-                        <!-- Nav Item - User Information -->
-                        <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"> Hello {{ request.user.username }}</span>
-                                <img class="img-profile rounded-circle"
-                                    src="{% static 'img/undraw_profile.svg' %}">
-                            </a>
-                            <!-- Dropdown - User Information -->
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="{% url 'account' %}">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    change username or email
+                            <!-- Nav Item - User Information -->
+                            <li class="nav-item dropdown no-arrow">
+                                <a
+                                    class="nav-link dropdown-toggle"
+                                    href="#"
+                                    id="userDropdown"
+                                    role="button"
+                                    data-toggle="dropdown"
+                                    aria-haspopup="true"
+                                    aria-expanded="false"
+                                >
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                        Hello {{ request.user.username }}</span
+                                    >
+                                    <img
+                                        class="img-profile rounded-circle"
+                                        src="{% static 'img/undraw_profile.svg' %}"
+                                    />
                                 </a>
-                                <a class="dropdown-item" href="{% url 'profile-update' %}">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Update Profile
-                                </a>
-                                <a class="dropdown-item" href="{% url 'password_change' %}">
-                                    <i class="fas fa-lock fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Change Password
-                                </a>
-                                <a class="dropdown-item" href="{% url 'home' %}">
-                                    <i class="fas fa-box-open fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Dashboard
-                                </a>
+                                <!-- Dropdown - User Information -->
+                                <div
+                                    class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                    aria-labelledby="userDropdown"
+                                >
+                                    <a class="dropdown-item" href="{% url 'account' %}">
+                                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        change username or email
+                                    </a>
+                                    <a class="dropdown-item" href="{% url 'profile-update' %}">
+                                        <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Update Profile
+                                    </a>
+                                    <a class="dropdown-item" href="{% url 'password_change' %}">
+                                        <i class="fas fa-lock fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Change Password
+                                    </a>
+                                    <a class="dropdown-item" href="{% url 'home' %}">
+                                        <i
+                                            class="fas fa-box-open fa-sm fa-fw mr-2 text-gray-400"
+                                        ></i>
+                                        Dashboard
+                                    </a>
 
-                                <a class="dropdown-item" href="{% url 'logout' %}">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
-                                </a>
+                                    <a class="dropdown-item" href="{% url 'logout' %}">
+                                        <i
+                                            class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"
+                                        ></i>
+                                        Logout
+                                    </a>
 
-                                <!-- <div class="dropdown-divider"></div>
+                                    <!-- <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{% url 'logout' %}">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a> -->
-                            </div>
-                        </li>
-                        
-                    </ul>
-                    
-                </nav>
-                {% endif %}
-                <!-- End of Topbar -->
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
+                    {% endif %}
+                    <!-- End of Topbar -->
 
-                <!-- Begin Page Content -->
-                {% block body %}
+                    <!-- Begin Page Content -->
+                    {% block body %}
                     <div class="container">
-                    <!--  <ol class="breadcrumb my-4 custom-navbar-title-container">
+                        <!--  <ol class="breadcrumb my-4 custom-navbar-title-container">
                             <a class="navbar-brand custom-navbar-title" href="{% url 'home' %}"> <li class="breadcrumb-item active">Welcome to .hack( );</li></a> -->
-                        {% block breadcrumb %}
-                        {% endblock %}
+                        {% block breadcrumb %} {% endblock %}
                         <!-- </ol> -->
-                        {% block content %}
-                        {% endblock %}
+                        {% block content %} {% endblock %}
                     </div>
-                {% endblock body %}
+                    {% endblock body %}
 
-                <!-- /.container-fluid -->
+                    <!-- /.container-fluid -->
                 </div>
-
             </div>
             <!-- End of Main Content -->
             <!-- </div> -->
             <!-- End of Content Wrapper -->
-    
         </div>
         <!-- End of Page Wrapper -->
 
-
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>&copy; All rights reserved -<a href="{% url 'landing_page' %}">.hack ( ); 2021</a></span>
-                    </div>
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span
+                        >&copy; All rights reserved -<a href="{% url 'landing_page' %}"
+                            >.hack ( ); 2021</a
+                        ></span
+                    >
                 </div>
-            </footer>
-            <!-- End of Footer -->
+            </div>
+        </footer>
+        <!-- End of Footer -->
 
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <!-- <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        <!-- Logout Modal-->
+        <!-- <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -228,116 +241,109 @@
         </div>
     </div> -->
 
-    <script>
-        // data for pie chart
-        var accepted = "{{ accepted_applications }}";
-        var declined = "{{ declined_applications }}";
-        var waitinglist = "{{ Waitinglist_applications }}";
-        var pending = "{{ review_pending_applications }}";
+        <script>
+            // data for pie chart
+            var accepted = "{{ accepted_applications }}";
+            var declined = "{{ declined_applications }}";
+            var waitinglist = "{{ Waitinglist_applications }}";
+            var pending = "{{ review_pending_applications }}";
 
-        // Data for bar graph
-        var science_count = "{{ science_count }}";
-        var arts_count = "{{ arts_count }}";
-        var engg_count = "{{ engg_count }}";
-        var comm_count = "{{ comm_count }}";
-        var school_count = "{{ school_count }}";
-        var others_count = "{{ others_count }}";
-        var bar_graph_upper_limit = "{{ bar_graph_upper_limit }}";
+            // Data for bar graph
+            var science_count = "{{ science_count }}";
+            var arts_count = "{{ arts_count }}";
+            var engg_count = "{{ engg_count }}";
+            var comm_count = "{{ comm_count }}";
+            var school_count = "{{ school_count }}";
+            var others_count = "{{ others_count }}";
+            var bar_graph_upper_limit = "{{ bar_graph_upper_limit }}";
 
-        // Data for gender chart
-        var male = "{{ male_count }}";
-        var female = "{{ female_count }}";
-        var non_binary = "{{ non_binary_count }}";
-        var pnts = "{{ pnts_count }}";
+            // Data for gender chart
+            var male = "{{ male_count }}";
+            var female = "{{ female_count }}";
+            var non_binary = "{{ non_binary_count }}";
+            var pnts = "{{ pnts_count }}";
 
-        // Data for IEEE Graph
-        var is_ieee_percent = "{{ is_ieee_count }}";
-        var not_ieee_percent = "{{ not_ieee_count }}";
+            // Data for IEEE Graph
+            var is_ieee_percent = "{{ is_ieee_count }}";
+            var not_ieee_percent = "{{ not_ieee_count }}";
 
-
-        filterSelection("all")
-        function filterSelection(c) {
-        var x, i;
-        x = document.getElementsByClassName("FilterRow");
-        if (c == "all") c = "";
-        for (i = 0; i < x.length; i++) {
-            RemoveClass(x[i], "filtershow");
-            if (x[i].className.indexOf(c) > -1) AddClass(x[i], "filtershow");
-        }
-        }
-
-        function AddClass(element, name) {
-        var i, arr1, arr2;
-        arr1 = element.className.split(" ");
-        arr2 = name.split(" ");
-        for (i = 0; i < arr2.length; i++) {
-            if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
-        }
-        }
-
-        function RemoveClass(element, name) {
-        var i, arr1, arr2;
-        arr1 = element.className.split(" ");
-        arr2 = name.split(" ");
-        for (i = 0; i < arr2.length; i++) {
-            while (arr1.indexOf(arr2[i]) > -1) {
-            arr1.splice(arr1.indexOf(arr2[i]), 1);     
+            filterSelection("all");
+            function filterSelection(c) {
+                var x, i;
+                x = document.getElementsByClassName("FilterRow");
+                if (c == "all") c = "";
+                for (i = 0; i < x.length; i++) {
+                    RemoveClass(x[i], "filtershow");
+                    if (x[i].className.indexOf(c) > -1) AddClass(x[i], "filtershow");
+                }
             }
-        }
-        element.className = arr1.join(" ");
-        }
 
-        // Add active class to the current button (highlight it)
-        var btnContainer = document.getElementById("myBtnContainer");
-        var btns = btnContainer.getElementsByClassName("btn");
-        for (var i = 0; i < btns.length; i++) {
-        btns[i].addEventListener("click", function(){
-            var current = document.getElementsByClassName("active");
-            current[0].className = current[0].className.replace(" active", "");
-            this.className += " active";
-        });
-        }
+            function AddClass(element, name) {
+                var i, arr1, arr2;
+                arr1 = element.className.split(" ");
+                arr2 = name.split(" ");
+                for (i = 0; i < arr2.length; i++) {
+                    if (arr1.indexOf(arr2[i]) == -1) {
+                        element.className += " " + arr2[i];
+                    }
+                }
+            }
 
+            function RemoveClass(element, name) {
+                var i, arr1, arr2;
+                arr1 = element.className.split(" ");
+                arr2 = name.split(" ");
+                for (i = 0; i < arr2.length; i++) {
+                    while (arr1.indexOf(arr2[i]) > -1) {
+                        arr1.splice(arr1.indexOf(arr2[i]), 1);
+                    }
+                }
+                element.className = arr1.join(" ");
+            }
 
-    </script>
+            // Add active class to the current button (highlight it)
+            var btnContainer = document.getElementById("myBtnContainer");
+            var btns = btnContainer.getElementsByClassName("btn");
+            for (var i = 0; i < btns.length; i++) {
+                btns[i].addEventListener("click", function () {
+                    var current = document.getElementsByClassName("active");
+                    current[0].className = current[0].className.replace(" active", "");
+                    this.className += " active";
+                });
+            }
+        </script>
 
-    
-    <!-- Bootstrap core JavaScript-->
-    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
-    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+        <!-- Bootstrap core JavaScript-->
+        <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+        <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
+        <!-- Custom scripts for all pages-->
+        <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
 
-    <!-- Page level plugins -->
-    <script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script>
-    <script src="{% static 'vendor/datatables/jquery.dataTables.min.js' %}"></script>
-    <script src="{% static 'vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+        <!-- Page level plugins -->
+        <script src="{% static 'vendor/chart.js/Chart.min.js' %}"></script>
+        <script src="{% static 'vendor/datatables/jquery.dataTables.min.js' %}"></script>
+        <script src="{% static 'vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
 
-    <!-- Page level custom scripts -->
-    <script src="{% static 'js/demo/chart-area-demo.js' %}"></script>
-    <script src="{% static 'js/demo/chart-bar-demo.js' %}"></script>
-    <script src="{% static 'js/demo/chart-pie-demo.js' %}"></script>
-    <script src="{% static 'js/demo/chart-pie-demo-gender.js' %}"></script>
-    <script src="{% static 'js/demo/chart-pie-demo-ieee.js' %}"></script>
-    <script src="{% static 'js/demo/datatables-demo.js' %}"></script>
+        <!-- Page level custom scripts -->
+        <script src="{% static 'js/demo/chart-area-demo.js' %}"></script>
+        <script src="{% static 'js/demo/chart-bar-demo.js' %}"></script>
+        <script src="{% static 'js/demo/chart-pie-demo.js' %}"></script>
+        <script src="{% static 'js/demo/chart-pie-demo-gender.js' %}"></script>
+        <script src="{% static 'js/demo/chart-pie-demo-ieee.js' %}"></script>
+        <script src="{% static 'js/demo/datatables-demo.js' %}"></script>
 
-
-
-    
-    <!-- Bootstrap core JavaScript-->
-    <!-- <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+        <!-- Bootstrap core JavaScript-->
+        <!-- <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
     <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script> -->
 
-    <!-- Core plugin JavaScript-->
-    <!-- <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script> -->
+        <!-- Core plugin JavaScript-->
+        <!-- <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script> -->
 
-    <!-- Custom scripts for all pages-->
-    <!-- <script src="{% static 'js/sb-admin-2.min.js' %}"></script> -->
-
-</body>
-
+        <!-- Custom scripts for all pages-->
+        <!-- <script src="{% static 'js/sb-admin-2.min.js' %}"></script> -->
+    </body>
 </html>
