@@ -137,7 +137,7 @@ AVATAR_CHOICES = (
     ('warmachine', 'War Machine'),
     ('wintersoldier', 'The Winter Soldier'),
     ('wolverine', 'Wolverine'),
-    ('wonderwoman', 'Wonderwoman'),
+    ('wonderwoman', 'Wonder Woman'),
     ('zoom', 'Zoom'),
     ('nota', 'None of the Above'),
 )

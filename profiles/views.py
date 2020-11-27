@@ -57,6 +57,7 @@ def participant_profile_creation_view(request):
                 'is_ieee': profile.is_ieee,
                 'shipping_address': profile.shipping_address,
                 'state': profile.state,
+                'avatar_choice': profile.avatar_choice,
                 'website_link': profile.website_link,
                 'github_profile_link': profile.github_profile_link,
                 'twitter_profile_link': profile.twitter_profile_link,
