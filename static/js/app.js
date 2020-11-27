@@ -138,11 +138,14 @@ navIcons.addEventListener('click', e=>{
 })
 
 document.body.addEventListener('click', e=>{
-  if(!e.target.classList.contains('nav__list') && !e.target.classList.contains('menu-icon'))
+  if(e.target.parentElement.classList.contains('nav__item')){
+    setTimeout(() => {
+      closeNavMenu();
+    }, 1000);
+  }
+  else if(!e.target.classList.contains('nav__list') && !e.target.classList.contains('menu-icon'))
     closeNavMenu();
 })
-
-window.addEventListener('scroll', closeNavMenu);
 
 function closeNavMenu(){
   navCloseIcon.classList.remove('menu-active')
