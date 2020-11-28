@@ -521,7 +521,7 @@ def send_custom_mail_view(request):
                     ctx['user'] = member
                     message = get_template('emails/custom_mail.html').render(ctx)
                     recepient_list = [member.email]
-                    EmailThread(subject, message, recepient_list).start()
+                    # EmailThread(subject, message, recepient_list).start()
         else:
             context['form'] = form
     else:
