@@ -17,10 +17,10 @@
         <title>Email Template</title>
     </head>
     <style>
-        * {
+        /* * {
             margin: 0;
             padding: 0;
-        }
+        } */
 
         html {
             font-family: "Roboto Mono", monospace;
@@ -48,7 +48,8 @@
 
         .hero {
             background-color: #1bb35f;
-            padding: 6rem 0 5rem 0;
+            background-image: url("{% static 'img/welcome_mail_header.jpg' %}");
+            /* padding: 6rem 0 5rem 0; */
             text-align: center;
         }
         .hero__heading {
@@ -74,6 +75,8 @@
             border: none;
             font-weight: 900;
             cursor: pointer;
+            position: relative;
+            top: 22rem;
         }
 
         .footer {
@@ -116,14 +119,14 @@
     <body>
         <div class="container">
             <section class="header">
-                <img src="{% static 'img/logo.png' %}" alt="" class="header__logo" />
+                <img src="./images/logo.png" alt="" class="header__logo" />
             </section>
-            <section class="hero">
-                <h1 class="hero__heading">Hack is Coming!</h1>
+            <section class="hero" style="min-height: 302px; min-width: 549px;">
+                <!-- <h1 class="hero__heading">Hack is Coming!</h1>
                 <p class="hero__sub">
                     A small river named Duden flows by their place and supplies it with the
                     necessary regelialia.
-                </p>
+                </p> -->
                 <button class="hero__btn">View Web</button>
             </section>
 
@@ -140,9 +143,9 @@
 
             <footer class="footer">
                 <div class="footer__social">
-                    <a href="#"><i class="fa fa-linkedin fa-2x"></i></a>
-                    <a href="#"><i class="fa fa-twitter fa-2x"></i></a>
-                    <a href="#"><i class="fa fa-instagram fa-2x"></i></a>
+                    <a href="https://www.linkedin.com/company/ieee-student-branch-mace/" target="_blank"><i class="fa fa-linkedin fa-2x"></i></a>
+                    <a href="https://twitter.com/MaceSb" target="_blank"><i class="fa fa-twitter fa-2x"></i></a>
+                    <a href="https://www.instagram.com/ieee_mace_sb/" target="_blank"><i class="fa fa-instagram fa-2x"></i></a>
                 </div>
                 <p class="footer__contact">
                     <i class="fa fa-envelope"></i>

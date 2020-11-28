@@ -1,0 +1,78 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% block breadcrumb %}
+<!-- <a class="navbar-brand" href="{% url 'home' %}"> <li class="breadcrumb-item active">.hack( ); 2021</li></a> -->
+{% endblock %} {% block content %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<div class="container">
+    <div class="main-body">
+        <div class="row gutters-sm">
+
+            <div class="col-md-8 mx-auto">
+                <div class="row">
+                    <div class="col mb-3">
+                        <h3 class="ml-3">Send Custom Email</h3>
+                        <div class="card mb-3 mt-3">
+                            <div class="card-body m-3" >
+                                <form method="POST">
+                                    {% csrf_token %}
+                                    {% for field in form %}
+                                    <div class="row" style="text-align: center; width: 128%; padding-left: 4rem;">
+                                        <!-- <div class="col-sm-4">
+                                            <h6 class="mb-0">Gender</h6>
+                                        </div> -->
+                                        <div class="col-sm-8 text-secondary" style="text-align: left;">{{ field.label_tag }}</div>
+                                        <div class="col-sm-8 text-secondary">{{ field }}</div>
+                                        <div class="col-sm-8 text-secondary">{{ field.help_text }}</div>
+                                        {% for error in field.errors %}
+                                        <div class="col-sm-8 text-secondary" style="color: red;">{{ error }}</div>
+                                        {% endfor %}
+                                    </div>
+                                    <hr>
+                                    {% endfor %}
+                                    <button type="submit" class="btn btn-primary btn-user mt-xs-3">Send Mails</button>
+                                </form>
+
+                            </div>
+
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    document.querySelector('.confirm-submit').addEventListener('click', e=>{
+        e.preventDefault();
+        if(confirm("Once you submit application no changes can be made again. Make sure all members of the team has joined before you submit your application. No changes will be possible after submit. Are you sure you want to submit? Click 'OK' to submit")){
+            window.location.href="{% url 'submit_application' %}"
+        }
+    })
+</script>
+
+<script>
+    var clipboard = new ClipboardJS(".btn");
+
+    clipboard.on("success", function (e) {
+        console.log(e);
+    });
+
+    clipboard.on("error", function (e) {
+        console.log(e);
+    });
+    $(document).ready(function () {
+        $(".clippy").tooltip({ title: "Copied!", trigger: "click" });
+    });
+    $(".clippy").mouseleave(function () {
+        $(".clippy").tooltip("hide");
+    });
+</script>
+
+{% endblock content %}

@@ -84,6 +84,8 @@ urlpatterns = [
 
     path('mail/nosub', application_views.send_not_submitted_email, name='mail_not_submitted'),
 
+    path('mail/custom', application_views.send_custom_mail_view, name='custom_mails'),
+
     path('submit', application_views.submit_aplication_view, name='submit_application'),
 
     path('orgdb', application_views.organizer_dashboard, name='organizer_dashboard'),

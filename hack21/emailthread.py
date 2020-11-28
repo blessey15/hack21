@@ -21,6 +21,6 @@ class EmailThread(threading.Thread):
         msg.content_subtype = 'html'
         try:
             msg.send()
-            print("Email send")
+            print("Email send: " + self.recepient_list[0])
         except BadHeaderError:
             print("Invalid header found")

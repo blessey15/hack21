@@ -14,7 +14,7 @@ from profiles.models import ParticipantProfile
 from accounts.views import home
 from hack21.decorators import organizer_view, participant_view
 from hack21.emailthread import EmailThread
-
+from .forms import SendCustomEmailForm
 # Create your views here.
 
 @login_required(login_url='login')
@@ -502,6 +502,31 @@ def send_not_submitted_email(request):
             print("Not SUbmitted Reminder Mail sent")
     return redirect('organizer_dashboard')
 
+@login_required
+# @organizer_view
+def send_custom_mail_view(request):
+    context = {}
+    form = SendCustomEmailForm()
+    context['form'] = form
+    if request.POST:
+        form = SendCustomEmailForm(request.POST)
+        if form.is_valid():
+            subject = form.cleaned_data.get('subject')
+            content = form.cleaned_data.get('message')
+            group = form.cleaned_data.get('group')
+            applications = Application.objects.filter(application_status=group)
+            for application in applications:
+                ctx = {'message': content}
+                for member in application.members.all():
+                    ctx['user'] = member
+                    message = get_template('emails/custom_mail.html').render(ctx)
+                    recepient_list = [member.email]
+                    EmailThread(subject, message, recepient_list).start()
+        else:
+            context['form'] = form
+    else:
+        context['form'] = form
+    return render(request, 'custom_mails.html', context)
 
 # def application_status_update_view(request, team_id):
 #     context = {}

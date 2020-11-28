@@ -123,17 +123,16 @@
                                 </form>
 
                                 {% if no_teams_found %}
-                                <div class="card custom-card">
+                                <div class="card custom-card" style="margin-top: 2rem;">
                                     <div class="card-body">
                                         <h5 style="color: red">No Team found</h5>
                                     </div>
-                                    <div class="card-footer text-muted text-center"></div>
                                 </div>
 
                                 {% elif searched_team %}
-                                <div class="card custom-card">
+                                <div class="card custom-card" style="margin-top: 2rem;">
                                     <div class="card-body">
-                                        <h3 class="card-title">Join A Team</h3>
+                                        <h3 class="card-title">Search Results</h3>
                                         <ol>
                                             <li><a href="{% url 'team_detail' searched_team.id %}"> {{ searched_team.name }} </a></li>
                                         </ol>
