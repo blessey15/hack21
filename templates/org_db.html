@@ -18,9 +18,9 @@
                                     </div>
                                     <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
                                         <div class="dropdown-header">Email Teams regarding<br> their application status</div>
-                                        <a class="dropdown-item" href="{% url 'mail_accepted' %}">Email Accepted Teams</a>
-                                        <a class="dropdown-item" href="{% url 'mail_declined' %}">Email Declined Teams</a>
-                                        <a class="dropdown-item" href="{% url 'mail_wtlst' %}">Email Waiting List Teams</a>
+                                        <a class="dropdown-item" id="mail-accepted" href="{% url 'mail_accepted' %}">Email Accepted Teams</a>
+                                        <a class="dropdown-item" id="mail-declined" href="{% url 'mail_declined' %}">Email Declined Teams</a>
+                                        <a class="dropdown-item" id="mail-wtlst" href="{% url 'mail_wtlst' %}">Email Waiting List Teams</a>
                                         <a class="dropdown-item" href="{% url 'custom_mails' %}">Send Custom Emails</a>
                                         <!-- <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="#">Something else here</a> -->
@@ -429,6 +429,30 @@
 
     {% endblock %}
 
+    <script>
+        document.querySelector('#mail-wtlst').addEventListener('click', e=>{
+            console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@logging message!!");
+            e.preventDefault();
+            if(confirm("Click works")){
+                window.location.href="{% url 'mail_wtlst' %}"
+            }
+        })
+
+        document.querySelector('#mail-declined').addEventListener('click', e=>{
+            e.preventDefault();
+            if(confirm("Once you submit application no changes can be made again. Make sure all members of the team has joined before you submit your application. No changes will be possible after submit. Are you sure you want to submit? Click 'OK' to submit")){
+                window.location.href="{% url 'mail_declined' %}"
+            }
+        })
+
+        document.querySelector('mail-wtlst').addEventListener('click', e=>{
+            e.preventDefault();
+            if(confirm("Once you submit application no changes can be made again. Make sure all members of the team has joined before you submit your application. No changes will be possible after submit. Are you sure you want to submit? Click 'OK' to submit")){
+                window.location.href="{% url 'custom_mails' %}"
+            }
+        })
+    </script>
 </body>
+
 
 </html>
