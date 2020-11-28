@@ -2664,6 +2664,25 @@ a {
   .btn--ring {
     border: 2px solid #fff;
     position: relative; }
+  .btn--anim {
+    position: relative;
+    z-index: 0; }
+    .btn--anim::after {
+      content: "";
+      position: absolute;
+      width: 0%;
+      height: 0%;
+      background-color: #1bb35f;
+      left: 50%;
+      top: 50%;
+      z-index: -1;
+      transition: all 400ms ease-in-out; }
+    .btn--anim:hover::after {
+      width: calc(100% + 3px);
+      height: calc(100% + 2px);
+      left: -1px;
+      top: 0;
+      border-radius: 4px; }
 
 @media (max-width: 768px) {
   .btn--large {
@@ -2676,69 +2695,6 @@ a {
   .btn--large {
     width: 15.5rem;
     letter-spacing: 2px; } }
-
-.btn--anim a {
-  background: none;
-  border: 0;
-  box-sizing: border-box;
-  margin: 1rem;
-  padding: 1rem 2rem;
-  box-shadow: inset 0 0 0 2px #1bb35f;
-  color: #1bb35f;
-  font-size: inherit;
-  font-weight: 700;
-  position: relative;
-  vertical-align: middle;
-  border-radius: 4px;
-  color: white; }
-
-.btn--anim-onclick a {
-  transition: color 0.25s;
-  border-radius: 4px;
-  color: white;
-  font-weight: 500; }
-  .btn--anim-onclick a::before, .btn--anim-onclick a::after {
-    box-sizing: inherit;
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%; }
-  .btn--anim-onclick a::before, .btn--anim-onclick a::after {
-    border: 2px solid transparent;
-    width: 0;
-    height: 0; }
-  .btn--anim-onclick a::before {
-    top: 0;
-    left: 0; }
-  .btn--anim-onclick a::after {
-    bottom: 0;
-    right: 0; }
-  .btn--anim-onclick a:hover {
-    color: #f0803c; }
-  .btn--anim-onclick a:hover::before, .btn--anim-onclick a:hover::after {
-    border-radius: 4px;
-    width: 100%;
-    height: 100%; }
-  .btn--anim-onclick a:hover::before {
-    border-top-color: #f0803c;
-    border-right-color: #f0803c;
-    transition: width 0.25s ease-out, height 0.25s ease-out 0.25s; }
-  .btn--anim-onclick a:hover::after {
-    border-bottom-color: #f0803c;
-    border-left-color: #f0803c;
-    transition: border-color 0s ease-out 0.5s, width 0.25s ease-out 0.5s, height 0.25s ease-out 0.75s; }
-  .btn--anim-onclick a:hover {
-    color: #f0803c; }
-  .btn--anim-onclick a::after {
-    top: 0;
-    left: 0; }
-  .btn--anim-onclick a:hover::before {
-    border-top-color: #f0803c;
-    border-right-color: #f0803c; }
-  .btn--anim-onclick a:hover::after {
-    border-bottom-color: #f0803c;
-    border-left-color: #f0803c;
-    transition: height 0.25s ease-out, width 0.25s ease-out 0.25s; }
 
 .img-grid__container {
   position: relative;
@@ -3070,6 +3026,29 @@ a {
     transform: translateY(-9rem); }
   .nav.visible {
     transform: translateY(0); }
+  .nav .register-btn {
+    border: 2px solid #1bb35f !important;
+    padding: 1rem 1.2rem;
+    border-radius: 4px; }
+  .nav .nav__item:not(:last-child) {
+    position: relative; }
+  .nav .nav__item:not(:last-child)::after {
+    content: "";
+    height: 3px;
+    width: 0%;
+    background-color: #1bb35f;
+    position: absolute;
+    left: 50%;
+    bottom: -5px;
+    transition: all 250ms; }
+  .nav .nav__item:not(:last-child):hover::after {
+    content: "";
+    height: 3px;
+    width: 98%;
+    background-color: #1bb35f;
+    position: absolute;
+    left: 1%;
+    bottom: -5px; }
 
 @media (max-width: 1024px) {
   .nav__list {
