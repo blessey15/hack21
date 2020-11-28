@@ -10,6 +10,7 @@ from django.core import mail
 from django.template import Context
 from django.template.loader import render_to_string, get_template
 from django.core.mail import EmailMessage
+from django.utils.html import strip_tags
 from hack21.emailthread import EmailThread
 
 from accounts.forms import RegistrationForm, AccountAuthenticationForm, AccountUpdateForm
@@ -48,7 +49,7 @@ def temp_view(request):
     return render(request, 'home2.html', {})
 
 def email_view(request):
-    return render(request, 'emails/account_created.html', {})
+    return render(request, 'emails/welcome.html', {})
 
 @login_required(login_url='login')
 @participant_view
@@ -56,13 +57,13 @@ def home(request):
     # create_team_view(request)
     context = {}
     no_teams_found = False
+    try:
+            profile = ParticipantProfile.objects.get(user=request.user)
+    except ParticipantProfile.DoesNotExist:
+        return redirect('profile-update')
     # print(application)
     # print(len(application))
     if request.user.is_authenticated:
-        try:
-            profile = ParticipantProfile.objects.get(user=request.user)
-        except ParticipantProfile.DoesNoExist:
-            return redirect('profile-update')
         application = Application.objects.filter(members__id = request.user.id)
         if not(len(application) == 0):
             application = application[0]
@@ -101,7 +102,9 @@ def home(request):
         #     print("created Team")
 
         team_form = TeamCreateForm()
+        context['team_form'] = team_form
         search_form = TeamSearchForm()
+        context['search_form'] = search_form
         context['user_has_team'] = user_has_team
         # context['application'] = application
         if request.POST:
@@ -142,7 +145,7 @@ def home(request):
                             # msg.send()
                             subject = "Team Created"
                             recepient_list = [request.user.email]
-                            # EmailThread(subject, message, recepient_list).start()
+                            EmailThread(subject, message, recepient_list).start()
 
                             print("Team Created message sent")
                             # application.save()
@@ -234,7 +237,9 @@ def registration_view(request):
             account = authenticate(email=email, password=raw_password)
             login(request, account)
             ctx = {'user': request.user}
-            message = get_template('emails/account_created.html').render(ctx)
+            message = get_template('emails/test_template_welcome.html').render(ctx)
+            # message = render_to_string("emails/test_template_welcome.html", ctx)
+            # message = strip_tags(message)
             # msg = EmailMessage(
             #     "Welcome to .hack();",
             #     message,
@@ -245,7 +250,7 @@ def registration_view(request):
             # msg.send()
             subject = "Welcome to .hack();"
             recepient_list = [email]
-            # EmailThread(subject, message, recepient_list).start()
+            EmailThread(subject, message, recepient_list).start()
             print("Welcome message sent")
             # ctx = {'user': request.user}
             # message = get_template('emails/account_created.html').render(ctx)

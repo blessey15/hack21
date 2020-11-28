@@ -2,6 +2,7 @@ from django import forms
 
 from .models import Team
 from .validators import is_valid_uuid
+from .models import APPLICATION_STATUS_CHOICES
 
 class TeamCreateForm(forms.ModelForm):
     # team_doesnt_exist = False
@@ -54,3 +55,26 @@ class TeamSearchForm(forms.Form):
         if not is_valid_uuid(team_id):
             raise forms.ValidationError("Not a valid Team ID!!")
         return team_id
+
+class SendCustomEmailForm(forms.Form):
+    group = forms.ChoiceField( choices=APPLICATION_STATUS_CHOICES, required=True,
+        widget = forms.Select(
+            attrs={
+                "class": "form-control py-1"
+            }
+        )
+    )
+    subject = forms.CharField(required=True,
+        widget=forms.TextInput(
+            attrs={
+                "placeholder" : "Enter Subject",                
+                "class": "form-control"
+            }
+        ))
+    message = forms.CharField(required=True,
+        widget=forms.Textarea(
+            attrs={
+                "placeholder" : "Enter Subject",                
+                "class": "form-control"
+            }
+        ))
