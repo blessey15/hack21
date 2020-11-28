@@ -17,6 +17,7 @@ from application.models import Team, Application, JoinRequest
 from application.forms import TeamCreateForm, TeamSearchForm
 from hack21.decorators import unauthenticated_user, participant_view, organizer_view
 from .models import Account
+from profiles.models import ParticipantProfile
 # from  application.views import create_team_view
 
 def landing_page_view(request):
@@ -58,6 +59,10 @@ def home(request):
     # print(application)
     # print(len(application))
     if request.user.is_authenticated:
+        try:
+            profile = ParticipantProfile.objects.get(user=request.user)
+        except ParticipantProfile.DoesNoExist:
+            return redirect('profile-update')
         application = Application.objects.filter(members__id = request.user.id)
         if not(len(application) == 0):
             application = application[0]
@@ -137,7 +142,7 @@ def home(request):
                             # msg.send()
                             subject = "Team Created"
                             recepient_list = [request.user.email]
-                            EmailThread(subject, message, recepient_list).start()
+                            # EmailThread(subject, message, recepient_list).start()
 
                             print("Team Created message sent")
                             # application.save()
@@ -240,7 +245,7 @@ def registration_view(request):
             # msg.send()
             subject = "Welcome to .hack();"
             recepient_list = [email]
-            EmailThread(subject, message, recepient_list).start()
+            # EmailThread(subject, message, recepient_list).start()
             print("Welcome message sent")
             # ctx = {'user': request.user}
             # message = get_template('emails/account_created.html').render(ctx)
@@ -311,7 +316,8 @@ def account_view(request):
             }
         )
     context['account_form'] = form
-    return render(request, 'account.html', context)
+    # return render(request, 'account.html', context)
+    return redirect("home")
 
 
 
