@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="font-family: 'Roboto Mono', monospace; font-size: 62.5%;">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -20,50 +20,6 @@
         * {
             margin: 0;
             padding: 0;
-        }
-
-        html {
-            font-family: "Roboto Mono", monospace;
-            font-size: 62.5%;
-        }
-
-        body {
-            padding: 0;
-            margin: 0;
-        }
-
-        .container {
-            background-color: white;
-            max-width: 550px;
-            margin: 0 auto;
-        }
-
-        .header {
-            display: flex;
-        }
-        .header__logo {
-            height: 50px;
-            transform: translateX(-8px);
-        }
-
-        .hero {
-            background-color: #1bb35f;
-            padding: 6rem 0 5rem 0;
-            text-align: center;
-        }
-        .hero__heading {
-            font-size: 3.5rem;
-            color: #fff;
-            margin-bottom: 1rem;
-        }
-        .hero__sub {
-            line-height: 1.8;
-            width: 80%;
-            margin: 0 auto;
-            font-weight: 500;
-            font-size: 1.2rem;
-            color: #fff;
-            margin-bottom: 3rem;
         }
         .hero__btn {
             padding: 0.8rem 1rem;
@@ -113,14 +69,14 @@
             font-size: 1.6rem;
         }
     </style>
-    <body>
-        <div class="container">
-            <section class="header">
-                <img src="{% static 'img/logo.png' %}" alt="" class="header__logo" />
+    <body style="padding: 0; margin: 0;">
+        <div class="container" style="background-color: white;max-width: 550px;margin: 0 auto;">
+            <section class="header" style="display: flex;">
+                <img src="{% static 'img/logo.png' %}" alt="" class="header__logo" style="height: 50px;transform: translateX(-8px);" />
             </section>
-            <section class="hero">
-                <h1 class="hero__heading">Hack is Coming!</h1>
-                <p class="hero__sub">
+            <section class="hero" style="background-color: #1bb35f;padding: 6rem 0 5rem 0;text-align: center;">
+                <h1 class="hero__heading" style="font-size: 3.5rem;color: #fff;margin-bottom: 1rem;">Hack is Coming!</h1>
+                <p class="hero__sub" style="line-height: 1.8;width: 80%;margin: 0 auto;font-weight: 500;font-size: 1.2rem;color: #fff;margin-bottom: 3rem;">
                     A small river named Duden flows by their place and supplies it with the
                     necessary regelialia.
                 </p>
