@@ -58,8 +58,35 @@
     &.visible {
         transform: translateY(0);
     }
+    .register-btn {
+        border: 2px solid $color-red !important;
+        padding: 1rem 1.2rem;
+        border-radius: 4px;
+    }
+    .nav__item:not(:last-child){
+        position: relative;
+    }
+    .nav__item:not(:last-child)::after {
+        content: "";
+        height: 3px;
+        width: 0%;
+        background-color: #1bb35f;
+        position: absolute;
+        left: 50%;
+        bottom: -5px;
+        transition: all 250ms;
+    }
+    .nav__item:not(:last-child):hover::after {
+        content: "";
+        height: 3px;
+        width: 98%;
+        background-color: #1bb35f;
+        position: absolute;
+        left: 1%;
+        bottom: -5px;
+    }
+    
 }
-
 @media (max-width: 1024px) {
     .nav {
         &__list {
