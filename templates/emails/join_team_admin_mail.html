@@ -1,10 +1,13 @@
 {% extends 'email_base.html' %}
 
 {% block content %}
-        <h4>Hello {{ admin }}, </h4>
-        <h5 class="mt-4"> A new member has joined your team {{ team_name }}</h5>
-        <h5 class="mt-4"> Member Name: {{ user.profile.name }}</h5>
-        <h5 class="mt-4"> Email: {{ user.email }}</h5>
-        <h5 class="mt-4"> With Best Regards,</h5>
+        <h4>Dear {{ admin }}, </h4>
+        <p class="mt-4"> <b>Greetings from IEEE MACE SB</p>
+        <p class="mt-4"> This mail is to inform you that a new member has joined your team {{ team_name }} for .hack(); 2021.</p>
+        <p class="mt-4"> Member Name: {{ user.profile.name }}</p>
+        <p class="mt-4"> Email: {{ user.email }}</p>
+        <p class="mt-4"> Please make sure all members of your team joins the team and you 
+                submit the application on or before 15th January 2020.</p>
+        <p class="mt-4"> With Best Regards,</p>
         <h4> Team .hack();</h4>
 {% endblock %}

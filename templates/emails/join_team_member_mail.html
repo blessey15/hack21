@@ -1,10 +1,15 @@
 {% extends 'email_base.html' %}
 
 {% block content %}
-    <h4>Hello {{ user.profile.name }}, </h4>
-    <h5 class="mt-4"> You have joined a team</h5>
-    <h5 class="mt-4"> Team Name: {{ team_name }}</h5>
-    <h5 class="mt-4"> Team ID: {{ team_id }}</h5>
-    <h5 class="mt-4"> With Best Regards,</h5>
+    <h4>Dear {{ user.profile.name }}, </h4>
+    <p class="mt-4"> <b>Greetings from IEEE MACE SB</p>
+    <p class="mt-4"> This mail is to inform you that you have succesfully joined the team {{ team_name }} for .hack(); 2021.</p>
+    <p class="mt-4"> <b>Team Details</b></p>
+    <p class="mt-4"> Team Name: {{ team_name }}</p>
+    <p class="mt-4"> Team ID: {{ team_id }}</p>
+    <p class="mt-4"> Once all the members of the team has joined the teams, ask your team leader to make the final submission.<br>
+    <b>Please note that the last date to submit the application is 15th of January  2020</b></p>
+    <p class="mt-4">If this action was not performed by you please contact us at <a href="mailto:hack.mace@ieee.org">hack.mace@ieee.org</a></p>
+    <p class="mt-4"> With Best Regards,</p>
     <h4> Team .hack();</h4>
 {% endblock %}

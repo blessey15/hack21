@@ -1,13 +1,15 @@
 {% extends 'email_base.html' %}
 
 {% block content %}
-    <h4>Hello {{ user.profile.name }}, </h4>
-    <h5 class="mt-4"> You have deleted the team {{ team_name }}</h5>
-    <h5 class="mt-4"> Team Name: {{ team_name }}</h5>
-    <h5 class="mt-4">Please note that now you and all the people who were members of the team Does not have a team now.
-        In order to participate in .hack you need to have a team. Even if you are planning to participate alone, you need to 
+    <h4>Dear {{ user.profile.name }}, </h4>
+    <p class="mt-4"> This is to inform you that your team "{{ team_name }}" for .hack(); 2021 has been deleted.</p>
+    <p class="mt-4"> Team Name: {{ team_name }}</p>
+    <p class="mt-4">Please note that now you and all the people who were members of the team Does not have a team now.
+        In order to participate in .hack(); 2021 you need to have a team. Even if you are planning to participate alone, you need to 
         create a team and then submit the application with only you as the member.
-    </h5>
-    <h5 class="mt-4"> With Best Regards,</h5>
+    </p>
+    <p class="mt-4">We hope to see you back for .hack(); 2021.</p>
+    <p class="mt-4">If this action was not performed by you please contact us at <a href="mailto:hack.mace@ieee.org">hack.mace@ieee.org</a></p>
+    <p class="mt-4"> With Best Regards,</p>
     <h4> Team .hack();</h4>
 {% endblock %}

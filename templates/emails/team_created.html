@@ -1,10 +1,17 @@
 {% extends 'email_base.html' %}
 
 {% block content %}
-    <h4>Hello {{ user.profile.name }}, </h4>
-    <h5 class="mt-4"> A team has been created for .hack();</h5>
-    <h5 class="mt-4"> Team Name: {{ team_name }}</h5>
-    <h5 class="mt-4"> Team ID: {{ team_id }}</h5>
-    <h5 class="mt-4"> With Best Regards,</h5>
+    <h4>Dear {{ user.profile.name }}, </h4>
+    <p class="mt-4"> 
+        Thank you for registering for .hack(); 2021. <br>
+        This is to inform you that a new team has been created, linked to you account.<br>
+        Share the team ID with other members of your team for them to join. Other participants can search for 
+        your team using the unique Team ID. Please keep the team ID confidential among members of your team as the Team ID
+        is considered as the Key to join the team.
+    </p>
+    <p class="mt-4"> Team Name: {{ team_name }}</p>
+    <p class="mt-4"> Team ID: {{ team_id }}</p>
+    <p class="mt-4">If this action was not performed by you please contact us at <a href="mailto:hack.mace@ieee.org">hack.mace@ieee.org</a></p>
+    <p class="mt-4"> With Best Regards,</p>
     <h4> Team .hack();</h4>
 {% endblock %}
