@@ -313,6 +313,8 @@ def account_view(request):
         form = AccountUpdateForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
+            return redirect("home")
+
     else:
         form = AccountUpdateForm(
             initial = {
@@ -321,8 +323,7 @@ def account_view(request):
             }
         )
     context['account_form'] = form
-    # return render(request, 'account.html', context)
-    return redirect("home")
+    return render(request, 'account.html', context)
 
 
 

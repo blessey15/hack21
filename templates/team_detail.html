@@ -92,9 +92,9 @@
                         {% endfor %}
                     </ol>
                     <div class="my-3"> 
-                        <a href="{% url 'accept_team' team.id %}"><button type="submit" name="application_status_update" class="btn btn-primary btn-rounded mr-2">Accept</button></a>
-                        <a href="{% url 'decline_team' team.id %}"><button type="submit" name="application_status_update" class="btn btn-primary btn-rounded mr-2">Decline</button></a>
-                        <a href="{% url 'waitinglist_team' team.id %}"><button type="submit" name="application_status_update" class="btn btn-primary btn-rounded mr-2">Waiting List</button></a>
+                        <a href="{% url 'accept_team' team.id %}"><button type="submit" name="application_status_update" class="btn btn-primary mr-2">Accept</button></a>
+                        <a href="{% url 'decline_team' team.id %}"><button type="submit" name="application_status_update" class="btn btn-primary mr-2">Decline</button></a>
+                        <a href="{% url 'waitinglist_team' team.id %}"><button type="submit" name="application_status_update" class="btn btn-primary mr-2">Waiting List</button></a>
                     </div>
 
                 <!-- <form method="POST" action="">
@@ -152,64 +152,65 @@
                             <span>{{ member.email }}</span>
                         </p>
                     </div>
-                    <ul class="social-links list-inline">
-                            {% if member.profile.github_profile_link %}
-                                <li class="list-inline-item hover-green">
-                                    <a title="" 
-                                        data-placement="top" data-toggle="tooltip" class="tooltips hover-green" 
-                                        href="{{ member.profile.github_profile_link }}"
-                                        target="_blank" 
-                                        data-original-title="GitHub">
-                                            <i class="fab fa-github"></i>
-                                    </a>
-                                </li>
-                            {% endif %}
+ 
+                        <ul class="social-links list-inline">
+                                {% if member.profile.github_profile_link %}
+                                    <li class="list-inline-item hover-green">
+                                        <a title="" 
+                                            data-placement="top" data-toggle="tooltip" class="tooltips hover-green" 
+                                            href="{{ member.profile.github_profile_link }}"
+                                            target="_blank" 
+                                            data-original-title="GitHub">
+                                                <i class="fab fa-github"></i>
+                                        </a>
+                                    </li>
+                                {% endif %}
 
 
-                            {% if member.profile.twitter_profile_link %}
-                                <li class="list-inline-item">
-                                    <a title="" 
-                                        data-placement="top" data-toggle="tooltip" class="tooltips hover-green" 
-                                        href="{{ member.profile.twitter_profile_link }}"
-                                        target="_blank" 
-                                        data-original-title="Twitter">
-                                            <i class="fab fa-twitter"></i>
-                                    </a>
-                                </li>
-                            {% endif %}
+                                {% if member.profile.twitter_profile_link %}
+                                    <li class="list-inline-item">
+                                        <a title="" 
+                                            data-placement="top" data-toggle="tooltip" class="tooltips hover-green" 
+                                            href="{{ member.profile.twitter_profile_link }}"
+                                            target="_blank" 
+                                            data-original-title="Twitter">
+                                                <i class="fab fa-twitter"></i>
+                                        </a>
+                                    </li>
+                                {% endif %}
 
 
-                            {% if member.profile.linkedin_profile_link %}
-                                <li class="list-inline-item">
-                                    <a title="" 
-                                        data-placement="top" data-toggle="tooltip" class="tooltips hover-green" 
-                                        href="{{ member.profile.linkedin_profile_link }}"
-                                        target="_blank" 
-                                        data-original-title="LinkedIn">
-                                            <i class="fab fa-linkedin"></i>
-                                    </a>
-                                </li>
-                            {% endif %}
+                                {% if member.profile.linkedin_profile_link %}
+                                    <li class="list-inline-item">
+                                        <a title="" 
+                                            data-placement="top" data-toggle="tooltip" class="tooltips hover-green" 
+                                            href="{{ member.profile.linkedin_profile_link }}"
+                                            target="_blank" 
+                                            data-original-title="LinkedIn">
+                                                <i class="fab fa-linkedin"></i>
+                                        </a>
+                                    </li>
+                                {% endif %}
 
-                            {% if member.profile.website_link %}
-                                <li class="list-inline-item">
-                                    <a title="" 
-                                        data-placement="top" data-toggle="tooltip" class="tooltips hover-green" 
-                                        href="{{ member.profile.website_link }}"
-                                        target="_blank" 
-                                        data-original-title="Website">
-                                            <i class="fa fa-globe"></i>
-                                    </a>
-                                </li>
-                            {% endif %}
+                                {% if member.profile.website_link %}
+                                    <li class="list-inline-item">
+                                        <a title="" 
+                                            data-placement="top" data-toggle="tooltip" class="tooltips hover-green" 
+                                            href="{{ member.profile.website_link }}"
+                                            target="_blank" 
+                                            data-original-title="Website">
+                                                <i class="fa fa-globe"></i>
+                                        </a>
+                                    </li>
+                                {% endif %}
 
-                    </ul>
-                    <a href="{% url 'profile' member.id %}">
-                        <button type="button" 
-                            class="btn btn-primary mt-3 btn-rounded waves-effect w-md waves-light">
-                                View Profile
-                        </button>
-                    </a>
+                        </ul>
+                        <a href="{% url 'profile' member.id %}">
+                            <button type="button" 
+                                class="btn btn-primary mt-3 btn-rounded waves-effect w-md waves-light">
+                                    View Profile
+                            </button>
+                        </a>
                 </div>
             </div>
         </div>

@@ -7,7 +7,7 @@ import accounts
 APPLICATION_STATUS_CHOICES = (
     ('Not Submitted','Not Submitted'),
     ('Submitted','Submitted'),
-    ('Under Review','Under Review'),
+    # ('Under Review','Under Review'),
     ('Declined','Declined'),
     ('Waitinglist','Waitinglist'),
     ('Accepted','Accepted'),
