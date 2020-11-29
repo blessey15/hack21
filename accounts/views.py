@@ -237,7 +237,7 @@ def registration_view(request):
             account = authenticate(email=email, password=raw_password)
             login(request, account)
             ctx = {'user': request.user}
-            message = get_template('emails/test_template_welcome.html').render(ctx)
+            message = get_template('emails/welcome.html').render(ctx)
             # message = render_to_string("emails/test_template_welcome.html", ctx)
             # message = strip_tags(message)
             # msg = EmailMessage(
