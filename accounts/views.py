@@ -373,3 +373,6 @@ def account_view(request):
 
 #     wb.save(response)
 #     return response
+
+def email_template_test_view(request):
+    return render(request, 'emails/test_template_welcome.html', {})
