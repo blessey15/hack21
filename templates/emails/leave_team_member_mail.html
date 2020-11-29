@@ -1,14 +1,16 @@
 {% extends 'email_base.html' %}
 
 {% block content %}
-    <h4>Hello {{ user.profile.name }}, </h4>
-    <h5 class="mt-4"> You have Left the team {{ team_name }}</h5>
-    <h5 class="mt-4"> Team Name: {{ team_name }}</h5>
-    <h5 class="mt-4"> Team ID: {{ team_id }}</h5>
-    <h5 class="mt-4"> In order to participate in .hack(); you must be part of a team. If you are planning to participapte alone,
+    <h4>Dear {{ user.profile.name }}, </h4>
+    <p class="mt-4"> You have succesfully left from the team "{{ team_name }}" for .hack();</p>
+    <p class="mt-4"> Team Name: {{ team_name }}</p>
+    <p class="mt-4"> Team ID: {{ team_id }}</p>
+    <p class="mt-4"> In order to participate in .hack(); you must be part of a team. If you are planning to participapte alone,
         create a team and then submit the applicatin with only you as the member. In any case you MUST BE MEMBER OF A TEAM 
-        to participate in .hack();.
-    </h5>
-    <h5 class="mt-4"> With Best Regards,</h5>
+        to participate in .hack();.<br>
+        Please to note that the last date to submit your application is 15<sup>th</sup> January 2021.
+    </p>
+    <p class="mt-4">If this action was not performed by you please contact us at <a href="mailto:hack.mace@ieee.org">hack.mace@ieee.org</a></p>
+    <p class="mt-4"> With Best Regards,</p>
     <h4> Team .hack();</h4>
 {% endblock %}

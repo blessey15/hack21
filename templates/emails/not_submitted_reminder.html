@@ -1,13 +1,14 @@
 {% extends 'email_base.html' %}
 
 {% block content %}
-    <h4>Hello {{ member.profile.name }}, </h4>
+    <h4>Dear {{ member.profile.name }}, </h4>
     <h5>We noticed that you haven't submitted your application for .hack(); yet. These are the details of your team.<br>
         Team Name: {{ application.team.name }}<br>
         Team Admin: {{ application.team.admin }}<br>
         Number of Members: {{ application.member_count }}<br>
         Kindly complete the application process at the earliest. Make sure that your team is complete before you submit your application
-        as no changes can be made after the application has been submitted.
+        as no changes can be made after the application has been submitted. Share the Team ID with all the members of your team for
+        them to join the team. Please keep the Team ID confidential among your team members.
     </h5>
     </h5>
     <h5 class="mt-4"> With Best Regards,</h5>

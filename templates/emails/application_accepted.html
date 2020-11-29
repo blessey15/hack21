@@ -1,8 +1,14 @@
 {% extends 'email_base.html' %}
 
 {% block content %}
-    <h4>Hello {{ member.profile.name }}, </h4>
-    <h5 class="mt-4"> Your team {{ application.team.name }} has been accepted to .hack();.</h5>
-    <h5 class="mt-4"> With Best Regards,</h5>
+    <h4>Dear {{ member.profile.name }}, </h4>
+    <p class="mt-4"> <b>Greetings from IEEE MACE SB!</b><br>
+        We are glad to inform you that your application to .hack(); 2021 has been accepted.<br>
+        </p>
+    <p class="mt-4"><b>Team Name: {{ team }}</b></p>
+    <p class="mt-4">The tentative dates of the hackathon are 19th, 20th, and 21st of February 2021. We hope to see you at .hack();.<br>
+    There will be a few talk sessions and workshops to help all of the accepted candidates to prepare well for the hackathon. Please keep a 
+watch on the website and the mails for further communications and more details.</p>
+    <p class="mt-4"> With Best Regards,</p>
     <h4> Team .hack();</h4>
 {% endblock %}

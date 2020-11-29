@@ -2,10 +2,15 @@
 
 {% block content %}
         <h4>Hello,</h4>
-        <h5 class="mt-4"> The application for your team "{{ team_name }}" has been submitted.</h5>
-        <h5 class="mt-4"> We will review your application and let you know about your application status. Keep a watch on the website
+        <p class="mt-4"> 
+            The application for your team "{{ team_name }}" has been submitted successfully.<br>
+            No more changes can be made to the team. If this action was made accidently, please 
+            contact us at <a href="mailto:hack.mace@ieee.org">hack.mace@ieee.org</a>
+        </p>
+        <!-- <p class="mt-4"> The application for your team "{{ team_name }}" has been submitted successfully.</p> -->
+        <p class="mt-4"> We will review your application and let you know about your application status. Keep a watch on the website
             for updates.
-        </h5>
-        <h5 class="mt-4"> With Best Regards,</h5>
+        </p>
+        <p class="mt-4"> With Best Regards,</p>
         <h4> Team .hack();</h4>
 {% endblock %}

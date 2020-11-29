@@ -280,7 +280,7 @@ def submit_aplication_view(request):
                 # msg.send()
                 subject = "Application Submitted"
                 # recepient_list = [request.user.email]
-                # EmailThread(subject, message, recepient_list).start()
+                EmailThread(subject, message, recepient_list).start()
                 print("Application Submission message sent")
                 # context['message'] = "You need 4 people in a team to submit the application."
                 # return render(request, 'messages.html', context)
@@ -439,10 +439,10 @@ def send_accepted_email(request):
     for application in applications:
         print("mailing "+str(application.team.name))
         for member in application.members.all():
-            ctx = {'application': application, 'member': member}
+            ctx = {'application': application, 'member': member, 'team': application.team.name }
             message = get_template('emails/application_accepted.html').render(ctx)
             recepient_list = [member.email]
-            # EmailThread(subject, message, recepient_list).start()
+            EmailThread(subject, message, recepient_list).start()
             print("Acceptace mail sent")
         application.received_confirmation_mail = True
         application.save()
@@ -461,7 +461,7 @@ def send_declined_email(request):
             ctx = {'application': application, 'member': member}
             message = get_template('emails/application_declined.html').render(ctx)
             recepient_list = [member.email]
-            # EmailThread(subject, message, recepient_list).start()
+            EmailThread(subject, message, recepient_list).start()
             print("Declination Mail sent")
         application.received_confirmation_mail = True
         application.save()
@@ -473,14 +473,14 @@ def send_declined_email(request):
 def send_wtlst_email(request):
     context = {}
     applications = Application.objects.filter(application_status="Waitinglist")
-    subject = "Uh oh You've been Turned Down"
+    subject = "Application review in progress"
     for application in applications:
         print("mailing "+str(application.team.name))
         for member in application.members.all():
             ctx = {'application': application, 'member': member}
             message = get_template('emails/application_waitinglist.html').render(ctx)
             recepient_list = [member.email]
-            # EmailThread(subject, message, recepient_list).start()
+            EmailThread(subject, message, recepient_list).start()
             print("Waiting List Mail sent")
     return redirect('organizer_dashboard')
 
@@ -498,7 +498,7 @@ def send_not_submitted_email(request):
             ctx['member'] = member
             message = get_template('emails/not_submitted_reminder.html').render(ctx)
             recepient_list = [member.email]
-            # EmailThread(subject, message, recepient_list).start()
+            EmailThread(subject, message, recepient_list).start()
             print("Not SUbmitted Reminder Mail sent")
     return redirect('organizer_dashboard')
 
@@ -521,7 +521,7 @@ def send_custom_mail_view(request):
                     ctx['user'] = member
                     message = get_template('emails/custom_mail.html').render(ctx)
                     recepient_list = [member.email]
-                    # EmailThread(subject, message, recepient_list).start()
+                    EmailThread(subject, message, recepient_list).start()
         else:
             context['form'] = form
     else:
