@@ -42,14 +42,14 @@ def landing_page_view(request):
 def sponsor_view(request):
     return render(request, 'sponsor.html', {})
 
-def base_view(request):
-    return render(request, 'base.html', {})
+# def base_view(request):
+#     return render(request, 'base.html', {})
 
-def temp_view(request):
-    return render(request, 'home2.html', {})
+# def temp_view(request):
+#     return render(request, 'home2.html', {})
 
-def email_view(request):
-    return render(request, 'emails/welcome.html', {})
+# def email_view(request):
+#     return render(request, 'emails/welcome.html', {})
 
 @login_required(login_url='login')
 @participant_view
@@ -371,5 +371,5 @@ def account_view(request):
 #     wb.save(response)
 #     return response
 
-def email_template_test_view(request):
-    return render(request, 'emails/test_template_password_reset.html', {})
+# def email_template_test_view(request):
+#     return render(request, 'emails/test_template_password_reset.html', {})

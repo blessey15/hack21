@@ -12,12 +12,13 @@ from .models import Application, Team, JoinRequest
 from accounts.models import Account
 from profiles.models import ParticipantProfile
 from accounts.views import home
-from hack21.decorators import organizer_view, participant_view
+from hack21.decorators import organizer_view, participant_view, need_profile
 from hack21.emailthread import EmailThread
 from .forms import SendCustomEmailForm
 # Create your views here.
 
 @login_required(login_url='login')
+@need_profile
 def team_detail_view(request, team_id):
     context = {}
     team = get_object_or_404(Team, id=team_id)
@@ -44,6 +45,7 @@ def team_detail_view(request, team_id):
 
 @login_required(login_url='login')
 @participant_view
+@need_profile
 def join_team_view(request, team_id):
     context={}
     team = get_object_or_404(Team, id=team_id)
@@ -243,6 +245,7 @@ def leave_team_view(request, team_id):
  
 @login_required(login_url='login')
 @participant_view
+@need_profile
 def submit_aplication_view(request):
     context = {}
     application = Application.objects.filter(members__id = request.user.id)
@@ -291,7 +294,8 @@ def submit_aplication_view(request):
 
 
 @login_required(login_url='login')
-# @organizer_view
+@organizer_view
+@need_profile
 def organizer_dashboard(request):
     context = {}
     applications = Application.objects.all()
@@ -388,7 +392,7 @@ def organizer_dashboard(request):
     return render(request, 'org_db.html', context)
 
 @login_required(login_url='login')
-# @organizer_view
+@organizer_view
 def accept_team_view(request, team_id):
     context = {}
     team = get_object_or_404(Team, id=team_id)
@@ -403,7 +407,7 @@ def accept_team_view(request, team_id):
     return render(request, 'team_detail.html', context)
 
 @login_required(login_url='login')
-# @organizer_view
+@organizer_view
 def decline_team_view(request, team_id):
     context = {}
     team = get_object_or_404(Team, id=team_id)
@@ -418,7 +422,7 @@ def decline_team_view(request, team_id):
     return render(request, 'team_detail.html', context)
 
 @login_required(login_url='login')
-# @organizer_view
+@organizer_view
 def waitinglist_team_view(request, team_id):
     context = {}
     team = get_object_or_404(Team, id=team_id)
@@ -433,7 +437,7 @@ def waitinglist_team_view(request, team_id):
     return render(request, 'team_detail.html', context)
 
 @login_required
-# @organizer_view
+@organizer_view
 def send_accepted_email(request):
     context = {}
     applications = Application.objects.filter(application_status="Accepted", received_confirmation_mail=False)
@@ -458,7 +462,7 @@ def send_accepted_email(request):
     
 
 @login_required
-# @organizer_view
+@organizer_view
 def send_declined_email(request):
     context = {}
     applications = Application.objects.filter(application_status="Declined", received_confirmation_mail=False)
@@ -483,7 +487,7 @@ def send_declined_email(request):
     
 
 @login_required
-# @organizer_view
+@organizer_view
 def send_wtlst_email(request):
     context = {}
     applications = Application.objects.filter(application_status="Waitinglist")
@@ -505,7 +509,7 @@ def send_wtlst_email(request):
     # return redirect('organizer_dashboard')
 
 @login_required
-# @organizer_view
+@organizer_view
 def send_not_submitted_email(request):
     context = {}
     applications = Application.objects.filter(application_status="Not Submitted")
@@ -529,7 +533,7 @@ def send_not_submitted_email(request):
     # return redirect('organizer_dashboard')
 
 @login_required
-# @organizer_view
+@organizer_view
 def send_custom_mail_view(request):
     context = {}
     form = SendCustomEmailForm()

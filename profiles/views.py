@@ -87,7 +87,7 @@ def participant_profile_updated_view(request):
 
 
 @login_required(login_url='login')
-# @organizer_view
+@organizer_view
 def participant_profile_view(request, id):
     context = {}
     user = get_object_or_404(Account, id=id)
