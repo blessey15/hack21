@@ -35,7 +35,6 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('auth/', include('social_django.urls', namespace='social')),
 
-    path('testtemplate/', views.email_template_test_view, name='test_template_view'),
 
 # Password Reset Password Forgot ...
     path('password_change/done/', auth_views.PasswordChangeDoneView.as_view(template_name='registration/password_change_done.html'), 
@@ -93,11 +92,13 @@ urlpatterns = [
     path('orgdb', application_views.organizer_dashboard, name='organizer_dashboard'),
 
 # TEMPORARY VIEWS
-    path('base', views.base_view, name='base'),
+    # path('base', views.base_view, name='base'),
 
-    path('temp2', views.temp_view, name='home2'),
+    # path('temp2', views.temp_view, name='home2'),
 
-    path('mail', views.email_view, name='mail'),
+    # path('mail', views.email_view, name='mail'),
+
+    # path('testtemplate/', views.email_template_test_view, name='test_template_view'),
 
 # FILE EXPORT VIEWS
     # path('export/users/csv', views.export_csv, name='export_user_csv'),
