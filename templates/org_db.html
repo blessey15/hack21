@@ -432,24 +432,45 @@
     <script>
         document.querySelector('#mail-wtlst').addEventListener('click', e=>{
             e.preventDefault();
-            if(confirm("Click works")){
+            if(confirm("This will send emails to all the teams who are in WAITING LIST. Press OK to confirm")){
                 window.location.href="{% url 'mail_wtlst' %}"
+            }
+        })
+
+        document.querySelector('#mail-accepted').addEventListener('click', e=>{
+            e.preventDefault();
+            if(confirm("This will send confirmation emails to all the teams that are marked ACCEPTED. Please make sure all the teams that are selected are the right ones. Confirmation mails can be sent only once per team. This action is not reversible. Press OK to confirm.")){
+                window.location.href="{% url 'mail_accepted' %}"
             }
         })
 
         document.querySelector('#mail-declined').addEventListener('click', e=>{
             e.preventDefault();
-            if(confirm("Once you submit application no changes can be made again. Make sure all members of the team has joined before you submit your application. No changes will be possible after submit. Are you sure you want to submit? Click 'OK' to submit")){
+            if(confirm("This will send emails to all the teams that are marked DECLINED. Please make sure all the teams that are selected are the right ones. Declination mails can be sent only once per team. This action is not reversible. Press OK to confirm.")){
                 window.location.href="{% url 'mail_declined' %}"
             }
         })
 
-        document.querySelector('mail-wtlst').addEventListener('click', e=>{
+        document.querySelector('#mail-nosub').addEventListener('click', e=>{
             e.preventDefault();
-            if(confirm("Once you submit application no changes can be made again. Make sure all members of the team has joined before you submit your application. No changes will be possible after submit. Are you sure you want to submit? Click 'OK' to submit")){
-                window.location.href="{% url 'custom_mails' %}"
+            if(confirm("This will sent reminder emails to all the teams that have not submitted their applications yet. Press OK to confirm")){
+                window.location.href="{% url 'mail_not_submitted' %}"
             }
         })
+
+        // document.querySelector('#mail-declined').addEventListener('click', e=>{
+        //     e.preventDefault();
+        //     if(confirm("Once you submit application no changes can be made again. Make sure all members of the team has joined before you submit your application. No changes will be possible after submit. Are you sure you want to submit? Click 'OK' to submit")){
+        //         window.location.href="{% url 'mail_declined' %}"
+        //     }
+        // })
+
+        // document.querySelector('mail-wtlst').addEventListener('click', e=>{
+        //     e.preventDefault();
+        //     if(confirm("Once you submit application no changes can be made again. Make sure all members of the team has joined before you submit your application. No changes will be possible after submit. Are you sure you want to submit? Click 'OK' to submit")){
+        //         window.location.href="{% url 'custom_mails' %}"
+        //     }
+        // })
     </script>
     {% endblock %}
 </body>
