@@ -35,6 +35,15 @@ def participant_profile_creation_view(request):
             profile.user = request.user
             # profile.user.has_profile = True
             profile.save()
+            if not profile.welcome_mail_sent:
+                ctx = {'user': request.user}
+                message = get_template('emails/welcome.html').render(ctx)
+                subject = "Welcome to .hack();"
+                recepient_list = [request.user.email]
+                EmailThread(subject, message, recepient_list).start()
+                profile.welcome_mail_sent = True
+                profile.save()
+                print("Welcome message sent")
             return redirect('home')
 
         else:

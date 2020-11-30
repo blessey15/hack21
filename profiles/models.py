@@ -32,6 +32,7 @@ class ParticipantProfile(models.Model):
     twitter_profile_link = models.URLField(verbose_name="Twitter Profile Link", blank=True)
     linkedin_profile_link = models.URLField(verbose_name="LinkedIn Profile Link", blank=True)
     avatar_choice = models.CharField(max_length=25, blank=False, default="nota", verbose_name="Which of the following Characters do you relate yourselves to the most?")
+    welcome_mail_sent = models.BooleanField(default=False)
     # resume_link = models.URLField(verbose_name="Link to your resume", blank=True)
 
     def __str__(self):

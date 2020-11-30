@@ -297,6 +297,8 @@ def organizer_dashboard(request):
     applications = Application.objects.all()
     context['applications'] = applications
     number_of_applications = len(applications)
+    if number_of_applications <1:
+        number_of_applications=1
     context['number_of_applications'] = number_of_applications
     number_of_accounts = len(Account.objects.all())
     context['number_of_accounts'] = number_of_accounts

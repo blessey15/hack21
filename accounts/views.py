@@ -236,8 +236,7 @@ def registration_view(request):
             raw_password = form.cleaned_data.get('password1')
             account = authenticate(email=email, password=raw_password)
             login(request, account)
-            ctx = {'user': request.user}
-            message = get_template('emails/welcome.html').render(ctx)
+            
             # message = render_to_string("emails/test_template_welcome.html", ctx)
             # message = strip_tags(message)
             # msg = EmailMessage(
@@ -248,10 +247,7 @@ def registration_view(request):
             #     )
             # msg.content_subtype = "html"
             # msg.send()
-            subject = "Welcome to .hack();"
-            recepient_list = [email]
-            EmailThread(subject, message, recepient_list).start()
-            print("Welcome message sent")
+            
             # ctx = {'user': request.user}
             # message = get_template('emails/account_created.html').render(ctx)
             # msg = EmailMessage(
