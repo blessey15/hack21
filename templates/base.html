@@ -40,7 +40,7 @@
             margin-left: 0.5em;
         }
         .btn.active {
-            background-color: #4e73df;
+            background-color: #1bb35f;
             color: white;
         }
         #myBtnContainer {
@@ -241,77 +241,7 @@
         </div>
     </div> -->
 
-        <script>
-            // data for pie chart
-            var accepted = "{{ accepted_applications }}";
-            var declined = "{{ declined_applications }}";
-            var waitinglist = "{{ Waitinglist_applications }}";
-            var pending = "{{ review_pending_applications }}";
-
-            // Data for bar graph
-            var science_count = "{{ science_count }}";
-            var arts_count = "{{ arts_count }}";
-            var engg_count = "{{ engg_count }}";
-            var comm_count = "{{ comm_count }}";
-            var school_count = "{{ school_count }}";
-            var others_count = "{{ others_count }}";
-            var bar_graph_upper_limit = "{{ bar_graph_upper_limit }}";
-
-            // Data for gender chart
-            var male = "{{ male_count }}";
-            var female = "{{ female_count }}";
-            var non_binary = "{{ non_binary_count }}";
-            var pnts = "{{ pnts_count }}";
-
-            // Data for IEEE Graph
-            var is_ieee_percent = "{{ is_ieee_count }}";
-            var not_ieee_percent = "{{ not_ieee_count }}";
-
-            filterSelection("all");
-            function filterSelection(c) {
-                var x, i;
-                x = document.getElementsByClassName("FilterRow");
-                if (c == "all") c = "";
-                for (i = 0; i < x.length; i++) {
-                    RemoveClass(x[i], "filtershow");
-                    if (x[i].className.indexOf(c) > -1) AddClass(x[i], "filtershow");
-                }
-            }
-
-            function AddClass(element, name) {
-                var i, arr1, arr2;
-                arr1 = element.className.split(" ");
-                arr2 = name.split(" ");
-                for (i = 0; i < arr2.length; i++) {
-                    if (arr1.indexOf(arr2[i]) == -1) {
-                        element.className += " " + arr2[i];
-                    }
-                }
-            }
-
-            function RemoveClass(element, name) {
-                var i, arr1, arr2;
-                arr1 = element.className.split(" ");
-                arr2 = name.split(" ");
-                for (i = 0; i < arr2.length; i++) {
-                    while (arr1.indexOf(arr2[i]) > -1) {
-                        arr1.splice(arr1.indexOf(arr2[i]), 1);
-                    }
-                }
-                element.className = arr1.join(" ");
-            }
-
-            // Add active class to the current button (highlight it)
-            var btnContainer = document.getElementById("myBtnContainer");
-            var btns = btnContainer.getElementsByClassName("btn");
-            for (var i = 0; i < btns.length; i++) {
-                btns[i].addEventListener("click", function () {
-                    var current = document.getElementsByClassName("active");
-                    current[0].className = current[0].className.replace(" active", "");
-                    this.className += " active";
-                });
-            }
-        </script>
+        
 
         <!-- Bootstrap core JavaScript-->
         <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
