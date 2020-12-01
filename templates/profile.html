@@ -1,45 +1,270 @@
 {% extends 'base.html' %}
+{% load static %} 
+{% block breadcrumb %}
+<!-- <a class="navbar-brand" href="{% url 'home' %}"> <li class="breadcrumb-item active">.hack( ); 2021</li></a> -->
 
-{% load static %}
 
-{% block stylesheet %}
-<link rel="stylesheet" href="{% static 'css/accounts.css' %}">
-{% endblock%}
-
-{% block body %}
-  <div class="container">
-  	<h1 class= "text-center logo my-4">
-  		<a href="{% url 'home' %}">Django Boards</a>
-  	</h1>
-  	<div class="row justify-content-center">
-  		<div class="col-lg-8 col-md-10 col-sm-12">
-  			<div class="card">
-  				<div class="card-body">
-  					<h3 class="card-title">Profile</h3>
-  					<form method="post" novalidate>
-						  {% csrf_token %}
-						  
-						  {% for field in participant_profile_creation_form %}
-							<p>
-								{{field.label_tag}}
-								{{field}}
-
-								{% if field.help_text %}
-									<small style="color:grey">{{field.help_text}}</small>
-								{% endif %}
-								
-								{% for error in field.errors %}
-									<p style="color:red">{{error}}</p>
-								{% endfor %}
-							</p>
-						  {% endfor %}
-     					 <button type="submit" class="btn btn-primary">Update Profile</button>
-    				</form>
-  				</div>
-  				<div class="card-footer text-muted text-center">
-  				</div>
-  			</div>
-  		</div>
-  	</div>
-  </div>
+ 
 {% endblock %}
+{% block content %}
+
+
+<div class="container">
+  <div class="main-body">
+  
+        <!-- Breadcrumb -->
+        <!-- <nav aria-label="breadcrumb" class="main-breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">User</a></li>
+            <li class="breadcrumb-item active" aria-current="page">User Profile</li>
+          </ol>
+        </nav> -->
+        <!-- /Breadcrumb -->
+  
+        <div class="row gutters-sm">
+          <div class="col-md-4 mb-3"> <!-- SIDE OF PROFILE PAGE BEGIN-->
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex flex-column align-items-center text-center">
+                  <img src="{% static 'img/avatars' %}/{{ profile.avatar_choice }}.jpg" alt="Admin" class="rounded-circle" width="150">
+                  <div class="mt-3">
+                    <h4>{{ profile.name }}</h4>
+                     <p class="text-secondary mb-1">{{ profile.educational_institution }}</p>
+                    <!-- <p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p> -->
+                    <!-- <button class="btn btn-primary">Follow</button>
+                    <button class="btn btn-outline-primary">Message</button> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            
+
+            {% if profile.twitter_profile_link or profile.github_profile_link or profile.linkedin_profile_link or profile.website_link %}
+                  <div class="card mt-3">
+                    <form class="user" style="padding: 1rem; margin: 0 1rem 0 1rem;">
+                      {% if profile.twitter_profile_link %}
+                      <a href="{{ profile.twitter_profile_link }}" class="btn btn-facebook btn-user btn-block" target="_blank" style="background-color: #1DA1F2;">
+                        <i class="fab fa-twitter fa-fw"></i> Twitter
+                      </a>
+                      {% endif %}
+                      {% if profile.github_profile_link %}
+
+                      <a href="{{ profile.github_profile_link }}" class="btn btn-facebook btn-user btn-block" target="_blank" style="background-color: #333;">
+                        <i class="fab fa-github fa-fw"></i> GitHub
+                      </a>
+                      {% endif %}
+                      {% if profile.linkedin_profile_link %}
+                      <a href="{{ profile.linkedin_profile_link }}" class="btn btn-facebook btn-user btn-block" target="_blank" style="background-color: #0E76A8;">
+                        <i class="fab fa-linkedin-in fa-fw"></i> LinkedIn
+                      </a>
+                      {% endif %}
+                      {% if profile.website_link %}
+                      <a href="{{ profile.website_link }}" class="btn btn-facebook btn-user btn-block" target="_blank" style="background-color: #1bb35f;">
+                        <i class="fa fa-globe fa-fw"></i> Personal Website
+                      </a>
+                      {% endif %}
+                    </form>
+                  </div>
+            {% endif %}
+
+           
+
+          </div> <!-- SIDE OF PROFILE PAGE END-->
+
+          <!-- <div class="col-md-8">
+            <div class="card mb-3 mt-3">
+                <div class="card-body">
+                    <div class="row">
+                        <P>{{ profile.bio }}</P>
+                    </div>
+                </div>
+                <hr>
+            </div>
+          </div> -->
+          
+          
+          <div class="col-md-8">
+
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="row">
+                        <P>{{ profile.bio }}</P>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="card mb-3 mt-3">
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <h6 class="mb-0">Full Name</h6>
+                    </div>
+                    <div class="col-sm-8 text-secondary">
+                      {{ profile.name }}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <h6 class="mb-0">Email</h6>
+                    </div>
+                    <div class="col-sm-8 text-secondary">
+                      {{ user.email }}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <h6 class="mb-0">Phone</h6>
+                    </div>
+                    <div class="col-sm-8 text-secondary">
+                      {{ profile.contact }}
+                    </div>
+                  </div>
+                  <hr>
+                  <!-- <div class="row">
+                    <div class="col-sm-4">
+                      <h6 class="mb-0">Mobile</h6>
+                    </div>
+                    <div class="col-sm-8 text-secondary">
+                      (320) 380-4539
+                    </div>
+                  </div> -->
+                  <!-- <hr> -->
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <h6 class="mb-0">Address</h6>
+                    </div>
+                    <div class="col-sm-8 text-secondary">
+                      {{ profile.shipping_address }}
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-sm-4">
+                      <h6 class="mb-0">Skills</h6>
+                    </div>
+                    <div class="col-sm-8 text-secondary">
+                      {{ profile.skills }}
+                    </div>
+                  </div>
+                  <hr>
+              <div class="row">
+                <div class="col-sm-4">
+                  <h6 class="mb-0">Gender</h6>
+                </div>
+                <div class="col-sm-8 text-secondary">
+                  {{ profile.gender }}
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-4">
+                  <h6 class="mb-0">Date of Birth</h6>
+                </div>
+                <div class="col-sm-8 text-secondary">
+                  {{ profile.dob }}
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-4">
+                  <h6 class="mb-0">State of Residence</h6>
+                </div>
+                <div class="col-sm-8 text-secondary">
+                  {{ profile.state }}
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-4">
+                  <h6 class="mb-0">T-Shirt Size</h6>
+                </div>
+                <div class="col-sm-8 text-secondary">
+                  {{ profile.tshirt_size }}
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-4">
+                  <h6 class="mb-0">Year of Graduation</h6>
+                </div>
+                <div class="col-sm-8 text-secondary">
+                  {{ profile.year_of_graduation }}
+                </div>
+              </div>
+              <hr>
+              <!-- <div class="row">
+                <div class="col-sm-4">
+                  <h6 class="mb-0">Mobile</h6>
+                </div>
+                <div class="col-sm-8 text-secondary">
+                  (320) 380-4539
+                </div>
+              </div>
+              <hr> -->
+              <div class="row">
+                <div class="col-sm-4">
+                  <h6 class="mb-0">IEEE Membership Status</h6>
+                </div>
+                <div class="col-sm-8 text-secondary">
+                  {% if profile.is_ieee == 1 %}
+                  Active IEEE Member
+                  {% else %}
+                  Not an IEEE Member
+                  {% endif %}
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-4">
+                  <h6 class="mb-0">Educational Institution</h6>
+                </div>
+                <div class="col-sm-8 text-secondary">
+                  {{ profile.educational_institution }}
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-sm-4">
+                  <h6 class="mb-0">Field of Study</h6>
+                </div>
+                <div class="col-sm-8 text-secondary">
+                  {{ profile.field_of_study }}
+                </div>
+              </div>
+              <!-- <hr> -->
+              <!-- <div class="row">
+                <div class="col-sm-4">
+                  <h6 class="mb-0">Bio</h6>
+                </div>
+                <div class="col-sm-8 text-secondary">
+                  {{ profile.bio }}
+                </div>
+              </div> -->
+            </div>
+        </div>
+
+        
+      </div>
+
+
+
+      </div>
+
+
+      
+
+
+          </div>
+        </div>
+      </div>
+  </div>
+
+
+{% endblock content %}
+

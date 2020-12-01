@@ -1,0 +1,13 @@
+{% extends 'email_base.html' %}
+
+{% block content %}
+        <h4>Dear {{ admin }}, </h4>
+        <h5 class="mt-4"> This is to inform you that a member has Left your team "{{ team_name }}".</h5>
+        <h5 class="mt-4"> Member Name: {{ user.profile.name }}</h5>
+        <h5 class="mt-4"> Email: {{ user.email }}</h5>
+        <h5 class="mt-4"> If this was by mistake, kindly ask them to join back to the team. Please complete your team and 
+            submit your application to hack(); before 15<sup>th</sup> January 2021.
+        </h5>
+        <h5 class="mt-4"> With Best Regards,</h5>
+        <h4> Team .hack();</h4>
+{% endblock %}

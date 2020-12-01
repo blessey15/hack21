@@ -5,14 +5,62 @@ from django.contrib.auth import authenticate
 from accounts.models import Account
 
 class RegistrationForm(UserCreationForm):
-    email = forms.EmailField(max_length=64, help_text='Required. Add a valid email address')
+    # email = forms.EmailField(max_length=64, help_text='Required. Add a valid email address')
+    username = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "placeholder" : "Username",                
+                "class": "form-control form-control-user",
+                "id": "exampleInputUsername"
+            }
+        ))
 
+    email = forms.EmailField(
+        widget=forms.EmailInput(
+            attrs={
+                "placeholder" : "Email",                
+                "class": "form-control form-control-user",
+                "id": "exampleInputEmail"
+            }
+        ))
+    password1 = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={
+                "placeholder" : "Password",                
+                "class": "form-control form-control-user",
+                "id": "exampleInputPassword"
+            }
+        ))
+    password2 = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={
+                "placeholder" : "Password check",                
+                "class": "form-control form-control-user",
+                "id": "exampleRepeatPassword"
+            }
+        ))
     class Meta:
         model = Account
         fields = ('email', 'username', 'password1', 'password2')
 
 class AccountAuthenticationForm(forms.ModelForm):
-    password = forms.CharField(label='password', widget=forms.PasswordInput)
+    # password = forms.CharField(label='password', widget=forms.PasswordInput)
+    email = forms.EmailField(
+        widget=forms.EmailInput(
+            attrs={
+                "placeholder" : "Enter Email Address...",                
+                "class": "form-control form-control-user",
+                "id": "exampleInputEmail"
+            }
+        ))
+    password = forms.CharField(
+        widget=forms.PasswordInput(
+            attrs={
+                "placeholder" : "Password",                
+                "class": "form-control form-control-user",
+                "id": "exampleInputPassword"
+            }
+        ))
 
     class Meta:
         model = Account
@@ -25,6 +73,24 @@ class AccountAuthenticationForm(forms.ModelForm):
             raise forms.ValidationError("Invalid Login!!")
 
 class AccountUpdateForm(forms.ModelForm):
+
+    username = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                "placeholder" : "Username",                
+                "class": "form-control form-control-user",
+                "id": "exampleInputUsername"
+            }
+        ))
+
+    email = forms.EmailField(
+        widget=forms.EmailInput(
+            attrs={
+                "placeholder" : "Email",                
+                "class": "form-control form-control-user",
+                "id": "exampleInputEmail"
+            }
+        ))
 
     class Meta:
         model = Account

@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" style="font-family: 'Roboto Mono', monospace; font-size: 62.5%;">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./styles.css" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        />
+        <title>Email Template</title>
+    </head>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+    </style>
+    <body style="padding: 0; margin: 0;">
+        <div class="container" style="background-color: white;max-width: 550px;margin: 0 auto;">
+            <section class="header" style="display: flex;">
+                <img src="{% static 'img/logo-techie.png' %}" alt="" class="header__logo" style="height: 50px;transform: translateX(-8px);" />
+            </section>
+            <section class="hero" style="background-color: #1bb35f;padding: 6rem 0 5rem 0;text-align: center;">
+                <h1 class="hero__heading" style="font-size: 3.5rem;color: #fff;margin-bottom: 1rem;">Hack is Coming!</h1>
+                <p class="hero__sub" style="line-height: 1.8;width: 80%;margin: 0 auto;font-weight: 500;font-size: 1.2rem;color: #fff;margin-bottom: 3rem;">
+                    A small river named Duden flows by their place and supplies it with the
+                    necessary regelialia.
+                </p>
+                <a href="http://hack.ieeemace.org/"class="hero__btn" style="text-decoration:none;padding: 0.8rem 1rem;border-radius: 4px;outline: none;color: #1bb35f;background-color: #fff;border: none;font-weight: 700;cursor: pointer;font-size: 1.4rem;">View Web</a>
+            </section>
+
+            <!-- add your content here -->
+            <section class="content" style="font-size: 1.6rem;">
+                <div style="line-height: 1.6;padding: 2rem 2rem 2rem 2rem; background-color: #fafafa;color: #36313d;">
+                    <h4 style="margin-bottom:.6rem">Hello {{ user.username }}, </h4>
+                    <h5 class="mt-4"> Thankyou for registering for .hack(); We hope to see you soon.</h5>
+                    <h5 class="mt-4"> With Best Regards,</h5>
+                    <h4 style="margin-top:.6rem"> Team .hack();</h4>
+                </div>
+            </section>
+            <!-- add your content here -->
+
+            <footer class="footer" style="text-align: center;background-color: #000;color: #fff;padding: 3rem 0;">
+                <div class="footer__social" style="margin-bottom: 2rem;">
+                    <a href="#" style="cursor: pointer;color: #fff;margin-right: 0.5rem;"><i class="fa fa-linkedin fa-2x"></i></a>
+                    <a href="#" style="cursor: pointer;color: #fff;margin-right: 0.5rem;"><i class="fa fa-twitter fa-2x"></i></a>
+                    <a href="#" style="cursor: pointer;color: #fff;"><i class="fa fa-instagram fa-2x"></i></a>
+                </div>
+                <p class="footer__contact" style="margin-bottom: 1rem;">
+                    <i class="fa fa-envelope"></i>
+                    Email us your queries at
+                    <a href="mailto:hack@ieeemace.org" style="color: #fff;text-decoration: none;">hack@ieeemace.org</a>
+                </p>
+                <p class="footer__copy"><span style="font-size: 15px;">&copy;</span> .hack(); 2020, All rights reserved.</p>
+            </footer>
+        </div>
+    </body>
+</html>

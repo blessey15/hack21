@@ -1,4 +1,4 @@
-asgiref==3.2.10
+asgiref
 certifi==2020.6.20
 cffi==1.14.3
 chardet==3.0.4
@@ -6,6 +6,7 @@ chardet==3.0.4
 defusedxml==0.6.0
 Django==3.0.6
 django-allauth==0.41.0
+gunicorn==20.0.4
 idna==2.10
 oauthlib==3.1.0
 psycopg2==2.8.6
@@ -21,3 +22,6 @@ social-auth-app-django==3.4.0
 social-auth-core==3.3.3
 sqlparse==0.2.4
 urllib3==1.25.10
+# django-widget-tweaks==1.4.8
+xlwt
+django-mailgun==0.9.1

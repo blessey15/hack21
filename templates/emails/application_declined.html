@@ -1,0 +1,14 @@
+{% extends 'email_base.html' %}
+
+{% block content %}
+    <h4>Dear {{ member.profile.name }}, </h4>
+    <p class="mt-4"> Thank you for takig the time to fill out the application for .hack(); 2021.
+        We regret to inform you that your application to .hack(); has been declined. We recevied an overwhelming number of applications for
+        .hack(); this year. Unfortunately, we need to limit the number of teams so that we can provide the best experience for all the 
+        teams that are participating. You can still attend all the webinars and workshops that are being conducted as part of .hack();. 
+        And hey, you don't need a hackathon to hack the problems around you.<br><br>
+        We wish you all the best in your future endeavours.
+    </p>
+    <p class="mt-4"> With Best Regards,</p>
+    <h4> Team .hack();</h4>
+{% endblock %}

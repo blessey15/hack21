@@ -4,55 +4,36 @@ from django.dispatch import receiver
 
 # from user.models import CustomUser
 from accounts.models import Account
+from .choices import *
 # Create your models here.
-
-GENDER_CHOICES=(
-    ('m','Male'),
-    ('f','Female'),
-    ('n',"Non Binary"),
-    ('na', 'Prefer not to say',)
-)
-T_SHIRT_SIZE_CHOICES=(
-    ('S','S'),
-    ('M','M'),
-    ('L','L'),
-    ('XL','XL'),
-    ('XXL','XXL')
-)
-FIELD_OF_STUDY_CHOICES=(
-    ('cs','Computer Science'),
-    ('ec','Electronics and Communication'),
-    ('me','Mechanical Engineering'),
-    ('ce','Civil Engineering'),
-    ('ee','Electrical and Electronis Engineering'),
-    ('it','Information Technology')
-)
-CLASS_CHOICES=(
-    (' ',' '),
-    ('S1R','S1R'),('S3R','S3R'),('S5R','S5R'),('S7R','S7R'),
-    ('S1LA','S1LA'),('S1LB','S1LB'),('S3LA','S3LA'),('S3LB','S3LB'),('S5LA','S5LA'),('S5LB','S5LB'),('S7LA','S7LA'),('S7LB','S7LB'),
-    ('S1EA','S1EA'),('S1EB','S1EB'),('S3EA','S3EA'),('S3EB','S3EB'),('S5EA','S5EA'),('S5EB','S5EB'),('S7EA','S7EA'),('S7EB','S7EB'),
-    ('S1CA','S1CA'),('S1CB','S1CB'),('S3CA','S3CA'),('S3CB','S3CB'),('S5CA','S5CA'),('S5CB','S5CB'),('S7CA','S7CA'),('S7CB','S7CB'),
-    ('S1MA','S1MA'),('S1MB','S1MB'),('S3MA','S3MA'),('S3MB','S3MB'),('S5MA','S5MA'),('S5MB','S5MB'),('S7MA','S7MA'),('S7MB','S7MB'),   
-)
 
 class ParticipantProfile(models.Model):
     user = models.OneToOneField(Account, related_name='profile', on_delete=models.CASCADE)
 
+    team_status = models.CharField(max_length=10, choices=TEAM_STATUS_CHOICES, default='Has Team', blank=False)
     name = models.CharField(max_length=256, blank=False)
-    contact = models.IntegerField( blank=False)
+    contact = models.CharField(max_length=13, blank=False)
     dob = models.DateField()
-    gender = models.CharField(max_length=2, choices=GENDER_CHOICES, blank=False)
+    gender = models.CharField(max_length=11, choices=GENDER_CHOICES, blank=False)
     bio = models.TextField()
     tshirt_size = models.CharField(max_length=3, choices=T_SHIRT_SIZE_CHOICES, verbose_name='T-Shirt Size')
     #emergency conatct
     skills = models.TextField()
     educational_institution = models.CharField(max_length= 128)
-    field_of_study = models.CharField(max_length=64, choices=FIELD_OF_STUDY_CHOICES, blank=True, verbose_name='Field of Study')
+    field_of_study = models.CharField(max_length=30, choices=FIELD_OF_STUDY_CHOICES, blank=False, default='BTech', verbose_name='Field of Study')
+    is_ieee = models.IntegerField(choices=BOOLEAN_CHOICES, default=0, blank=False, verbose_name="Are you an IEEE member?")
+    shipping_address = models.TextField(blank=False, default=' ')
+    state = models.CharField(max_length=41, choices=STATE_OF_RESIDENCE_CHOICES, blank=False, default='Kerala', verbose_name='State/Province of Residence')
+    educational_status = models.CharField(max_length=12, blank=False, choices=EDUCATIONAL_STATUS_CHOICES, default='Bachelors')
+    year_of_graduation = models.IntegerField(choices=YEAR_OF_GRADUATION_CHOICES, blank=False, default=2023)
+    # previous_projects
+    website_link = models.URLField(verbose_name="Personal Website Link", blank=True)
     github_profile_link = models.URLField(verbose_name="GitHub Profile Link", blank=True)
     twitter_profile_link = models.URLField(verbose_name="Twitter Profile Link", blank=True)
     linkedin_profile_link = models.URLField(verbose_name="LinkedIn Profile Link", blank=True)
-    resume_link = models.URLField(verbose_name="Link to your resume", blank=True)
+    avatar_choice = models.CharField(max_length=25, blank=False, default="nota", verbose_name="Which of the following Characters do you relate yourselves to the most?")
+    welcome_mail_sent = models.BooleanField(default=False)
+    # resume_link = models.URLField(verbose_name="Link to your resume", blank=True)
 
     def __str__(self):
         return self.user.email

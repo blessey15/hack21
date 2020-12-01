@@ -1,0 +1,165 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>.hack( ); 2021</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;1,100;1,300;1,400&display=swap" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="{% static 'css/sb-admin-2.css' %}" rel="stylesheet">
+    <link href="{% static 'css/dashboard-custom.css' %}" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+
+</head>
+
+<style>
+    .filtershow{
+        display: table-row !important;
+    }
+
+    .btn{
+        margin-left: .5em;
+    }
+    .btn.active {
+    background-color: #4E73DF;
+    color: white;
+}
+    #myBtnContainer{
+        margin-left: 2rem;
+        margin-top: 2rem;
+    }
+    #dataTable_filter{
+        text-align: right;
+    }
+    #dataTable_filter >label{
+        width: 40%;
+        text-align: left;
+    }
+
+    .vertical-center {
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+}
+</style>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Begin Page Content -->
+                {% block body %}
+                    <div class="container">
+                        {% block breadcrumb %}
+                        {% endblock %}
+                        <div class="container">
+                            <div class="main-body">
+                                <div class="row gutters-sm">
+                                   
+                        
+                                    <div class="col-md-8 offset-2"> <!-- center section of home-->
+                                        
+                                        <div class="row">
+                                            <div class="col my-5">
+                                                <div class="card mb-3 mt-3">
+                                                    <div class="card-body">
+                                                        <div class="row text-center" style="background-color: #1bb35f; min-height: 6rem; text-align: center;">
+                                                               <div class="mb-0 text-center" style="width: 100%; top: 50%;"><h1 style="font-size: 4rem; color: white;">>.hack( ); 2021</h1></div> 
+                                                        </div>
+                                                        <hr />
+                                                        <div class="row">
+                                                            <!-- <div class="col-sm-4">
+                                                                <h6 class="mb-0">Date of Birth</h6>
+                                                            </div>
+                                                            <div class="col-sm-8 text-secondary">{{ request.user.profile.dob }}</div> -->
+                                                            <div class="px-5 py-2">
+                                                                {% block content %}
+                                                                {% endblock %}
+                                                            </div>
+                                                        </div>
+                                                        <hr />
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                {% endblock body %}
+
+                <!-- /.container-fluid -->
+                </div>
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- End of Content Wrapper -->
+    
+        </div>
+        <!-- End of Page Wrapper -->
+
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>&copy; All rights reserved -<a href="{% url 'landing_page' %}">.hack ( ); 2021</a></span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+
+
+    
+    <!-- Bootstrap core JavaScript-->
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
+
+
+    
+   
+</body>
+
+</html>

@@ -1,0 +1,170 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./styles.css" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
+            rel="stylesheet"
+        />
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        />
+        <title>Email Template</title>
+    </head>
+    <style>
+        /* * {
+            margin: 0;
+            padding: 0;
+        } */
+
+        html {
+            font-family: "Roboto Mono", monospace;
+            font-size: 62.5%;
+        }
+
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            max-width: 550px;
+            margin: 0 auto;
+        }
+
+        .header {
+            display: flex;
+        }
+        .header__logo {
+            height: 50px;
+            transform: translateX(-8px);
+        }
+
+        .hero {
+            background-color: #1bb35f;
+            background-image: url("{% static 'img/welcome_mail_header.jpg' %}");
+            /* padding: 6rem 0 5rem 0; */
+            text-align: center;
+        }
+        .hero__heading {
+            font-size: 3.5rem;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+        .hero__sub {
+            line-height: 1.8;
+            width: 80%;
+            margin: 0 auto;
+            font-weight: 500;
+            font-size: 1.2rem;
+            color: #fff;
+            margin-bottom: 3rem;
+        }
+        .hero__btn {
+            padding: 0.8rem 1rem;
+            border-radius: 4px;
+            outline: none;
+            color: #1bb35f;
+            background-color: #fff;
+            border: none;
+            font-weight: 900;
+            cursor: pointer;
+            position: relative;
+            top: 22rem;
+        }
+
+        .footer {
+            text-align: center;
+            background-color: #000;
+            color: #fff;
+            padding: 3rem 0;
+        }
+        .footer__social {
+            margin-bottom: 2rem;
+        }
+        .footer__social a {
+            cursor: pointer;
+            color: #fff;
+        }
+        .footer__social a:not(:last-child) {
+            margin-right: 0.5rem;
+        }
+        .footer__social i {
+            border: 2px solid white;
+            font-size: 2rem;
+            padding: 0.5rem;
+            border-radius: 50%;
+        }
+        .footer__contact {
+            margin-bottom: 1rem;
+        }
+        .footer__contact i {
+            font-size: 1.2rem;
+        }
+        .footer__contact a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .content {
+            font-size: 1.6rem;
+        }
+    </style>
+    <body>
+        <div class="container">
+            <section class="header">
+                <img src="./images/logo.png" alt="" class="header__logo" />
+            </section>
+            <section class="hero" style="min-height: 302px; min-width: 549px;">
+                <!-- <h1 class="hero__heading">Hack is Coming!</h1>
+                <p class="hero__sub">
+                    A small river named Duden flows by their place and supplies it with the
+                    necessary regelialia.
+                </p> -->
+                <button class="hero__btn">View Web</button>
+            </section>
+
+            <!-- add your content here -->
+            <section class="content">
+                <div style="padding: 2rem 2rem 2rem 2rem; background-color: #fafafa;">
+                    <h4>Hello {{ user.profile.name }}, </h4>
+                    <p class="mt-4"> Thankyou for registering for .hack(); 2021. Your account has been created for .hack();<br>
+                        Account details are: <br>
+                        <b>Email: </b>{{ user.email }}<br>
+                        <b>Username: </b>{{ user.username }}<br>
+                        You may use this accout for all the further proceedings of the registration.<br><br>
+                        In order to participate in .hack(); 2021, you need to have a team. The maximum nunber of members per team is 4. You can either
+                        create a team or you can join a team if a team has already been created for you. After creating a team, you will be given a
+                        unique Team ID with which all the other members can join your team. Please keep the Team ID confidential among members of your
+                        teammates as it is considered as the key for joining your team. If someone from you team has already created a team, you can 
+                        search for the team with the Team ID and join the team. Please make sure you either create a team or join one and submit
+                        your appplication before 15<sup>th</sup> January 2021.
+                    </p>
+                    <p class="mt-4"> With Best Regards,</p>
+                    <h4> Team .hack();</h4>
+                </div>
+            </section>
+            <!-- add your content here -->
+
+            <footer class="footer">
+                <div class="footer__social">
+                    <a href="https://www.linkedin.com/company/ieee-student-branch-mace/" target="_blank"><i class="fa fa-linkedin fa-2x"></i></a>
+                    <a href="https://twitter.com/MaceSb" target="_blank"><i class="fa fa-twitter fa-2x"></i></a>
+                    <a href="https://www.instagram.com/ieee_mace_sb/" target="_blank"><i class="fa fa-instagram fa-2x"></i></a>
+                </div>
+                <p class="footer__contact">
+                    <i class="fa fa-envelope"></i>
+                    Email us your queries at
+                    <a href="mailto:hack@ieeemace.org">hack@ieeemace.org</a>
+                </p>
+                <p class="footer__copy">&copy; .hack(); 2020, All rights reserved.</p>
+            </footer>
+        </div>
+    </body>
+</html>

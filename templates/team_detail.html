@@ -1,0 +1,225 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% block breadcrumb %}
+<!-- <li class="breadcrumb-item active">.hack( ); 2021</li> -->
+{% endblock %} {% block content %}
+<style>
+    .card-box {
+        padding: 20px;
+        border-radius: 3px;
+        margin-bottom: 30px;
+        background-color: #fff;
+    }
+
+    .social-links li a {
+        border-radius: 50%;
+        color: rgba(121, 121, 121, 0.8);
+        display: inline-block;
+        height: 30px;
+        line-height: 27px;
+        border: 2px solid rgba(121, 121, 121, 0.5);
+        text-align: center;
+        width: 30px;
+    }
+
+    .social-links li a:hover {
+        color: #797979;
+        border: 2px solid #797979;
+    }
+    .thumb-lg {
+        height: 88px;
+        width: 88px;
+    }
+    .img-thumbnail {
+        padding: 0.25rem;
+        background-color: #fff;
+        border: 1px solid #dee2e6;
+        border-radius: 0.25rem;
+        max-width: 100%;
+        height: auto;
+    }
+    .text-pink {
+        color: #ff679b !important;
+    }
+    .btn-rounded {
+        border-radius: 2em;
+    }
+    .text-muted {
+        color: #98a6ad !important;
+    }
+    h4 {
+        line-height: 22px;
+        font-size: 18px;
+    }
+</style>
+{% if request.user.is_authenticated %} {% if team %}
+<div class="row mb-5">
+    <div class="col-md-8 mx-auto">
+        <div class="card">
+          
+            <div class="card-body">
+                <h3>Team Name: {{ team.name }}</h3>
+                <!-- <p>Application Status: {{ application.application_status }}</p> -->
+                <!-- <span>Application Status: </span> -->
+                {% if application.application_status == 'Not Submitted'%}
+                <p class="btn btn-info btn-icon-split mb-3" >Application Status: Not Submitted</p>
+                {% if request.user == application.team.admin %}
+                <a href="{% url 'leave_team' application.team.id %}"> <button name="leave_team" class="btn btn-primary mb-3">Delete Team</button></a>
+                <a href="{% url 'submit_application' %}"> <button name="leave_team" class="btn btn-primary mb-3">Submit Application</button></a>
+                {% endif %} {% elif application.application_status == 'Accepted' %}
+                <p class="btn btn-primary btn-icon-split">Application Status: Accepted</p>
+                {% elif application.application_status == 'Declined' %}
+                <p class="btn btn-danger btn-icon-split">Application Status: Declined.</p>
+                {% else %}
+                <p class="btn btn-warning btn-icon-split">Application Status: Submitted.</p>
+                {% endif %}
+                <hr>
+                {% if request.user.is_organizer %}
+
+                <h5>Number of Members: {{ number_of_members }}</h5>
+                <h5>Created By: {{ team.admin.profile.name }} - {{ team.admin.email }}</h5>
+                <h5>Members</h5>
+                <ol>
+                    {% for member in application.members.all %}
+                    <li>
+                        {{ member.profile.name }} - {{ member.email }}
+                        <!-- -  <a href="{{ member.profile.github_profile_link }}" target="_blank">GitHub</a>
+                            | <a href="{{ member.profile.twitter_profile_link }}" target="_blank">Twitter</a>
+                            | <a href="{{ member.profile.linkedin_profile_link }}" target="_blank"> | LinkedIn</a> -->
+                            {% if member.profile.github_profile_link %} - <a href="{{ member.profile.github_profile_link }}" target="_blank">GitHub</a> {% endif %} {% if member.profile.twitter_profile_link %} | <a href="{{ member.profile.twitter_profile_link }}" target="_blank">Twitter</a> {% endif %} {% if member.profile.linkedin_profile_link %} | <a href="{{ member.profile.linkedin_profile_link }}" target="_blank"> | LinkedIn</a>
+                            {% endif %}
+                        </li>
+                        {% endfor %}
+                    </ol>
+                    <div class="my-3"> 
+                        <a href="{% url 'accept_team' team.id %}"><button type="submit" name="application_status_update" class="btn btn-primary mr-2">Accept</button></a>
+                        <a href="{% url 'decline_team' team.id %}"><button type="submit" name="application_status_update" class="btn btn-primary mr-2">Decline</button></a>
+                        <a href="{% url 'waitinglist_team' team.id %}"><button type="submit" name="application_status_update" class="btn btn-primary mr-2">Waiting List</button></a>
+                    </div>
+
+                <!-- <form method="POST" action="">
+                        {% csrf_token %}
+  
+                        <label for="appli_status">Application Status:</label>
+                        <select id="appli_status" name="application_status">
+                          <option value="Accepted">Accepted</option>
+                          <option value="Declined">Declined</option>
+                          <option value="Waitinglist">Waitinglist</option>
+                        </select>
+                        <button type="submit" name="application_status_update" class="btn btn-primary">Update Status</button>
+  
+                      </form> -->
+                {% else %}
+                <!-- if is orgganizer -->
+                {% if in_team %}
+                <h5>Number of Members: {{ number_of_members }}</h5><hr>
+                <h5>Created By: {{ team.admin.profile.name }} - {{ team.admin.email }}</h5><hr>
+                <!-- <h5>Members</h5> -->
+                
+                <h4>You are member of this team</h4>
+                {% else %}
+                <h5>Number of Members: {{ number_of_members }}</h5>
+                <h5>Created By: {{ team.admin.profile.name }} - {{ team.admin.email }}</h5>
+                {% if not has_a_team %}
+                <a href="{% url 'join_team' team.id %}"> <button name="send_request" class="btn btn-primary">Join Team</button></a>
+                {% else %}
+                <h4>You are already a member of another team and can't join this team</h4>
+                {% endif %} {% endif %}
+                <!-- if in_team -->
+                {% endif %}
+                <!-- if is orgganizer -->
+                <!-- <form method="POST">
+                    <button type="submit" name="send_request" class="btn btn-primary">Join</button>
+                  </form> -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-8 mx-auto">
+  <h1 class="mb-5" style="text-align: center;">Team Members</h1>
+</div>
+
+<div class="row justify-content-center">
+    {% for member in application.members.all %}
+        <div class="col-lg-4 mx-2">
+            <div class="text-center card-box">
+                <div class="member-card pt-2 pb-2">
+                    <div class="thumb-lg member-thumb mx-auto"><img src="{% static 'img/avatars' %}/{{ member.profile.avatar_choice }}.jpg" class="rounded-circle img-thumbnail" alt="profile-image" /></div>
+                    <div class="">
+                        <h4>{{ member.profile.name }} </h4>
+                        <p class="text-muted">
+                            <span>{{ member.email }}</span>
+                        </p>
+                    </div>
+ 
+                        <ul class="social-links list-inline">
+                                {% if member.profile.github_profile_link %}
+                                    <li class="list-inline-item hover-green">
+                                        <a title="" 
+                                            data-placement="top" data-toggle="tooltip" class="tooltips hover-green" 
+                                            href="{{ member.profile.github_profile_link }}"
+                                            target="_blank" 
+                                            data-original-title="GitHub">
+                                                <i class="fab fa-github"></i>
+                                        </a>
+                                    </li>
+                                {% endif %}
+
+
+                                {% if member.profile.twitter_profile_link %}
+                                    <li class="list-inline-item">
+                                        <a title="" 
+                                            data-placement="top" data-toggle="tooltip" class="tooltips hover-green" 
+                                            href="{{ member.profile.twitter_profile_link }}"
+                                            target="_blank" 
+                                            data-original-title="Twitter">
+                                                <i class="fab fa-twitter"></i>
+                                        </a>
+                                    </li>
+                                {% endif %}
+
+
+                                {% if member.profile.linkedin_profile_link %}
+                                    <li class="list-inline-item">
+                                        <a title="" 
+                                            data-placement="top" data-toggle="tooltip" class="tooltips hover-green" 
+                                            href="{{ member.profile.linkedin_profile_link }}"
+                                            target="_blank" 
+                                            data-original-title="LinkedIn">
+                                                <i class="fab fa-linkedin"></i>
+                                        </a>
+                                    </li>
+                                {% endif %}
+
+                                {% if member.profile.website_link %}
+                                    <li class="list-inline-item">
+                                        <a title="" 
+                                            data-placement="top" data-toggle="tooltip" class="tooltips hover-green" 
+                                            href="{{ member.profile.website_link }}"
+                                            target="_blank" 
+                                            data-original-title="Website">
+                                                <i class="fa fa-globe"></i>
+                                        </a>
+                                    </li>
+                                {% endif %}
+
+                        </ul>
+                        <a href="{% url 'profile' member.id %}">
+                            <button type="button" 
+                                class="btn btn-primary mt-3 btn-rounded waves-effect w-md waves-light">
+                                    View Profile
+                            </button>
+                        </a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endif %}
+<!--if team -->
+{% endif %}
+<div class="card-footer text-muted text-center"></div>
+
+{% endblock content %}
+\

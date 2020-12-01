@@ -1,0 +1,41 @@
+
+{% extends 'base.html' %}
+
+
+{% block content %}
+      <!-- Outer Row -->
+      <div class="row justify-content-center login-section" style="margin-top: -1.5rem;">
+
+          <div class="col-11 col-sm-8 col-md-6 col-lg-6 col-xl-4">
+
+              <div class="card o-hidden border-0 my-5">
+                  <div class="card-body p-0">
+                      <!-- Nested Row within Card Body -->
+                      <div class="row">
+                          <div class="col-lg-6 d-none d-lg-block bg-password-image"></div>
+                          <div class="col-lg-12">
+                              <div style="padding: 2.5rem 2rem;">
+                                  <div class="text-center" style="min-height: 20rem; display: flex; align-items: center;">
+                                      <!-- <h1 class="h4 text-gray-900 mb-2">Forgot Your Password?</h1> -->
+                                      <div>
+                                      <h2 class="mb-4">{{ message }}</h2>
+                                      <form class="user" style="text-align: center;">
+                                        <a class="small" href="{% url 'home' %}"><div class="btn btn-primary btn-user ml-0">Back To Dashborad</div></a>
+                                    </form>
+                                </div>
+                                  </div>
+                                  <hr>
+                                  <div class="text-center">
+                                      <a class="small" href="{% url 'home' %}">Back to Dashborad</a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+          </div>
+
+      </div>
+
+{% endblock %}

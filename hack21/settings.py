@@ -39,8 +39,20 @@ ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
 
 
 #email backends
-if DEBUG:
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend '
+# if DEBUG:
+#     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend '
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = os.environ.get("EMAIL_HOST")
+EMAIL_PORT = os.environ.get("EMAIL_PORT")
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
+EMAIL_USE_TLS = True
+EMAIL_TIMEOUT = 5
+DEFAULT_FROM_EMAIL = 'hack@mg.ieeemace.org'
+
+
 
 # Application definition
 
@@ -52,6 +64,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'django.contrib.postgres',
 
     # 'user',
     'accounts',
@@ -62,6 +75,7 @@ INSTALLED_APPS = [
     'social_django', #gh, fb auth
     'profiles',
     'application',
+    # 'widget_tweaks'
 ]
 
 MIDDLEWARE = [
@@ -159,12 +173,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 #Static files config
-STATIC_URL = '/static/'
+# STATIC_URL = '/static/'
 
+# STATICFILES_DIRS = [
+# os.path.join(BASE_DIR, 'staticfiles'),
+# ]
+
+STATIC_URL = "/staticfiles/"
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 STATICFILES_DIRS = [
 os.path.join(BASE_DIR, 'static'),
 ]
-
 
 
 AUTH_USER_MODEL='accounts.Account' #custom user model
@@ -207,22 +226,7 @@ SOCIALACCOUNT_PROVIDERS = {
 }
 
 #GitHub
-SOCIAL_AUTH_GITHUB_KEY = 'af28583955286523de58'
-SOCIAL_AUTH_GITHUB_SECRET = '6cdaa56dad33092cef90a4b7817cfbe08ea05269'
+SOCIAL_AUTH_GITHUB_KEY = os.environ.get('SOCIAL_AUTH_GITHUB_KEY')
+SOCIAL_AUTH_GITHUB_SECRET = os.environ.get('SOCIAL_AUTH_GITHUB_SECRET')
 SOCIAL_AUTH_GITHUB_SCOPE =['user']
 
-#Twitter -> Not functioning
-SOCIAL_AUTH_TWITTER_KEY = 'BCcr62lglIFzXArJzgdDgZJxg'
-SOCIAL_AUTH_TWITTER_SECRET = 'p1zdhfYE11OiJhPYWD4V38UdIrBfSzmcl36LOvE7mjCcOqXrqn'
-SOCIAL_AUTH_TWITTER_SCOPE =['user']
-
-#Facebook
-SOCIAL_AUTH_FACEBOOK_KEY = '209821926705333'  
-SOCIAL_AUTH_FACEBOOK_SECRET = '8ebc15783ebf1cfcbdd626502d1f6f9c'
-SOCIAL_AUTH_FACEBOOK_SCOPE = ['email'] 
-SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {       
-  'fields': 'email'
-}
-SOCIAL_AUTH_FACEBOOK_EXTRA_DATA = [                 
-    ('email', 'email'),
-]
