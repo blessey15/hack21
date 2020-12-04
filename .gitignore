@@ -14,6 +14,9 @@ __pycache__/
 #virtual environment
 myenv/
 
+.env.prod
+.env.prod.db
+
 # C extensions
 *.so
 
