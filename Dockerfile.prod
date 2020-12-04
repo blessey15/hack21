@@ -1,76 +1,36 @@
-###########
-# Builder #
-###########
-
-# base image
-FROM python:3 as builder
-
-RUN mkdir code/
-
-# set work directory
-WORKDIR /code
-
-# set environment variables
+FROM python:3.7-slim-buster
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-# install psycopg2 dependencies
-RUN apt-get update && apt-get install -y libgdal-dev g++ --no-install-recommends && apt-get clean -y
-
-# install psycopg2 dependencies
-# RUN apk update \
-#     && apk add postgresql-dev gcc python3-dev musl-dev
-
-
-# lint
 RUN pip install --upgrade pip
-RUN pip install flake8
-RUN flake8 --ignore=E501,F401 .
 
-# install dependen/cies
+
+RUN apt-get update \
+  # dependencies for building Python packages
+  && apt-get install -y build-essential libgdal-dev python3-dev \
+  # psycopg2 dependencies
+  && apt-get install -y libpq-dev \
+  # cleaning up unused files
+  && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false \
+  && rm -rf /var/lib/apt/lists/*
+
+RUN mkdir /code
+
+
+RUN mkdir /code/staticfiles
+RUN mkdir /code/mediafiles
+WORKDIR /code
 COPY requirements.txt /code/
-RUN pip wheel --no-cache-dir --no-deps --wheel-dir /code/wheels -r requirements.txt
+RUN pip install -r requirements.txt
 
-
-#########
-# FINAL #
-#########
-
-
-FROM python:3
-
-# create directory for the app user
-RUN mkdir -p /home/hack21
 
 # create the app user
-RUN addgroup --system hack21 && adduser --system hack21_user
-# RUN usermod -a -G hack21 hack_21_user
+RUN addgroup --system code \
+  && adduser --system --ingroup code code
 
-ENV HOME=home/hack21
-ENV APP_HOME=home/hack21/web
-RUN mkdir -p $APP_HOME
-WORKDIR $APP_HOME
+COPY . /code/
 
-# install dependencies
-# RUN apk update && apk add libpq
-RUN apt-get update -y && apt-get install -y libpq-dev
-COPY --from=builder /code/wheels /wheels
-COPY --from=builder /code/requirements.txt .
-RUN pip install --no-cache /wheels/*
+RUN chown -R code:code /code/
 
-# copy entrypoint-prod.sh
-COPY ./entrypoint.prod.sh $APP_HOME
+USER code
 
-# copy project
-COPY . .
-
-# chown all the files to hack_21_user
-RUN chown -R hack21_user:hack21 $APP_HOME
-
-# change to the app user
-USER hack21_user
-
-
-
-# run entrypoint.prod.sh
-# ENTRYPOINT ["./home/hack21/web/entrypoint.prod.sh"]
