@@ -4,22 +4,23 @@
     db:
       image: postgres
       environment:
-        - POSTGRES_DB=postgres
-        - POSTGRES_USER=postgres
-        - POSTGRES_PASSWORD=postgres
+        - POSTGRES_DB=hack_db_prod
+        - POSTGRES_USER=hack_user
+        - POSTGRES_PASSWORD=crazy_unicorn
     web:
       build:
         context: .
         dockerfile: Dockerfile.prod
-      command: gunicorn tailorit.wsgi:application --bind 0.0.0.0:8000
+      command: gunicorn hack21.wsgi:application --bind 0.0.0.0:8000 --env DJANGO_SETTINGS_MODULE=hack21.settings.production
+      # command: python manage.py runserver 0.0.0.0:8000
 
 #      command: python manage.py runserver 0.0.0.0:8000
       volumes:
         - .:/code
         - static_volume:/code/staticfiles
         - media_volume:/code/mediafiles
-#      ports:
-#        - "8000:8000"
+      # ports:
+      #  - "8000:8000"
       expose:
         - 8000
       depends_on:
@@ -28,39 +29,55 @@
         - .env.prod
 
 
-    nginx-proxy:
-      container_name: nginx-proxy
-      build: nginx
+    nginx:
+      build: ./nginx
       restart: always
-      ports:
-        - 443:443
+      container_name: hack_nginx
+      ports: 
         - 80:80
       volumes:
         - static_volume:/code/staticfiles
         - media_volume:/code/mediafiles
-        - certs:/etc/nginx/certs
         - html:/usr/share/nginx/html
-        - vhost:/etc/nginx/vhost.d
         - /var/run/docker.sock:/tmp/docker.sock:ro
+        - /var/run/docker.sock:/var/run/docker.sock:ro
+        - vhost:/etc/nginx/vhost.d
       depends_on:
         - web
+    
+    
+        # nginx-proxy:
+    #   container_name: nginx-proxy
+    #   build: nginx
+    #   restart: always
+    #   ports:
+    #     - 443:443
+    #     - 80:80
+    #   volumes:
+    #     - static_volume:/code/staticfiles
+    #     - media_volume:/code/mediafiles
+    #     - certs:/etc/nginx/certs
+    #     - html:/usr/share/nginx/html
+    #     - vhost:/etc/nginx/vhost.d
+    #     - /var/run/docker.sock:/tmp/docker.sock:ro
+    #   depends_on:
+    #     - web
 
-    nginx-proxy-letsencrypt:
-      image: jrcs/letsencrypt-nginx-proxy-companion
-      env_file:
-        - .env.proxy-companion
-      volumes:
-        - /var/run/docker.sock:/var/run/docker.sock:ro
-        - certs:/etc/nginx/certs
-        - html:/usr/share/nginx/html
-        - vhost:/etc/nginx/vhost.d
-      depends_on:
-        - nginx-proxy
+    # nginx-proxy-letsencrypt:
+    #   image: jrcs/letsencrypt-nginx-proxy-companion
+    #   env_file:
+    #     - .env.proxy-companion
+    #   volumes:
+    #     - /var/run/docker.sock:/var/run/docker.sock:ro
+    #     - certs:/etc/nginx/certs
+    #     - html:/usr/share/nginx/html
+    #     - vhost:/etc/nginx/vhost.d
+    #   depends_on:
+    #     - nginx-proxy
 
 
   volumes:
     static_volume:
     media_volume:
-    certs:
     html:
     vhost:
