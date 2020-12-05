@@ -25,18 +25,18 @@ def landing_page_view(request):
     # send_mail(
     #     'Mail Client Set',
     #     'Mail Client set aayi',
-    #     'postmaster@mg.ieeemace.org',
+    #     'hack@mg.ieeemace.org',
     #     ['melvin_thomas@ieee.org'],
     #     fail_silently=False,
     # )
-    # with mail.get_connection() as connection:
-    #     mail.EmailMessage(
-    #         'TEST MAIL SUBJECT',
-    #          'TEST MAIL BODY', 
-    #          'postmaster@sandbox5e247a864ddc4e418abb514b8d73e12b.mailgun.org',
-    #           ['melvinchooranolil@gmail.com'],
-    #         connection=connection,
-    #     ).send()
+    with mail.get_connection() as connection:
+        mail.EmailMessage(
+            'TEST MAIL SUBJECT',
+             'TEST MAIL BODY', 
+             'hack@mg.ieeemace.org',
+              ['melvinchooranolil@gmail.com'],
+            connection=connection,
+        ).send()
     return render(request, 'index.html', {})
 
 def sponsor_view(request):
