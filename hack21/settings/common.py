@@ -17,8 +17,8 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 # BASE_DIR = os.path.join( os.path.dirname( __file__ ), '..' )
-print("base DIR\n\n\n")
-print(BASE_DIR)
+#print("base DIR\n\n\n")
+#print(BASE_DIR)
 # os.path.join( os.path.dirname( __file__ ), '..' )
 
 
@@ -34,9 +34,9 @@ import django
 # django.setup()
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+#DEBUG = True
 # DEBUG = int(os.environ.get("DEBUG", default=0))
-print("dEbug True")
+#print("dEbug True")
 
 
 # ALLOWED_HOSTS = []
