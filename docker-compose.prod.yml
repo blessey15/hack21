@@ -3,11 +3,13 @@
   services:
     db:
       image: postgres
+      container_name: hack_db
       environment:
         - POSTGRES_DB=hack_db_prod
         - POSTGRES_USER=hack_user
         - POSTGRES_PASSWORD=crazy_unicorn
     web:
+      container_name: hack_app
       build:
         context: .
         dockerfile: Dockerfile.prod
