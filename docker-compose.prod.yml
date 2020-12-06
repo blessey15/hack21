@@ -14,7 +14,7 @@
         context: .
         dockerfile: Dockerfile.prod
       command: gunicorn hack21.wsgi:application --bind 0.0.0.0:8000 --env DJANGO_SETTINGS_MODULE=hack21.settings.production
-      # command: python manage.py runserver 0.0.0.0:8000
+      #command: python manage.py runserver 0.0.0.0:8000
 
 #      command: python manage.py runserver 0.0.0.0:8000
       volumes:

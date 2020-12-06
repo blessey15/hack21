@@ -29,14 +29,14 @@ def landing_page_view(request):
     #     ['melvin_thomas@ieee.org'],
     #     fail_silently=False,
     # )
-    with mail.get_connection() as connection:
-        mail.EmailMessage(
-            'TEST MAIL SUBJECT',
-             'TEST MAIL BODY', 
-             'hack@mg.ieeemace.org',
-              ['melvinchooranolil@gmail.com'],
-            connection=connection,
-        ).send()
+    # with mail.get_connection() as connection:
+    #    mail.EmailMessage(
+    #        'TEST MAIL SUBJECT',
+    #         'TEST MAIL BODY', 
+    #         'hack@mg.ieeemace.org',
+    #          ['melvinchooranolil@gmail.com'],
+    #        connection=connection,
+    #    ).send()
     return render(request, 'index.html', {})
 
 def sponsor_view(request):
