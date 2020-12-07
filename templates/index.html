@@ -59,6 +59,9 @@
       href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
       rel="stylesheet"
     />
+            <link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/png">
+
+
     <title>Hack | Home</title>
   </head>
   <body>
@@ -91,9 +94,11 @@
         <ul class="nav__list">
           <li class="nav__item"><a href="#about">About</a></li>
           <li class="nav__item"><a href="#speakers">Speakers</a></li>
-          <li class="nav__item"><a href="#schedule">Schedule</a></li>
+          <!-- <li class="nav__item"><a href="#schedule">Schedule</a></li> -->
           <li class="nav__item"><a href="#rewind">After Video</a></li>
           <li class="nav__item"><a href="#testimonial">Testimonials</a></li>
+          <li class="nav__item"><a href="#sponsors1">Sponsors</a></li>
+          <li class="nav__item"><a href="#faq">FAQS</a></li>
           <li class="nav__item btn--anim register-btn"><a href="{% url 'register' %}">Register</a></li>
         </ul>
       </nav>
@@ -109,7 +114,7 @@
             /></span>
             <span class="heading-primary--sub">
               <span class="heading-primary--sub-large">2021 | </span>
-              February 19th - 21st
+              January 29th - 31st
             </span>
           </h1>
           <div class="header__btn-box">
@@ -403,7 +408,7 @@
           </div>
         </section>
 
-        <section id="sponsors" class="sponsors sponsors-temp">
+        <section id="sponsors1" class="sponsors sponsors-temp">
           <div class="container">
             <div class="sponsors__container sponsors__container--main">
               <h5
@@ -648,12 +653,7 @@
               </div>
 
               <div class="row">
-                <a
-                  href="https://studentpartners.microsoft.com/en-us"
-                  target="_blank"
-                  style="margin: auto"
-                  ><img class="sponsors__img" src="{% static 'img/sponsors/msp.svg' %}" alt=""
-                /></a>
+                
                 <a
                   href="https://studentpartners.microsoft.com/en-us"
                   target="_blank"
@@ -662,6 +662,12 @@
                     class="sponsors__img"
                     src="{% static 'img/sponsors/msp2.svg' %}"
                     alt=""
+                /></a>
+                <a
+                  href="https://studentpartners.microsoft.com/en-us"
+                  target="_blank"
+                  style="margin: auto"
+                  ><img class="sponsors__img" src="{% static 'img/sponsors/msp.svg' %}" alt=""
                 /></a>
                 <a
                   href="https://www.youtube.com/channel/UCpr-AwJ4AyzQSupU9HuFWOg"

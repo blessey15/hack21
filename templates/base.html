@@ -29,6 +29,8 @@
         <link href="{% static 'css/sb-admin-2.css' %}" rel="stylesheet" />
         <link href="{% static 'css/dashboard-custom.css' %}" rel="stylesheet" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
+                <link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/png">
+
     </head>
 
     <style>
@@ -103,7 +105,7 @@
                         <i class="fa fa-bars"></i>
                     </button> -->
                         <div>
-                            <a href="{% url 'home' %}">
+                            <a href="{% url 'landing_page' %}">
                                 <img
                                     src="{% static 'img/logo-techie.png' %}"
                                     style="
@@ -146,7 +148,7 @@
                                 >
                                     <a class="dropdown-item" href="{% url 'account' %}">
                                         <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        change username or email
+                                        Change Username or Email
                                     </a>
                                     <a class="dropdown-item" href="{% url 'profile-update' %}">
                                         <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
