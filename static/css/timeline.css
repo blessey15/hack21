@@ -80,7 +80,7 @@
   display: inline-block;
   top: calc(50% - 8px);
   text-align: center;
-  font-size: 14px;
+  font-size: 25px;
   font-weight: bold;
   color: white;
   text-transform: uppercase;
@@ -89,11 +89,13 @@
 }
 
 .timeline .container.left .date {
-  right: -75px;
+  right: -190px;
+  top: 38%;
 }
 
 .timeline .container.right .date {
-  left: -75px;
+  left: -190px;
+  top: 38%;
 }
 
 .timeline .container .icon {
