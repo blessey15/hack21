@@ -28,7 +28,7 @@ class ParticipantProfile(models.Model):
     educational_status = models.CharField(max_length=12, blank=False, choices=EDUCATIONAL_STATUS_CHOICES, default='Bachelors')
     year_of_graduation = models.IntegerField(choices=YEAR_OF_GRADUATION_CHOICES, blank=False, default=2023)
     # previous_projects
-    website_link = models.URLField(verbose_name="Personal Website Link", blank=True)
+    website_link = models.URLField(verbose_name="Portfolio Website Link", blank=True)
     github_profile_link = models.URLField(verbose_name="GitHub Profile Link", blank=True)
     twitter_profile_link = models.URLField(verbose_name="Twitter Profile Link", blank=True)
     linkedin_profile_link = models.URLField(verbose_name="LinkedIn Profile Link", blank=True)

@@ -128,7 +128,7 @@ class PartcicpantProfileForm(forms.ModelForm):
         )
     )
     avatar_choice = forms.ChoiceField( choices=AVATAR_CHOICES, help_text="Just curious to know more...", 
-    label="Which of the following Characters do you relate yourselves to the most?",
+    label="Which of the following characters do you relate yourself to the most?",
         widget = forms.Select(
             attrs={
                 "class": "form-control py-1 form-control-user"
