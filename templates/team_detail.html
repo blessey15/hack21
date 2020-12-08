@@ -86,8 +86,6 @@
                         <!-- -  <a href="{{ member.profile.github_profile_link }}" target="_blank">GitHub</a>
                             | <a href="{{ member.profile.twitter_profile_link }}" target="_blank">Twitter</a>
                             | <a href="{{ member.profile.linkedin_profile_link }}" target="_blank"> | LinkedIn</a> -->
-                            {% if member.profile.github_profile_link %} - <a href="{{ member.profile.github_profile_link }}" target="_blank">GitHub</a> {% endif %} {% if member.profile.twitter_profile_link %} | <a href="{{ member.profile.twitter_profile_link }}" target="_blank">Twitter</a> {% endif %} {% if member.profile.linkedin_profile_link %} | <a href="{{ member.profile.linkedin_profile_link }}" target="_blank"> | LinkedIn</a>
-                            {% endif %}
                         </li>
                         {% endfor %}
                     </ol>
