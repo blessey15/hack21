@@ -23,11 +23,12 @@ class ParticipantProfile(models.Model):
     field_of_study = models.CharField(max_length=30, choices=FIELD_OF_STUDY_CHOICES, blank=False, default='BTech', verbose_name='Field of Study')
     is_ieee = models.IntegerField(choices=BOOLEAN_CHOICES, default=0, blank=False, verbose_name="Are you an IEEE member?")
     shipping_address = models.TextField(blank=False, default=' ')
+    pin_code = models.CharField(blank=False, default='', max_length=10, )
     state = models.CharField(max_length=41, choices=STATE_OF_RESIDENCE_CHOICES, blank=False, default='Kerala', verbose_name='State/Province of Residence')
     educational_status = models.CharField(max_length=12, blank=False, choices=EDUCATIONAL_STATUS_CHOICES, default='Bachelors')
     year_of_graduation = models.IntegerField(choices=YEAR_OF_GRADUATION_CHOICES, blank=False, default=2023)
     # previous_projects
-    website_link = models.URLField(verbose_name="Personal Website Link", blank=True)
+    website_link = models.URLField(verbose_name="Portfolio Website Link", blank=True)
     github_profile_link = models.URLField(verbose_name="GitHub Profile Link", blank=True)
     twitter_profile_link = models.URLField(verbose_name="Twitter Profile Link", blank=True)
     linkedin_profile_link = models.URLField(verbose_name="LinkedIn Profile Link", blank=True)

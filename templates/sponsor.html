@@ -59,6 +59,8 @@
       href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap"
       rel="stylesheet"
     />
+    <link rel="shortcut icon" href="{% static 'img/favicon.png' %}" type="image/png">
+
     <title>Hack | Why Sponsor Us</title>
   </head>
   <body>
@@ -90,7 +92,7 @@
         </div>
         <ul class="nav__list">
           <li class="nav__item"><a href="{% url 'landing_page' %}">Back to home</a></li>
-          <li class="nav__item nav__item--reg"><a href="#">Register</a></li>
+          <li class="nav__item nav__item--reg btn--anim"><a href="{% url 'register' %}">Register</a></li>
         </ul>
       </nav>
 

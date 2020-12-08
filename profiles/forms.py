@@ -1,4 +1,5 @@
 from django import forms
+from django.core.validators import URLValidator
  
 from .models import ParticipantProfile
 from .choices import *
@@ -32,7 +33,7 @@ class PartcicpantProfileForm(forms.ModelForm):
             }
         )
     )
-    dob = forms.DateField( required=False,
+    dob = forms.DateField( required=True,
         widget=forms.SelectDateWidget(years=DOB_CHOICES,
             attrs={
                 "class": "form-control py-1 form-control-user dob-form"
@@ -69,14 +70,14 @@ class PartcicpantProfileForm(forms.ModelForm):
             }
         )
     )
-    educational_institution =forms.CharField( required=False, help_text="Just making sure you are a student.",
+    educational_institution =forms.CharField( required=True, help_text="Just making sure you are a student.",
         widget = forms.TextInput(
             attrs={
                 "class": "form-control py-1 form-control-user"
             }
         )
     )
-    field_of_study = forms.ChoiceField( required=False, choices=FIELD_OF_STUDY_CHOICES,
+    field_of_study = forms.ChoiceField( required=True, choices=FIELD_OF_STUDY_CHOICES,
         widget = forms.Select(
             attrs={
                 "class": "form-control py-1 form-control-user",
@@ -90,7 +91,7 @@ class PartcicpantProfileForm(forms.ModelForm):
             }
         )
     )
-    shipping_address = forms.CharField( required=False,help_text="This will be used to ship your prizes and the goodies for top teams.",
+    shipping_address = forms.CharField( required=True,help_text="This will be used to ship your prizes and the goodies for top teams.",
         widget = forms.Textarea(
             attrs={
                 "class": "form-control py-1"
@@ -101,6 +102,14 @@ class PartcicpantProfileForm(forms.ModelForm):
         widget = forms.Select(
             attrs={
                 "class": "form-control py-1 form-control-user"
+            }
+        )
+    )
+    pin_code = forms.CharField( required=True,
+        widget = forms.TextInput(
+            attrs={
+                "class": "form-control py-1 form-control-user",
+                "placeholder": "Enter Pin Code"
             }
         )
     )
@@ -119,7 +128,7 @@ class PartcicpantProfileForm(forms.ModelForm):
         )
     )
     avatar_choice = forms.ChoiceField( choices=AVATAR_CHOICES, help_text="Just curious to know more...", 
-    label="Which of the following Characters do you relate yourselves to the most?",
+    label="Which of the following characters do you relate yourself to the most?",
         widget = forms.Select(
             attrs={
                 "class": "form-control py-1 form-control-user"
@@ -127,6 +136,9 @@ class PartcicpantProfileForm(forms.ModelForm):
         )
     )
     website_link = forms.URLField( required=False,
+        error_messages = {
+            'invalid': "Please enter a valid URL or leave it blank"
+        },
         widget = forms.URLInput(
             attrs={
                 "class": "form-control py-1 form-control-user",
@@ -135,6 +147,9 @@ class PartcicpantProfileForm(forms.ModelForm):
         )
     )
     github_profile_link = forms.URLField( required=False,
+        error_messages = {
+            'invalid': "Please enter a valid URL or leave it blank"
+        },
         widget = forms.URLInput(
             attrs={
                 "class": "form-control py-1 form-control-user",
@@ -143,6 +158,9 @@ class PartcicpantProfileForm(forms.ModelForm):
         )
     )
     twitter_profile_link = forms.URLField( required=False,
+        error_messages = {
+            'invalid': "Please enter a valid URL or leave it blank"
+        },
         widget = forms.URLInput(
             attrs={
                 "class": "form-control py-1 form-control-user",
@@ -151,6 +169,9 @@ class PartcicpantProfileForm(forms.ModelForm):
         )
     )
     linkedin_profile_link = forms.URLField( required=False,
+        error_messages = {
+            'invalid': "Please enter a valid URL or leave it blank"
+        },
         widget = forms.URLInput(
             attrs={
                 "class": "form-control py-1 form-control-user",
@@ -161,8 +182,8 @@ class PartcicpantProfileForm(forms.ModelForm):
     class Meta:
         model = ParticipantProfile
         fields = ('team_status', 'name', 'contact', 'dob', 'gender', 'bio', 'tshirt_size' ,'skills', 'educational_status',
-         'educational_institution', 'field_of_study', 'year_of_graduation', 'is_ieee', 'shipping_address', 'state','avatar_choice',
-          'website_link','github_profile_link', 'twitter_profile_link', 'linkedin_profile_link')
+         'educational_institution', 'field_of_study', 'year_of_graduation', 'is_ieee', 'shipping_address', 'state', 'pin_code', 
+         'avatar_choice', 'website_link','github_profile_link', 'twitter_profile_link', 'linkedin_profile_link')
 
     def clean_name(self):
         name = self.cleaned_data.get('name')
@@ -203,3 +224,11 @@ class PartcicpantProfileForm(forms.ModelForm):
     def clean_field_of_study(self):
         field_of_study = self.cleaned_data.get('field_of_study')
         return field_of_study
+    # def clean_website_link(self):
+    #     website_link = self.cleaned_data.get('website_link')
+    #     try:
+    #         URLValidator(website_link)
+    #         print("validating URL")
+    #         return website_link
+    #     except:
+    #         raise forms.ValidationError("Enter a valid URL or leave it blank")

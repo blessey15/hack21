@@ -139,5 +139,5 @@ AVATAR_CHOICES = (
     ('wolverine', 'Wolverine'),
     ('wonderwoman', 'Wonder Woman'),
     ('zoom', 'Zoom'),
-    ('nota', 'None of the Above'),
+    ('nota', 'None, I am unique'),
 )
