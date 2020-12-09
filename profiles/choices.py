@@ -17,14 +17,10 @@ T_SHIRT_SIZE_CHOICES=(
 
 FIELD_OF_STUDY_CHOICES=(
     ('School Student', 'School Student'),
-    ('Bachelor of Science', 'Bachelor of Science'),
-    ('Bachelor of Arts', 'Bachelor of Arts'),
-    ('Bachelor of Technology', 'Bachelor of Technology'),
-    ('Bachelor of Commerce', 'Bachelor of Commerce'),
-    ('Master of Science', 'Master of Science'),
-    ('Master of Arts', 'Master of Arts'),
-    ('Master of Technology', 'Master of Technology'),
-    ('Master of Commerce', 'Master of Commerce'),
+    ('Science', 'Science'),
+    ('Arts', 'Arts'),
+    ('Engineering', 'Engineering'),
+    ('Commerce', 'Commerce'),
     ('Other', 'Other'),
 )
 

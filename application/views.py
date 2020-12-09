@@ -337,15 +337,15 @@ def organizer_dashboard(request):
     context['progress'] = progress
 
 
-    science_count = len(ParticipantProfile.objects.filter(Q(field_of_study='BSc') | Q(field_of_study='MSc')))
+    science_count = len(ParticipantProfile.objects.filter(field_of_study='Science'))
     context['science_count'] = science_count
-    arts_count = len(ParticipantProfile.objects.filter(Q(field_of_study='BA') | Q(field_of_study='MA')))
+    arts_count = len(ParticipantProfile.objects.filter(field_of_study='Arts'))
     context['arts_count'] = arts_count
-    engg_count = len(ParticipantProfile.objects.filter(Q(field_of_study='BTech') | Q(field_of_study='MTech')))
+    engg_count = len(ParticipantProfile.objects.filter(field_of_study='Engineering'))
     context['engg_count'] = engg_count
-    comm_count = len(ParticipantProfile.objects.filter(Q(field_of_study='BCom') | Q(field_of_study='MCom')))
+    comm_count = len(ParticipantProfile.objects.filter(field_of_study='Commerce'))
     context['comm_count'] = comm_count
-    school_count = len(ParticipantProfile.objects.filter(field_of_study='School'))
+    school_count = len(ParticipantProfile.objects.filter(field_of_study='School Student'))
     context['school_count'] = school_count
     others_count = len(ParticipantProfile.objects.filter(field_of_study='Other'))
     context['others_count'] = others_count
