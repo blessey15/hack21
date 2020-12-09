@@ -78,7 +78,7 @@ INSTALLED_APPS = [
     'allauth.account', #Google social auth
     'allauth.socialaccount', #Google social auth
     'allauth.socialaccount.providers.google', #google auth
-    'allauth.socialaccount.providers.github', #gh auth
+    # 'allauth.socialaccount.providers.github', #gh auth
     'social_django', #gh, fb auth
     'profiles',
     'application',
@@ -230,20 +230,13 @@ SOCIALACCOUNT_PROVIDERS = {
         'AUTH_PARAMS': {
             'access_type': 'online',
         }
-    },
-    'github': {
-        'SCOPE': [
-            'user',
-            'repo',
-            'read:org',
-        ],
     }
 }
 
 #GitHub
-# SOCIAL_AUTH_GITHUB_KEY = os.environ.get('SOCIAL_AUTH_GITHUB_KEY')
-# SOCIAL_AUTH_GITHUB_SECRET = os.environ.get('SOCIAL_AUTH_GITHUB_SECRET')
-# SOCIAL_AUTH_GITHUB_SCOPE =['user']
+SOCIAL_AUTH_GITHUB_KEY = os.environ.get('SOCIAL_AUTH_GITHUB_KEY')
+SOCIAL_AUTH_GITHUB_SECRET = os.environ.get('SOCIAL_AUTH_GITHUB_SECRET')
+SOCIAL_AUTH_GITHUB_SCOPE =['user']
 
 
 # import hack21.auth_pipeline
