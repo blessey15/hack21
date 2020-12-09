@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+from hack21.auth_pipeline import check_email_exists
 # import user
 
 
