@@ -35,7 +35,7 @@ import django
 # django.setup()
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
 # DEBUG = int(os.environ.get("DEBUG", default=0))
 #print("dEbug True")
 
