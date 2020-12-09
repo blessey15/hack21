@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 import os
 # from hack21.auth_pipeline import check_email_exists
 # import user
+import hack21.auth_pipeline
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -254,7 +255,7 @@ SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.social_auth.associate_by_email',
 
     #Custom mail check Pipeline
-    # 'check_email_exists'
+    'auth_pipeline.check_email_exists'
 
     # Checks if the current social-account is already associated in the site.
     'social_core.pipeline.social_auth.social_user',
