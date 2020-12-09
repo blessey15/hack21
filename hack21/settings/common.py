@@ -250,6 +250,7 @@ SOCIAL_AUTH_PIPELINE = (
     # project, this is where emails and domains whitelists are applied (if
     # defined).
     #'social_core.pipeline.social_auth.auth_allowed',
+    'social_core.pipeline.social_auth.associate_by_email',
 
     # Checks if the current social-account is already associated in the site.
     'social_core.pipeline.social_auth.social_user',
