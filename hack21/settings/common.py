@@ -94,6 +94,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
     'social_django.middleware.SocialAuthExceptionMiddleware', #social auth
+    'accounts.middleware.GitHubAuthAlreadyAssociatedMiddleware'
 ]
 
 ROOT_URLCONF = 'hack21.urls'
@@ -238,6 +239,7 @@ SOCIAL_AUTH_GITHUB_SCOPE =['user']
 
 
 # import hack21.auth_pipeline
+# from accounts import auth_pipeline
 
 SOCIAL_AUTH_PIPELINE = (
     # Get the information we can about the user and return it in a simple
@@ -257,7 +259,7 @@ SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.social_auth.associate_by_email',
 
     #Custom mail check Pipeline
-    # 'hack21.auth_pipeline.check_email_exists'
+    # 'auth_pipeline.check_email_exists'
 
     # Checks if the current social-account is already associated in the site.
     'social_core.pipeline.social_auth.social_user',
