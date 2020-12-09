@@ -80,7 +80,7 @@
   display: inline-block;
   top: calc(50% - 8px);
   text-align: center;
-  font-size: 25px;
+  font-size: 14px;
   font-weight: bold;
   color: white;
   text-transform: uppercase;
@@ -89,13 +89,11 @@
 }
 
 .timeline .container.left .date {
-  right: -190px;
-  top: 38%;
+  right: -75px;
 }
 
 .timeline .container.right .date {
-  left: -190px;
-  top: 38%;
+  left: -75px;
 }
 
 .timeline .container .icon {
@@ -155,6 +153,9 @@
   .timeline::after {
     left: 90px;
   }
+  .timeline .container .content h2 {
+    font-size: 16px;
+  }
 
   .timeline .container {
     width: 100%;
@@ -198,9 +199,23 @@
   .timeline .container.left {
     left: 0;
   }
-  
+
   .timeline .container.right {
     left: 0;
   }
+
+} 
+
+@media (min-width: 767.98px) {
+  .timeline .container .date {
+    font-size: 16px;
+  }
+
+  .timeline .container.left .date {
+    right: -85px;
+  }
   
+  .timeline .container.right .date {
+    left: -85px;
+  }
 }
