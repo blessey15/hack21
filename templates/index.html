@@ -944,15 +944,45 @@
     
           </div>
         </section> -->
-      </main>
 
+        <!-- <section class="contact-section">
+          <div class="container text-center">
+            <p style="font-size:1.4rem"><i class="fa fa-envelope"></i> Email Your Queries at <a href="mailto:hack.mace@ieee.org" style="color: #1bb35f;">hack.mace@ieee.org</a></p>
+          </div>
+        </section> -->
+      </main>
+      <style>
+        .footer, .footer-mobile{
+          background: linear-gradient(90deg, #19864a 0%, #0a8240 100%);
+          position: relative;
+          z-index: 1;
+          padding: 10rem 0;
+        }
+        .footer-mobile{
+          display: none;
+        }
+        @media(max-width: 768px){
+          .footer{
+            display: none;
+          }
+          .footer-mobile{
+            display: block;
+            padding: 6rem 0;
+          }
+        }
+        .footer__icons a:not(:last-child){
+          margin-right: 1.3rem;
+        }
+      </style>
       <footer class="footer">
-        <div class="footer__icons">
-          <a href="https://www.youtube.com/channel/UC_mRMYAOg4__QRBhZKJMLDQ" target="_blank"><img src="{% static 'img/icons/youtube.svg' %}" alt="" /></a>
-          <a href="https://www.instagram.com/ieee_mace_sb/" target="_blank"><img src="{% static 'img/icons/insta.svg' %}" alt="" /></a>
-          <a href="https://www.facebook.com/ieeemace/" target="_blank"><img src="{% static 'img/icons/facebook.svg' %}" alt="" /></a>
-          <a href="https://twitter.com/MaceSb" target="_blank"><img src="{% static 'img/icons/twitter.svg' %}" alt="" /></a>
-          <a href="https://www.linkedin.com/company/ieee-student-branch-mace/" target="_blank"><img src="{% static 'img/icons/linkedin.png' %}" alt="" /></a>
+        <div class="container" style="position: relative;">
+          <img src="{% static 'img/logo-techie.png' %}" style="filter: brightness(0) invert(1);height: 8.5rem;transform: translateY(30px);" alt="">
+        <div class="footer__icons" style="transform:translateY(33px)">
+          <a href="https://www.youtube.com/channel/UC_mRMYAOg4__QRBhZKJMLDQ" target="_blank"><img style="height: 2rem" src="{% static 'img/icons/youtube.svg' %}" alt="" /></a>
+          <a href="https://www.instagram.com/ieee_mace_sb/" target="_blank"><img style="height: 2rem" src="{% static 'img/icons/insta.svg' %}" alt="" /></a>
+          <a href="https://www.facebook.com/ieeemace/" target="_blank"><img style="height: 2rem" src="{% static 'img/icons/facebook.svg' %}" alt="" /></a>
+          <a href="https://twitter.com/MaceSb" target="_blank"><img style="height: 2rem" src="{% static 'img/icons/twitter.svg' %}" alt="" /></a>
+          <a href="https://www.linkedin.com/company/ieee-student-branch-mace/" target="_blank"><img style="height: 2.5rem" src="{% static 'img/icons/linkedin.png' %}" alt="" /></a>
 
           <!-- <a href="#"><i class="fab fa-facebook-f"></i>
           <a href="#"><i class="fab "></i>
@@ -960,10 +990,48 @@
           <a href="#"><i class="fab "></i>
           <a href="#"><i class="fab "></i> -->
         </div>
-        <p>
+        <h2 style="position: absolute;text-align: left;font-size: 4.5rem;font-weight: 900;top: 20%;">Queries? <br>
+          <span style="font-size: 1.6rem; font-weight: 400;">Email your queries at <a href="mailto:hack.mace@ieee.org" style="display: block;">hack.mace@ieee.org</a></span>
+        </h2>
+        <p style="transform: translateY(47px);">
           <!-- <span>Made in assosciation with <a  href="https://macehub.in/" target="_blank" style="color: #1bb35f;">macehub</a></span> -->
-          <span>© All rights reserved - .hack ( ); 2021</span>
+          <span><span style="font-size: 2.5rem;display: inline;position: relative;bottom: -1px;">©</span> All rights reserved - .hack(); 2021</span>
         </p>
+        <h2 style="position: absolute;text-align: left;font-size: 4.5rem;font-weight: 900;top: 20%; right: 0;"><span style="text-align: right;display: flex;justify-content: flex-end;">Contact</span>
+          <span style="font-size: 1.6rem; font-weight: 400; display: block; margin-bottom: 0.8rem; margin-top: 2rem;"><i class="fa fa-phone"></i> Neenu Chacko: &nbsp;&nbsp;9545653278</span>
+          <span style="font-size: 1.6rem; font-weight: 400; display: block;"><i class="fa fa-phone"></i> Abhishek Mohan: 9578143275</span>
+        </h2>
+        </div>
+      </footer>
+
+      <footer class="footer-mobile">
+        <div class="container" style="position: relative; text-align: center;">
+          <h2 style="font-size: 4.5rem;font-weight: 900;top: 20%; margin-bottom: 3rem;">Queries? <br>
+            <span style="font-size: 1.6rem; font-weight: 400;">Email your queries at <a href="mailto:hack.mace@ieee.org" style="display: block;">hack.mace@ieee.org</a></span>
+          </h2>
+          <h2 style="font-size: 4.5rem;font-weight: 900; margin-bottom: 5rem;">Contact <br>
+            <span style="font-size: 1.6rem; font-weight: 400; display: block; margin-bottom: 0.8rem; margin-top: 2rem;">Neenu Chacko: 9545653278</span>
+            <span style="font-size: 1.6rem; font-weight: 400; display: block;">Abhishek Mohan: 9578143275</span>
+          </h2>
+          <img src="{% static 'img/logo-techie.png' %}" style="filter: brightness(0) invert(1);height: 8.5rem;" alt="">
+          <div class="footer__icons" style="margin-bottom: 5rem;">
+            <a href="https://www.youtube.com/channel/UC_mRMYAOg4__QRBhZKJMLDQ" target="_blank"><img style="height: 2rem" src="{% static 'img/icons/youtube.svg' %}" alt="" /></a>
+            <a href="https://www.instagram.com/ieee_mace_sb/" target="_blank"><img style="height: 2rem" src="{% static 'img/icons/insta.svg' %}" alt="" /></a>
+            <a href="https://www.facebook.com/ieeemace/" target="_blank"><img style="height: 2rem" src="{% static 'img/icons/facebook.svg' %}" alt="" /></a>
+            <a href="https://twitter.com/MaceSb" target="_blank"><img style="height: 2rem" src="{% static 'img/icons/twitter.svg' %}" alt="" /></a>
+            <a href="https://www.linkedin.com/company/ieee-student-branch-mace/" target="_blank"><img style="height: 2.5rem" src="{% static 'img/icons/linkedin.png' %}" alt="" /></a>
+
+            <!-- <a href="#"><i class="fab fa-facebook-f"></i>
+            <a href="#"><i class="fab "></i>
+            <a href="#"><i class="fab "></i>
+            <a href="#"><i class="fab "></i>
+            <a href="#"><i class="fab "></i> -->
+          </div>
+          <p>
+            <!-- <span>Made in assosciation with <a  href="https://macehub.in/" target="_blank" style="color: #1bb35f;">macehub</a></span> -->
+            <span><span style="font-size: 2.5rem;display: inline;position: relative;bottom: -1px;">©</span> All rights reserved - .hack(); 2021</span>
+          </p>
+        </div>
       </footer>
     </div>
     <!-- animation end -->
