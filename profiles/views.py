@@ -72,6 +72,7 @@ def participant_profile_creation_view(request):
                 'github_profile_link': profile.github_profile_link,
                 'twitter_profile_link': profile.twitter_profile_link,
                 'linkedin_profile_link': profile.linkedin_profile_link,
+                'referral_id': profile.referral_id,
                 
             }
         )
@@ -116,11 +117,12 @@ def export_csv(request):
 
     writer = csv.writer(response)
     writer.writerow(['Name', 'Contact', 'Date of Birth', 'Gender', 'Educational Status', 'Educational Institution', 
-    'Field of study', 'Year of Graduation', 'Is IEEE', 'Shipping Address', 'State of Residence', 'Personal Website', 'GitHub','Twitter', 'LinkedIn'])
+    'Field of study', 'Year of Graduation', 'Is IEEE', 'Shipping Address', 'State of Residence', 'Personal Website',
+     'GitHub','Twitter', 'LinkedIn' 'Referral ID'])
 
     profiles = ParticipantProfile.objects.all().values_list('name', 'contact', 'dob', 'gender', 'educational_status','website_link',
     'educational_institution', 'field_of_study', 'year_of_graduation', 'is_ieee', 'shipping_address', 'state', 
-      'github_profile_link', 'twitter_profile_link', 'linkedin_profile_link',)
+      'github_profile_link', 'twitter_profile_link', 'linkedin_profile_link', 'referral_id')
     for profile in profiles:
         writer.writerow(profile)
 
@@ -142,7 +144,8 @@ def export_xls(request):
     font_style.font.bold = True
 
     columns = ['Name', 'Contact', 'Gender', 'Educational Status', 'Educational Institution', 
-    'Field of study', 'Year of Graduation', 'Is IEEE', 'Shipping Address', 'State of Residence', 'Personal Website', 'GitHub','Twitter', 'LinkedIn']
+    'Field of study', 'Year of Graduation', 'Is IEEE', 'Shipping Address', 'State of Residence',
+     'Personal Website', 'GitHub','Twitter', 'LinkedIn', 'Referral ID']
 
     for col_num in range(len(columns)):
         ws.write(row_num, col_num, columns[col_num], font_style)
@@ -152,7 +155,7 @@ def export_xls(request):
 
     rows = ParticipantProfile.objects.all().values_list('name', 'contact', 'gender', 'educational_status',
     'educational_institution', 'field_of_study', 'year_of_graduation', 'is_ieee', 'shipping_address', 'state', 'website_link',
-      'github_profile_link', 'twitter_profile_link', 'linkedin_profile_link',)
+      'github_profile_link', 'twitter_profile_link', 'linkedin_profile_link', 'referral_id')
     for row in rows:
         row_num += 1
         for col_num in range(len(row)):

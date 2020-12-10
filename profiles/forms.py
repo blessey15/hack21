@@ -179,11 +179,19 @@ class PartcicpantProfileForm(forms.ModelForm):
             }
         )
     )
+    referral_id = forms.CharField( required=False,
+        widget = forms.TextInput(
+            attrs={
+                "class": "form-control py-1 form-control-user",
+                "placeholder": "Enter Referral ID"
+            }
+        )
+    )
     class Meta:
         model = ParticipantProfile
         fields = ('team_status', 'name', 'contact', 'dob', 'gender', 'bio', 'tshirt_size' ,'skills', 'educational_status',
          'educational_institution', 'field_of_study', 'year_of_graduation', 'is_ieee', 'shipping_address', 'state', 'pin_code', 
-         'avatar_choice', 'website_link','github_profile_link', 'twitter_profile_link', 'linkedin_profile_link')
+         'avatar_choice', 'website_link','github_profile_link', 'twitter_profile_link', 'linkedin_profile_link', 'referral_id')
 
     def clean_name(self):
         name = self.cleaned_data.get('name')
