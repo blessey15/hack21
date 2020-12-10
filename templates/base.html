@@ -261,12 +261,9 @@
         <script src="{% static 'vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
 
         <!-- Page level custom scripts -->
-        <script src="{% static 'js/demo/chart-area-demo.js' %}"></script>
-        <script src="{% static 'js/demo/chart-bar-demo.js' %}"></script>
-        <script src="{% static 'js/demo/chart-pie-demo.js' %}"></script>
-        <script src="{% static 'js/demo/chart-pie-demo-gender.js' %}"></script>
-        <script src="{% static 'js/demo/chart-pie-demo-ieee.js' %}"></script>
-        <script src="{% static 'js/demo/datatables-demo.js' %}"></script>
+        {% block script %}
+
+        {% endblock %}
 
         <!-- Bootstrap core JavaScript-->
         <!-- <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
