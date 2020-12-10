@@ -9,7 +9,7 @@ var myPieChart = new Chart(ctx, {
   data: {
     labels: ["Prefer Not To Say", "Male", "Female", "Non-Binary"],
     datasets: [{
-      data: [male, female, non_binary, pnts],
+      data: [pnts, male, female, non_binary],
       backgroundColor: ['#F6C23E', '#1CC88A', '#E74A3B', '#4E73DF'],
       hoverBackgroundColor: ['#eaab0b', '#17A16E', '#da2b1b', '#2650CF'],
       hoverBorderColor: "rgba(234, 236, 244, 1)",

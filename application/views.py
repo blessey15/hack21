@@ -354,19 +354,19 @@ def organizer_dashboard(request):
     # GENDER CHART
     total_profile = len(ParticipantProfile.objects.all())
 
-    male_count = len(ParticipantProfile.objects.filter(gender='m'))
+    male_count = len(ParticipantProfile.objects.filter(gender='Male'))
     # male_percent = int((male_count/total_profile)*100)
     context['male_count'] = male_count
 
-    female_count = len(ParticipantProfile.objects.filter(gender='f'))
+    female_count = len(ParticipantProfile.objects.filter(gender='Female'))
     # female_percent = int((female_count/total_profile)*100)
     context['female_count'] = female_count
 
-    non_binary_count = len(ParticipantProfile.objects.filter(gender='n'))
+    non_binary_count = len(ParticipantProfile.objects.filter(gender='Non-Binary'))
     # non_binary_percent = int((non_binary_count/total_profile)*100)
     context['non_binary_count'] = non_binary_count
 
-    pnts_count = len(ParticipantProfile.objects.filter(gender='na'))
+    pnts_count = len(ParticipantProfile.objects.filter(gender='N/A'))
     # pnts_percent = int((pnts_count/total_profile)*100)
     # pnts_percent = 100-male_percent-female_percent-non_binary_percent
     context['pnts_count'] = pnts_count
