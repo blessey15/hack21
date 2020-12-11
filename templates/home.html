@@ -143,7 +143,7 @@
                                 {% if application.application_status == 'Not Submitted'%}
                                 <p class="btn btn-info btn-icon-split mb-3">Your Application to .hack( ); 2021 has not been submitted yet.</p>
                                 {% if request.user == application.team.admin %}
-                                <a href="{% url 'leave_team' application.team.id %}"> <button name="leave_team" class="btn btn-primary mb-3">Delete Team</button></a>
+                                <a href="{% url 'leave_team' application.team.id %}"> <button name="leave_team" class="btn btn-primary mb-3 delete-team">Delete Team</button></a>
                                 <a href="{% url 'submit_application' %}"> <button name="leave_team" class="btn btn-primary mb-3 confirm-submit">Submit Application</button></a>
                                 {% else %}
                                 <p>Ask your Team admin to submit the application as soon as your team is complete</p>
@@ -302,6 +302,14 @@
             window.location.href="{% url 'submit_application' %}"
         }
     })
+    {% if application %}
+    document.querySelector('.delete-team').addEventListener('click', e=>{
+        e.preventDefault();
+        if(confirm("This will delete this team and all the members of the team will no longer have a team. Are you sure you watnt to proceed? Press OK to Confirm")){
+            window.location.href="{% url 'leave_team' application.team.id %}"
+        }
+    })
+    {% endif %}
 </script>
 
 <script>

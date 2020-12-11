@@ -145,7 +145,7 @@ def export_xls(request):
     font_style.font.bold = True
 
     columns = ['Name', 'Contact', 'Gender', 'Educational Status', 'Educational Institution', 
-    'Field of study', 'Year of Graduation', 'Is IEEE', 'Bio', 'projects' 'Shipping Address', 'State of Residence',
+    'Field of study', 'Year of Graduation', 'Is IEEE', 'Bio', 'projects', 'Shipping Address', 'State of Residence',
      'Personal Website', 'GitHub','Twitter', 'LinkedIn', 'Referral ID']
 
     for col_num in range(len(columns)):
