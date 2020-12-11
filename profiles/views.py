@@ -56,6 +56,7 @@ def participant_profile_creation_view(request):
                 'contact': profile.contact,
                 'dob': profile.dob,
                 'gender': profile.gender,
+                'projects': profile.projects,
                 'bio': profile.bio,
                 'tshirt_size': profile.tshirt_size ,
                 'skills': profile.skills,
@@ -117,11 +118,11 @@ def export_csv(request):
 
     writer = csv.writer(response)
     writer.writerow(['Name', 'Contact', 'Date of Birth', 'Gender', 'Educational Status', 'Educational Institution', 
-    'Field of study', 'Year of Graduation', 'Is IEEE', 'Shipping Address', 'State of Residence', 'Personal Website',
+    'Field of study', 'Year of Graduation', 'Is IEEE', 'Bio', 'Projects', 'Shipping Address', 'State of Residence', 'Personal Website',
      'GitHub','Twitter', 'LinkedIn' 'Referral ID'])
 
-    profiles = ParticipantProfile.objects.all().values_list('name', 'contact', 'dob', 'gender', 'educational_status','website_link',
-    'educational_institution', 'field_of_study', 'year_of_graduation', 'is_ieee', 'shipping_address', 'state', 
+    profiles = ParticipantProfile.objects.all().values_list('name', 'contact', 'dob', 'gender', 'educational_status',
+    'educational_institution', 'field_of_study', 'year_of_graduation', 'is_ieee', 'bio', 'projects', 'shipping_address', 'state', 'website_link',
       'github_profile_link', 'twitter_profile_link', 'linkedin_profile_link', 'referral_id')
     for profile in profiles:
         writer.writerow(profile)
@@ -144,7 +145,7 @@ def export_xls(request):
     font_style.font.bold = True
 
     columns = ['Name', 'Contact', 'Gender', 'Educational Status', 'Educational Institution', 
-    'Field of study', 'Year of Graduation', 'Is IEEE', 'Shipping Address', 'State of Residence',
+    'Field of study', 'Year of Graduation', 'Is IEEE', 'Bio', 'projects' 'Shipping Address', 'State of Residence',
      'Personal Website', 'GitHub','Twitter', 'LinkedIn', 'Referral ID']
 
     for col_num in range(len(columns)):
@@ -154,7 +155,7 @@ def export_xls(request):
     font_style = xlwt.XFStyle()
 
     rows = ParticipantProfile.objects.all().values_list('name', 'contact', 'gender', 'educational_status',
-    'educational_institution', 'field_of_study', 'year_of_graduation', 'is_ieee', 'shipping_address', 'state', 'website_link',
+    'educational_institution', 'field_of_study', 'year_of_graduation', 'is_ieee', 'bio', 'projects', 'shipping_address', 'state', 'website_link',
       'github_profile_link', 'twitter_profile_link', 'linkedin_profile_link', 'referral_id')
     for row in rows:
         row_num += 1

@@ -8,6 +8,8 @@
         - POSTGRES_DB=hack_db_prod
         - POSTGRES_USER=hack_user
         - POSTGRES_PASSWORD=crazy_unicorn
+      volumes:
+        - postgres_data:/var/lib/postgresql/data/
     web:
       container_name: hack_app
       build:
@@ -79,6 +81,7 @@
 
 
   volumes:
+    postgres_data:
     static_volume:
     media_volume:
     html:

@@ -6,7 +6,7 @@ from .choices import *
 
 
 DOB_CHOICES = []
-for i in range(1901, 2099):
+for i in range(1969, 2022):
     DOB_CHOICES.append(str(i))
     
 class PartcicpantProfileForm(forms.ModelForm):
@@ -47,10 +47,18 @@ class PartcicpantProfileForm(forms.ModelForm):
             }
         )
     )
-    bio = forms.CharField( required=False,help_text="Tell us more about yourself and why you want to be a part of .hack();",
+    bio = forms.CharField( required=False, help_text="Tell us more about yourself and why you want to be a part of .hack();",
         widget = forms.Textarea(
             attrs={
                 "placeholder": "Your short bio",
+                "class": "form-control py-1"
+            }
+        )
+    )
+    projects = forms.CharField( required=True, help_text="Tell us more about projects you have done earlier. (Hardware & Software works for us)",
+        widget = forms.Textarea(
+            attrs={
+                "placeholder": "If you haven't done any projects tell us about projects you want to do.",
                 "class": "form-control py-1"
             }
         )
@@ -189,7 +197,7 @@ class PartcicpantProfileForm(forms.ModelForm):
     )
     class Meta:
         model = ParticipantProfile
-        fields = ('team_status', 'name', 'contact', 'dob', 'gender', 'bio', 'tshirt_size' ,'skills', 'educational_status',
+        fields = ('team_status', 'name', 'contact', 'dob', 'gender', 'bio', 'projects', 'tshirt_size' ,'skills', 'educational_status',
          'educational_institution', 'field_of_study', 'year_of_graduation', 'is_ieee', 'shipping_address', 'state', 'pin_code', 
          'avatar_choice', 'website_link','github_profile_link', 'twitter_profile_link', 'linkedin_profile_link', 'referral_id')
 

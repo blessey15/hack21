@@ -16,6 +16,7 @@ class ParticipantProfile(models.Model):
     dob = models.DateField()
     gender = models.CharField(max_length=11, choices=GENDER_CHOICES, blank=False)
     bio = models.TextField()
+    projects = models.TextField(blank=False)
     tshirt_size = models.CharField(max_length=3, choices=T_SHIRT_SIZE_CHOICES, verbose_name='T-Shirt Size')
     #emergency conatct
     skills = models.TextField()
