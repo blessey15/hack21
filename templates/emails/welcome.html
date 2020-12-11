@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional //EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><!--[if IE]><html xmlns="http://www.w3.org/1999/xhtml" class="ie"><![endif]--><!--[if !IE]><!--><html style="margin: 0;padding: 0;" xmlns="http://www.w3.org/1999/xhtml"><!--<![endif]--><head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title></title>
@@ -456,7 +457,7 @@ body{background-color:#fbfbfb}.logo a:hover,.logo a:focus{color:#1e2e3b !importa
       <div class="header" style="Margin: 0 auto;max-width: 600px;min-width: 320px; width: 320px;width: calc(28000% - 167400px);" id="emb-email-header-container">
       <!--[if (mso)|(IE)]><table align="center" class="header" cellpadding="0" cellspacing="0" role="presentation"><tr><td style="width: 600px"><![endif]-->
         <div class="logo emb-logo-margin-box" style="font-size: 26px;line-height: 32px;Margin-top: 6px;Margin-bottom: 12px;color: #41637e;font-family: Avenir,sans-serif;" align="center">
-          <div class="logo-left" align="left" id="emb-email-header"><a style="text-decoration: none;transition: opacity 0.1s ease-in;color: #41637e;" href="https://hack.ieeemace.org"><img style="display: block;height: auto;width: 100%;border: 0;max-width: 157px;" src="images/logo-techie.png" alt="Hack Logo" width="157" /></a></div>
+          <div class="logo-left" align="left" id="emb-email-header"><a style="text-decoration: none;transition: opacity 0.1s ease-in;color: #41637e;" href="https://hack.ieeemace.org"><img style="display: block;height: auto;width: 100%;border: 0;max-width: 157px;" src="{% static 'img/logo-techie.png' %}" alt="Hack Logo" width="157" /></a></div>
         </div>
       <!--[if (mso)|(IE)]></td></tr></table><![endif]-->
       </div>
@@ -505,11 +506,11 @@ body{background-color:#fbfbfb}.logo a:hover,.logo a:focus{color:#1e2e3b !importa
       
           <div style="Margin-left: 20px;Margin-right: 20px;Margin-top: 24px;Margin-bottom: 24px;">
     <div style="mso-line-height-rule: exactly;mso-text-raise: 11px;vertical-align: middle;">
-      <p style="Margin-top: 0;Margin-bottom: 0;">Hello Roshan,</p><p style="Margin-top: 20px;Margin-bottom: 0;">
+      <p style="Margin-top: 0;Margin-bottom: 0;">Hello {{ user.profile.name }},</p><p style="Margin-top: 20px;Margin-bottom: 0;">
         Thankyou for registering for .hack(); 2021. Your account has been created for .hack();<br />
 Account details are:<br />
-<strong>Email: roshanrajeev2001@gmail.com</strong><br />
-<strong>Username: bcBoss</strong><br />
+<strong>Email: {{ user.email }}</strong><br />
+<strong>Username: {{ user.username }}</strong><br />
 You may use this account for all the further proceedings of the registration.<br />
 <br />
 In order to participate in .hack(); 2021, you need to have a team. The maximum nunber of members per team is 4. If you wish 
