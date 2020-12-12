@@ -13,6 +13,7 @@ from .models import ParticipantProfile
 from accounts.models import Account
 from hack21.decorators import organizer_view
 from hack21.emailthread import EmailThread
+from application.models import Application
 # Create your views here.
 
 @login_required(login_url='login')
@@ -113,18 +114,22 @@ def own_profile_view(request):
 @login_required(login_url='login')
 @organizer_view
 def export_csv(request):
+    final_list = []
     response = HttpResponse(content_type='text/csv')
     response['Content-Disposition'] = 'attachment; filename="profiles.csv"'
 
     writer = csv.writer(response)
-    writer.writerow(['Name', 'Contact', 'Date of Birth', 'Gender', 'Educational Status', 'Educational Institution', 
-    'Field of study', 'Year of Graduation', 'Is IEEE', 'Bio', 'Projects', 'Shipping Address', 'State of Residence', 'Personal Website',
-     'GitHub','Twitter', 'LinkedIn' 'Referral ID'])
-
-    profiles = ParticipantProfile.objects.all().values_list('name', 'contact', 'dob', 'gender', 'educational_status',
-    'educational_institution', 'field_of_study', 'year_of_graduation', 'is_ieee', 'bio', 'projects', 'shipping_address', 'state', 'website_link',
-      'github_profile_link', 'twitter_profile_link', 'linkedin_profile_link', 'referral_id')
+    writer.writerow(['Name', 'Contact', 'Gender', 'Educational Status', 'Educational Institution', 
+    'Field of study', 'Year of Graduation', 'Is IEEE', 'Bio', 'projects', 'Shipping Address', 'State of Residence', 'PIN Code',
+     'Personal Website', 'GitHub','Twitter', 'LinkedIn', 'Referral ID', 'Email', 'Username'])
+    profiles = ParticipantProfile.objects.all()
     for profile in profiles:
+        data_tuple = (profile.name, profile.contact, profile.gender, profile.educational_status, profile.educational_institution, 
+        profile.field_of_study, profile.year_of_graduation, profile.is_ieee, profile.bio, profile.projects, profile.shipping_address,
+        profile.state, profile.pin_code, profile.website_link, profile.github_profile_link, profile.twitter_profile_link, profile.linkedin_profile_link,
+        profile.referral_id, profile.user.email, profile.user.username)
+        final_list.append(data_tuple)
+    for profile in final_list:
         writer.writerow(profile)
 
     return response
@@ -132,6 +137,7 @@ def export_csv(request):
 @login_required(login_url='login')
 @organizer_view
 def export_xls(request):
+    final_list = []
     response = HttpResponse(content_type='application/ms-excel')
     response['Content-Disposition'] = 'attachment; filename="profiles.xls"'
 
@@ -145,8 +151,8 @@ def export_xls(request):
     font_style.font.bold = True
 
     columns = ['Name', 'Contact', 'Gender', 'Educational Status', 'Educational Institution', 
-    'Field of study', 'Year of Graduation', 'Is IEEE', 'Bio', 'projects', 'Shipping Address', 'State of Residence',
-     'Personal Website', 'GitHub','Twitter', 'LinkedIn', 'Referral ID']
+    'Field of study', 'Year of Graduation', 'Is IEEE', 'Bio', 'projects', 'Shipping Address', 'State of Residence', 'PIN Code',
+     'Personal Website', 'GitHub','Twitter', 'LinkedIn', 'Referral ID', 'Email', 'Username']
 
     for col_num in range(len(columns)):
         ws.write(row_num, col_num, columns[col_num], font_style)
@@ -154,10 +160,14 @@ def export_xls(request):
     # Sheet body, remaining rows
     font_style = xlwt.XFStyle()
 
-    rows = ParticipantProfile.objects.all().values_list('name', 'contact', 'gender', 'educational_status',
-    'educational_institution', 'field_of_study', 'year_of_graduation', 'is_ieee', 'bio', 'projects', 'shipping_address', 'state', 'website_link',
-      'github_profile_link', 'twitter_profile_link', 'linkedin_profile_link', 'referral_id')
-    for row in rows:
+    profiles = ParticipantProfile.objects.all()
+    for profile in profiles:
+        data_tuple = (profile.name, profile.contact, profile.gender, profile.educational_status, profile.educational_institution, 
+        profile.field_of_study, profile.year_of_graduation, profile.is_ieee, profile.bio, profile.projects, profile.shipping_address,
+        profile.state, profile.pin_code, profile.website_link, profile.github_profile_link, profile.twitter_profile_link, profile.linkedin_profile_link,
+        profile.referral_id, profile.user.email, profile.user.username)
+        final_list.append(data_tuple)
+    for row in final_list:
         row_num += 1
         for col_num in range(len(row)):
             ws.write(row_num, col_num, row[col_num], font_style)
