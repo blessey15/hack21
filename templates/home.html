@@ -5,14 +5,18 @@
 {% endblock %} {% block content %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
+<style>
+    .shadow-sm {
+    box-shadow: 0 0.525rem 0.95rem 0 rgba(58, 59, 69, 0.2) !important;
+}
+</style>
 <div class="container">
     <div class="main-body">
         <div class="row gutters-sm">
             <div class="col-md-4 mb-3">
-                <!-- name and organization card starts -->
-                <div class="card">
-                    <div class="card-body">
+                <!-- name and organization card shadow-smstarts -->
+                <div class="card shadow-sm">
+                    <div class="card-body shadow-sm">
                         <div class="d-flex flex-column align-items-center text-center">
                             <img src="{% static 'img/avatars' %}/{{ request.user.profile.avatar_choice }}.jpg" alt="Admin" class="rounded-circle" width="150" />
                             <div class="mt-3">
@@ -22,11 +26,11 @@
                         </div>
                     </div>
                 </div>
-                <!-- name and organization card ends -->
+                <!-- name and organization card shadow-smends -->
 
-                <!-- profile card starts -->
-                <div class="card mb-3 mt-3">
-                    <div class="card-body">
+                <!-- profile card shadow-smstarts -->
+                <div class="card shadow-smmb-3 mt-3">
+                    <div class="card-body shadow-sm">
                         <div class="row">
                             <div class="col-sm-4">
                                 <h6 class="mb-0">Full Name</h6>
@@ -63,11 +67,11 @@
                         </div>
                     </div>
                 </div>
-                <!-- profile card ends -->
+                <!-- profile card shadow-smends -->
 
-                <!-- social profiles card starts -->
+                <!-- social profiles card shadow-smstarts -->
                 {% if request.user.profile.twitter_profile_link or request.user.profile.github_profile_link or request.user.profile.linkedin_profile_link or request.user.profile.website_link %}
-                <div class="card mt-3">
+                <div class="card shadow-smmt-3">
                     <form class="user" style="padding: 1rem; margin: 0 1rem 0 1rem">
                         {% if request.user.profile.twitter_profile_link %}
                         <a href="{{ request.user.profile.twitter_profile_link }}" class="btn btn-facebook btn-user btn-block" target="_blank" style="background-color: #1da1f2"> <i class="fab fa-twitter fa-fw"></i> Twitter </a>
@@ -81,14 +85,14 @@
                     </form>
                 </div>
                 {% endif %}
-                <!-- social profiles card ends -->
+                <!-- social profiles card shadow-smends -->
             </div>
 
             <div class="col-md-8">
                 <div class="row gutters-sm">
                     <div class="col">
-                        <div class="card mb-3">
-                            <div class="card-body">
+                        <div class="card shadow-smmb-3">
+                            <div class="card-body shadow-sm">
                                 {% if not user_has_team %}
                                 <span>Create a team to get started</span>
                                 <form method="post" novalidate class="user mt-3 mb-3">
@@ -123,15 +127,15 @@
                                 </form>
 
                                 {% if no_teams_found %}
-                                <div class="card custom-card" style="margin-top: 2rem;">
-                                    <div class="card-body">
+                                <div class="card shadow-smcustom-card" style="margin-top: 2rem;">
+                                    <div class="card-body shadow-sm">
                                         <h5 style="color: red">No Team found</h5>
                                     </div>
                                 </div>
 
                                 {% elif searched_team %}
-                                <div class="card custom-card" style="margin-top: 2rem;">
-                                    <div class="card-body">
+                                <div class="card shadow-smcustom-card" style="margin-top: 2rem;">
+                                    <div class="card-body shadow-sm">
                                         <h3 class="card-title">Search Results</h3>
                                         <ol>
                                             <li><a href="{% url 'team_detail' searched_team.id %}"> {{ searched_team.name }} </a></li>
@@ -160,7 +164,7 @@
                                 {% endif %} {% endif %}
 
                                 <div class="card mb-3 mt-3">
-                                    <div class="card-body">
+                                    <div class="card-body shadow-sm">
                                         <div class="row">
                                             <div class="col-sm-3">
                                                 <h6 class="mb-0">Team Name</h6>
@@ -204,9 +208,9 @@
                 </div>
                 <div class="row">
                     <div class="col mb-3">
-                        <h3 class="ml-3">Your Profile info</h3>
-                        <div class="card mb-3 mt-3">
-                            <div class="card-body">
+                        <h3 class="ml-3 my-3">Your Profile info</h3>
+                        <div class="card shadow-smmb-3 mt-3">
+                            <div class="card-body shadow-sm">
                                 <div class="row">
                                     <div class="col-sm-4">
                                         <h6 class="mb-0">Gender</h6>
@@ -286,7 +290,7 @@
                             </div>
                         </div>
                         <form class="user">
-                            <a href="{% url 'profile-update' %}"><div class="btn btn-primary btn-user">Edit Profile</div></a>
+                            <a href="{% url 'profile-update' %}"><div class="btn btn-primary btn-user my-3">Edit Profile</div></a>
                         </form>
                     </div>
                 </div>
