@@ -16,6 +16,7 @@ class ParticipantProfile(models.Model):
     dob = models.DateField()
     gender = models.CharField(max_length=11, choices=GENDER_CHOICES, blank=False)
     bio = models.TextField()
+    projects = models.TextField(blank=False, default='')
     tshirt_size = models.CharField(max_length=3, choices=T_SHIRT_SIZE_CHOICES, verbose_name='T-Shirt Size')
     #emergency conatct
     skills = models.TextField()
@@ -33,6 +34,8 @@ class ParticipantProfile(models.Model):
     twitter_profile_link = models.URLField(verbose_name="Twitter Profile Link", blank=True)
     linkedin_profile_link = models.URLField(verbose_name="LinkedIn Profile Link", blank=True)
     avatar_choice = models.CharField(max_length=25, blank=False, default="nota", verbose_name="Which of the following Characters do you relate yourselves to the most?")
+    referral_id = models.CharField(max_length=7, blank=True)
+    
     welcome_mail_sent = models.BooleanField(default=False)
     # resume_link = models.URLField(verbose_name="Link to your resume", blank=True)
 
