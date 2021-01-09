@@ -82,6 +82,7 @@ INSTALLED_APPS = [
     'social_django', #gh, fb auth
     'profiles',
     'application',
+    'submissions',
     # 'widget_tweaks'
 ]
 
