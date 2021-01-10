@@ -14,5 +14,17 @@ PROBLEM_STATEMENT_CHOICES = (
 class Abstract(models.Model):
     application = models.ForeignKey(Application,  on_delete=models.CASCADE)
     problem_statement = models.CharField(max_length=40, choices=PROBLEM_STATEMENT_CHOICES, blank=False)
-    project_title = models.CharField(max_length=60, blank=True)
+    project_title = models.CharField(max_length=60, blank=False)
     abstract = models.TextField(max_length=1000, blank=False)
+
+    date_submitted = models.DateTimeField(auto_now_add=True)
+    last_modified = models.DateTimeField(auto_now=True)
+    
+    def get_team(self):
+        return self.application.team.name
+    
+    def get_team_size(self):
+        return self.application.member_count()
+    
+    def __str__(self):
+        return self.project_title
