@@ -12,6 +12,7 @@ PROBLEM_STATEMENT_CHOICES = (
 )
 
 class Abstract(models.Model):
-    problem_statement = models.CharField(max_length=40, blank=False)
+    application = models.ForeignKey(Application,  on_delete=models.CASCADE)
+    problem_statement = models.CharField(max_length=40, choices=PROBLEM_STATEMENT_CHOICES, blank=False)
     project_title = models.CharField(max_length=60, blank=True)
     abstract = models.TextField(max_length=1000, blank=False)
