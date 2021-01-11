@@ -22,6 +22,8 @@ from django.views.generic import TemplateView
 from accounts import views
 from profiles import views as profileviews
 from application import views as application_views
+from submissions import views as submission_views
+
 urlpatterns = [
     # path('', TemplateView.as_view(template_name="login.html")),
     path('admin/', admin.site.urls),
@@ -113,4 +115,6 @@ urlpatterns = [
     path('export/profile/xls', profileviews.export_xls, name='export_profile_xls'),
 
     # path('test', views.test_view,  name='test_home'),
+
+    path('abstract/submit', submission_views.submit_abstract_view, name='submit_abstract'),
 ]
