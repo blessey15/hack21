@@ -37,6 +37,8 @@ class Application(models.Model):
 
     received_confirmation_mail = models.BooleanField(blank=False, default=False)
     created = models.DateTimeField(auto_now_add=True)
+    abstract_submitted = models.BooleanField(default=False)
+    project_submitted = models.BooleanField(default=False)
 
     def team_members(self):
         return ',  '.join([str(m) for m in self.members.all()])

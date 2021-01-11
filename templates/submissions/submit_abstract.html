@@ -38,14 +38,14 @@
   		<div class="col-lg-8 col-md-10 col-sm-12">
   			<div class="card">
   				<div class="card-body">
-					  <h3 class="card-title">Update Your Profile</h3>
+					  <h3 class="card-title">Submit Your Project Abstract</h3>
 					  	{% if request.user.profile.welcome_mail_sent %}
 							<div style="font-size: small;margin-bottom: 1rem;">
 								<span><a href="{% url 'home' %}">Back to Dashboard</a></span>
 							</div>
 						{% endif %}
 					  <div class="mb-4">
-						  Please fill out this form and complete your profile. Your application will be accepted only after we review your answers.
+						  Please fill out this form with the details of your project.
 					  </div>
   					<form method="post" novalidate class="user">
 						  {% csrf_token %}
@@ -66,7 +66,7 @@
 								{% endfor %}
 							</p>
 						  {% endfor %}
-     					 <button type="submit" class="btn btn-primary btn-user">Update Profile</button>
+     					 <button type="submit" class="btn btn-primary btn-user">Submit</button>
     				</form>
   				</div>
   				<div class="card-footer text-muted text-center">

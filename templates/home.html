@@ -155,6 +155,17 @@
                                 {% endif %} {% elif application.application_status == 'Accepted' %}
                                 <p class="btn btn-primary btn-icon-split">YEAYY!! Your Application to .hack( ); 2021 has been ACCEPTED.</p>
                                 <p>We received an overwhelming amount of responses for .hack(); this year and we were impressed by the applications. We are happy you are part of the brilliant team of innovators that will be solving problems at .hack(); this year.</p>
+                                <p>You need to submit an abstract of your project on or before 26<sup>th</sup> January 2021. The team admin can submit the abstract.</p>
+                                <p>Abstract Satus: 
+                                    {% if application.abstract_submitted %}
+                                        <span class="btn btn-primary btn-icon-split">Submitted</span></p>
+                                    {% else %}
+                                        <span class="btn btn-danger btn-icon-split">Not Submitted</span></p>
+                                    {% endif %}
+                                {% if request.user == application.team.admin %}
+                                <a href="{% url 'submit_abstract' %}"> <button name="submit-abstract" class="btn btn-primary">Submit Abstract</button></a>
+                                {% endif %}
+                                
                                 {% elif application.application_status == 'Declined' %}
                                 <p class="btn btn-danger btn-icon-split">Uh Oh! Your Application to .hack(); has been Declined.</p>
                                 <p>We received an overwhelming amount of applications and all of them were very impressive. But unfortunately we cannot accept all of them. We had a very hard time choosing the teams. Thank you for your application. You can still attend all the webinars and workshops and skill up. And hey, <span class="text-danger" style="text-align: center"> YOU DON'T NEED A HACKATHON TO HACK PROBLEMS...</span></p>
