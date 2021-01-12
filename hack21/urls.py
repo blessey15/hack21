@@ -117,4 +117,6 @@ urlpatterns = [
     # path('test', views.test_view,  name='test_home'),
 
     path('abstract/submit', submission_views.submit_abstract_view, name='submit_abstract'),
+
+    path('abstract', submission_views.view_abstract, name='view_abstract'),
 ]

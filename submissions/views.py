@@ -54,3 +54,19 @@ def submit_abstract_view(request):
         return  render(request, 'messages.html', context)
 
     return render(request,'submissions/submit_abstract.html', context)
+
+def view_abstract(request):
+    context = {}
+    applications = Application.objects.filter(members__id = request.user.id)
+    if len(applications)>0:
+        application = applications[0]
+    else:
+        context['message'] = 'The corresponding application could not be found!!'
+        return  render(request, 'messages.html', context)
+    try:
+        abstract = Abstract.objects.get(application=application)
+        context['abstract'] = abstract
+    except Abstract.DoesNotExist:
+        context['message'] = 'The corresponding Abstract could not be found!!'
+        return  render(request, 'messages.html', context)
+    return render(request, 'submissions/abstract.html', context)
