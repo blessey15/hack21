@@ -11,6 +11,7 @@ from .forms import TeamCreateForm
 from .models import Application, Team, JoinRequest
 from accounts.models import Account
 from profiles.models import ParticipantProfile
+from submissions.models import Abstract
 from accounts.views import home
 from hack21.decorators import organizer_view, participant_view, need_profile
 from hack21.emailthread import EmailThread
@@ -28,6 +29,11 @@ def team_detail_view(request, team_id):
         # print("has team")
         context['application'] = application
         context['number_of_members'] = len(application.members.all())
+        try:
+            abstract = Abstract.objects.get(application=application)
+            context['abstract'] = abstract
+        except Abstract.DoesNotExist:
+            pass
         if len(Application.objects.filter(members__id = request.user.id))>0:
             context['has_a_team'] = True
         if (request.user in application.members.all()):
@@ -388,6 +394,10 @@ def organizer_dashboard(request):
     context['masters_count'] = masters_count
     phd_count = len(ParticipantProfile.objects.filter(educational_status='PhD'))
     context['phd_count'] = phd_count
+
+    abstract_submitted = Application.objects.filter(abstract_submitted=True)
+    context['no_of_abstract_submitted'] = len(abstract_submitted)
+    context['abstract_submitted'] = abstract_submitted
 
     return render(request, 'org_db.html', context)
 

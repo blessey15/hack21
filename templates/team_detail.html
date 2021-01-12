@@ -94,6 +94,19 @@
                         <a href="{% url 'decline_team' team.id %}"><button type="submit" name="application_status_update" class="btn btn-primary mr-2">Decline</button></a>
                         <a href="{% url 'waitinglist_team' team.id %}"><button type="submit" name="application_status_update" class="btn btn-primary mr-2">Waiting List</button></a>
                     </div>
+                    <br>
+                    <hr>
+                    {% if abstract %}
+                        <p class="my-3">Abstract Status: <span class="btn btn-primary btn-icon-split">Submitted</span></p>
+                        <div class="my-4">
+                            <h2 class="text-center">Abstract</h2>
+                            <h3><b>Project Title: </b> {{ abstract.project_title }}</h3>
+                            <h3 class="btn btn-primary btn-icon-split my-3">{{ abstract.problem_statement }}</h3>
+                            <p>{{ abstract.abstract }}</p>
+                        </div>
+                    {% else %}
+                        <p class="my-3">Abstract Status: <span class="btn btn-danger btn-icon-split">Not Submitted</span></p>
+                    {% endif %}
 
                 <!-- <form method="POST" action="">
                         {% csrf_token %}
