@@ -1,8 +1,14 @@
 from django.shortcuts import render, redirect
+# HTML MAIL ESSENTIALS
+from django.template import Context
+from django.template.loader import render_to_string, get_template
+from django.core.mail import EmailMessage
+
 
 from .models import Abstract
 from application.models import Application
 from .forms import AbstractForm
+from hack21.emailthread import EmailThread
 
 def submit_abstract_view(request):
     context = {}
@@ -31,6 +37,45 @@ def submit_abstract_view(request):
                     abstract = form.save(commit=False)
                     abstract.application = application
                     abstract.save()
+                    ctx = {
+                        'user': request.user,
+                        'team_name': application.team.name,
+                        'team_id': application.team.id,
+                        'admin': application.team.admin.profile.name 
+                    }
+                    # MAIL TO TEAM ADMIN NOTIFYING OF TEAM DELETE
+                    message1 = get_template('emails/abstract_submitted_admin_mail.html').render(ctx)
+                    # msg1 = EmailMessage(
+                    #     "Team Deleted",
+                    #     message1,
+                    #     'hack@mg.ieeemace.org',
+                    #     [application.team.admin.email],
+                    #     )
+                    # msg1.content_subtype = "html"
+                    # msg1.send()
+                    subject = "Project Abstract Submitted"
+                    recepient_list = [application.team.admin.email]
+                    EmailThread(subject, message1, recepient_list).start()
+                    print("Abstract Submission message sent to ADMIN")
+
+                    # MAIL TO MEMBER NOTIFYING TEAM DELETE
+                    message2 = get_template('emails/abstract_submitted_member_mail.html').render(ctx)
+                    recepient_list = []
+                    for member in application.members.all():
+                        if not (member == request.user):
+                            recepient_list.append(member.email)
+                    # msg2 = EmailMessage(
+                    #     "Your Team was Deleted!",
+                    #     message2,
+                    #     'hack@mg.ieeemace.org',
+                    #     recepient_list,
+                    #     )
+                    # msg2.content_subtype = "html"
+                    # msg2.send()
+                    subject = "Project Abstract Submitted"
+                    # recepient_list = [application.team.admin.email]
+                    EmailThread(subject, message2, recepient_list).start()
+                    print("Abstract Submission message sent to MEMBER")
                     if application.abstract_submitted == False:
                         application.abstract_submitted=True
                         application.save()
