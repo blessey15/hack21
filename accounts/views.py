@@ -228,44 +228,45 @@ def home(request):
 @unauthenticated_user
 def registration_view(request):
     context = {}
-    if request.POST:
-        form = RegistrationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            email = form.cleaned_data.get('email')
-            raw_password = form.cleaned_data.get('password1')
-            account = authenticate(email=email, password=raw_password)
-            login(request, account)
+    return redirect('landing_page')
+    # if request.POST:
+    #     form = RegistrationForm(request.POST)
+    #     if form.is_valid():
+    #         form.save()
+    #         email = form.cleaned_data.get('email')
+    #         raw_password = form.cleaned_data.get('password1')
+    #         account = authenticate(email=email, password=raw_password)
+    #         login(request, account)
             
-            # message = render_to_string("emails/test_template_welcome.html", ctx)
-            # message = strip_tags(message)
-            # msg = EmailMessage(
-            #     "Welcome to .hack();",
-            #     message,
-            #     'hack@mg.ieeemace.org',
-            #     [request.user.email],
-            #     )
-            # msg.content_subtype = "html"
-            # msg.send()
+    #         # message = render_to_string("emails/test_template_welcome.html", ctx)
+    #         # message = strip_tags(message)
+    #         # msg = EmailMessage(
+    #         #     "Welcome to .hack();",
+    #         #     message,
+    #         #     'hack@mg.ieeemace.org',
+    #         #     [request.user.email],
+    #         #     )
+    #         # msg.content_subtype = "html"
+    #         # msg.send()
             
-            # ctx = {'user': request.user}
-            # message = get_template('emails/account_created.html').render(ctx)
-            # msg = EmailMessage(
-            #     "Welcome to .hack();",
-            #     message,
-            #     'postmaster@mg.ieeemace.org',
-            #     [request.user.email],
-            #     )
-            # msg.content_subtype = "html"
-            # msg.send()
-            # print("message sent")
-            return redirect('profile-update')
-        else:
-            context['registration_form'] = form
-    else:
-        form = RegistrationForm()
-        context['registration_form'] = form
-    return render(request, 'register.html', context)
+    #         # ctx = {'user': request.user}
+    #         # message = get_template('emails/account_created.html').render(ctx)
+    #         # msg = EmailMessage(
+    #         #     "Welcome to .hack();",
+    #         #     message,
+    #         #     'postmaster@mg.ieeemace.org',
+    #         #     [request.user.email],
+    #         #     )
+    #         # msg.content_subtype = "html"
+    #         # msg.send()
+    #         # print("message sent")
+    #         return redirect('profile-update')
+    #     else:
+    #         context['registration_form'] = form
+    # else:
+    #     form = RegistrationForm()
+    #     context['registration_form'] = form
+    # return render(request, 'register.html', context)
 
 @login_required(login_url='login')
 def logout_view(request):

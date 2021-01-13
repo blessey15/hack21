@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.template import Context
 from django.template.loader import render_to_string, get_template
 from django.core.mail import EmailMessage
+from django.contrib.auth.decorators import login_required
 
 
 from .models import Abstract
@@ -10,6 +11,8 @@ from application.models import Application
 from .forms import AbstractForm
 from hack21.emailthread import EmailThread
 
+
+@login_required(login_url='login')
 def submit_abstract_view(request):
     context = {}
     # application = request.user.application_set.all()
@@ -100,6 +103,7 @@ def submit_abstract_view(request):
 
     return render(request,'submissions/submit_abstract.html', context)
 
+@login_required(login_url='login')
 def view_abstract(request):
     context = {}
     applications = Application.objects.filter(members__id = request.user.id)

@@ -89,11 +89,13 @@
                         </li>
                         {% endfor %}
                     </ol>
+                    {% if not application.application_status == 'Not Submitted'%}
                     <div class="my-3"> 
                         <a href="{% url 'accept_team' team.id %}"><button type="submit" name="application_status_update" class="btn btn-primary mr-2">Accept</button></a>
                         <a href="{% url 'decline_team' team.id %}"><button type="submit" name="application_status_update" class="btn btn-primary mr-2">Decline</button></a>
                         <a href="{% url 'waitinglist_team' team.id %}"><button type="submit" name="application_status_update" class="btn btn-primary mr-2">Waiting List</button></a>
                     </div>
+                    {% endif %}
                     <br>
                     <hr>
                     {% if abstract %}
