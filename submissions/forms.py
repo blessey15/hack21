@@ -20,7 +20,7 @@ class AbstractForm(forms.ModelForm):
         )
     )
 
-    abstract = forms.CharField( required=True, help_text="Give a brief abstract of your project",
+    abstract = forms.CharField( required=True, help_text="Give a brief abstract of your project", max_length=2000,
         widget = forms.Textarea(
             attrs={
                 "placeholder": "Project Abstract",
