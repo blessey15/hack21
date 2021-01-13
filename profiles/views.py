@@ -153,7 +153,7 @@ def export_xls(request):
     columns = ['Team Status', 'Name', 'Contact', 'Gender', 'Educational Status', 'Educational Institution', 
     'Field of study', 'Year of Graduation', 'Is IEEE', 'Bio', 'projects', 'Shipping Address', 'State of Residence', 'PIN Code',
      'Personal Website', 'GitHub','Twitter', 'LinkedIn', 'Referral ID', 'Email', 'Username', 'Team Name', 'Team Admin', 'Team ID',
-     'Problem Satement', 'Project Title', 'Abstract' ]
+     'Problem Satement', 'Project Title', 'Abstract', 'Application Status' ]
 
     for col_num in range(len(columns)):
         ws.write(row_num, col_num, columns[col_num], font_style)
@@ -168,7 +168,7 @@ def export_xls(request):
             profile.field_of_study, profile.year_of_graduation, profile.is_ieee, profile.bio, profile.projects, profile.shipping_address,
             profile.state, profile.pin_code, profile.website_link, profile.github_profile_link, profile.twitter_profile_link, profile.linkedin_profile_link,
             profile.referral_id, profile.user.email, profile.user.username, teamname.team.name, teamname.team.admin.email, str(teamname.team.id), 
-            teamname.abstract.problem_statement, teamname.abstract.project_title, teamname.abstract.abstract )
+            teamname.abstract.problem_statement, teamname.abstract.project_title, teamname.abstract.abstract, teamname.application_status )
             final_list.append(data_tuple)
     for row in final_list:
         row_num += 1
