@@ -2,6 +2,9 @@
 {% load static %}
 
 {% block body %}
+
+<!-- <link rel="stylesheet" href="//cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css"> -->
+<!-- <script src="//cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script> -->
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
@@ -285,6 +288,54 @@
                             </div>
                         </div>
 
+
+                        <div class="align-content-center" style="width: 100%;">
+                            <div class="card shadow mb-4 mr-3 ml-3 alig">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Abbstract Submitted({{ no_of_abstract_submitted }})</h6>
+                                </div>
+                                <!-- <div id="myBtnContainer">
+                                    <button class="btn active" onclick="filterSelection('all')"> Show all</button>
+                                    <button class="btn" onclick="filterSelection('Not')"> Not Submitted</button>
+                                    <button class="btn" onclick="filterSelection('Submitted')"> Submitted</button>
+                                    <button class="btn" onclick="filterSelection('Accepted')"> Accepted</button>
+                                    <button class="btn" onclick="filterSelection('Declined')"> Declined</button>
+                                    <button class="btn" onclick="filterSelection('Waitinglist')"> Waitinglist</button>
+                                </div> -->
+
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered" id="dataTable2" width="100%" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Team Name</th>
+                                                    <th>Team Admin</th>
+                                                    <th>Email</th>
+                                                    <th>Member Count</th>
+                                                    <th>Application Status</th>
+                                                    <!-- <th>Salary</th> -->
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for application in applications %}
+                                                    {% if application.abstract_submitted %}
+                                                        <tr class="FilterRow Not" style="display: none;">
+                                                            <td><a href="{% url 'team_detail' application.team.id %}">{{ application.team.name }}</a></td>
+                                                            <td>{{ application.team.admin.profile.name }}</td>
+                                                            <td>{{ application.team.admin.email }}</td>
+                                                            <td>{{ application.member_count }}</td>
+                                                            <td>{{ application.application_status }}</td>
+                                                            <!-- <td>$320,800</td> -->
+                                                        </tr>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
 
                     <div class="row">
@@ -500,6 +551,13 @@
         }
     </script>
     
+<!-- 
+    <script>
+        $(document).ready( function () {
+    $('#dataTable2').DataTable();
+} );
+    </script> -->
+
 
 
     <script>
@@ -557,6 +615,7 @@
     <script src="{% static 'js/demo/chart-pie-demo-gender.js' %}"></script>
     <script src="{% static 'js/demo/chart-pie-demo-ieee.js' %}"></script>
     <script src="{% static 'js/demo/datatables-demo.js' %}"></script>
+    <script src="{% static 'js/demo/datatables-demo2.js' %}"></script>
     {% endblock %}
 </body>
 
