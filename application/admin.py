@@ -8,7 +8,7 @@ class TeamAdmin(admin.ModelAdmin):
 
 class ApplicationAdim(admin.ModelAdmin):
     list_display = ('team', 'team_members', 'member_count', 'application_status',)
-    search_fields = ('team',)
+    search_fields = ('team__name',)
     list_filter = ('application_status', )
     readonly_fields = ('created',)
 
