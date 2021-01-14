@@ -163,13 +163,30 @@ def export_xls(request):
 
     profiles = ParticipantProfile.objects.all()
     for profile in profiles:
-        for teamname in profile.user.application_team.all():
+        teamname = profile.user.application_team.all()
+        if len(teamname)>0:
+            for teamname in profile.user.application_team.all():
+                if teamname.abstract_submitted:
+                    data_tuple = (profile.team_status, profile.name, profile.contact, profile.gender, profile.educational_status, profile.educational_institution, 
+                    profile.field_of_study, profile.year_of_graduation, profile.is_ieee, profile.bio, profile.projects, profile.shipping_address,
+                    profile.state, profile.pin_code, profile.website_link, profile.github_profile_link, profile.twitter_profile_link, profile.linkedin_profile_link,
+                    profile.referral_id, profile.user.email, profile.user.username, teamname.team.name, teamname.team.admin.email, str(teamname.team.id), 
+                    teamname.abstract.problem_statement, teamname.abstract.project_title, teamname.abstract.abstract, teamname.application_status )
+                    final_list.append(data_tuple)
+                else:
+                    data_tuple = (profile.team_status, profile.name, profile.contact, profile.gender, profile.educational_status, profile.educational_institution, 
+                    profile.field_of_study, profile.year_of_graduation, profile.is_ieee, profile.bio, profile.projects, profile.shipping_address,
+                    profile.state, profile.pin_code, profile.website_link, profile.github_profile_link, profile.twitter_profile_link, profile.linkedin_profile_link,
+                    profile.referral_id, profile.user.email, profile.user.username, teamname.team.name, teamname.team.admin.email, str(teamname.team.id), 
+                    'N/A', 'N/A', 'N/A', teamname.application_status )
+                    final_list.append(data_tuple)
+        else:
             data_tuple = (profile.team_status, profile.name, profile.contact, profile.gender, profile.educational_status, profile.educational_institution, 
             profile.field_of_study, profile.year_of_graduation, profile.is_ieee, profile.bio, profile.projects, profile.shipping_address,
             profile.state, profile.pin_code, profile.website_link, profile.github_profile_link, profile.twitter_profile_link, profile.linkedin_profile_link,
-            profile.referral_id, profile.user.email, profile.user.username, teamname.team.name, teamname.team.admin.email, str(teamname.team.id), 
-            teamname.abstract.problem_statement, teamname.abstract.project_title, teamname.abstract.abstract, teamname.application_status )
+            profile.referral_id, profile.user.email, profile.user.username, 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A' )
             final_list.append(data_tuple)
+
     for row in final_list:
         row_num += 1
         for col_num in range(len(row)):
