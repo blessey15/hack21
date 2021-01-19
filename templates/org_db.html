@@ -253,7 +253,7 @@
                                                 <tr>
                                                     <th>Team Name</th>
                                                     <th>Team Admin</th>
-                                                    <th>Email</th>
+                                                    <th>Contact</th>
                                                     <th>Member Count</th>
                                                     <th>Application Status</th>
                                                     <!-- <th>Salary</th> -->
@@ -265,7 +265,7 @@
                                                         <tr class="FilterRow Not" style="display: none;">
                                                             <td><a href="{% url 'team_detail' application.team.id %}">{{ application.team.name }}</a></td>
                                                             <td>{{ application.team.admin.profile.name }}</td>
-                                                            <td>{{ application.team.admin.email }}</td>
+                                                            <td>{{ application.team.admin.profile.contact }}</td>
                                                             <td>{{ application.member_count }}</td>
                                                             <td>{{ application.application_status }}</td>
                                                             <!-- <td>$320,800</td> -->
@@ -274,7 +274,7 @@
                                                         <tr class="FilterRow {{ application.application_status }}" style="display: none;">
                                                             <td><a href="{% url 'team_detail' application.team.id %}">{{ application.team.name }}</a></td>
                                                             <td>{{ application.team.admin.profile.name }}</td>
-                                                            <td>{{ application.team.admin.email }}</td>
+                                                            <td>{{ application.team.admin.profile.contact }}</td>
                                                             <td>{{ application.member_count }}</td>
                                                             <td>{{ application.application_status }}</td>
                                                             <!-- <td>$320,800</td> -->
@@ -310,7 +310,7 @@
                                                 <tr>
                                                     <th>Team Name</th>
                                                     <th>Team Admin</th>
-                                                    <th>Email</th>
+                                                    <th>Contact</th>
                                                     <th>Member Count</th>
                                                     <th>Application Status</th>
                                                     <!-- <th>Salary</th> -->
@@ -322,7 +322,7 @@
                                                         <tr class="FilterRow Not" style="display: none;">
                                                             <td><a href="{% url 'team_detail' application.team.id %}">{{ application.team.name }}</a></td>
                                                             <td>{{ application.team.admin.profile.name }}</td>
-                                                            <td>{{ application.team.admin.email }}</td>
+                                                            <td>{{ application.team.admin.profile.contact }}</td>
                                                             <td>{{ application.member_count }}</td>
                                                             <td>{{ application.application_status }}</td>
                                                             <!-- <td>$320,800</td> -->
