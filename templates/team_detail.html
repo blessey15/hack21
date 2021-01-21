@@ -103,7 +103,11 @@
                         <div class="my-4">
                             <h2 class="text-center">Abstract</h2>
                             <h3><b>Project Title: </b> {{ abstract.project_title }}</h3>
-                            <h1 class="btn btn-primary btn-icon-split my-3 text-lg">{{ abstract.problem_statement }}</h1>
+                            {% if abstract.problem_statement == 'Agriculture & Rural Development' %}
+                                <h1 class="btn btn-primary btn-icon-split my-3 text-lg">Sustainable Cities and Communities</h1>
+                            {% else %}
+                                <h1 class="btn btn-primary btn-icon-split my-3 text-lg">{{ abstract.problem_statement }}</h1>
+                            {% endif %}
                             <p>{{ abstract.abstract }}</p>
                         </div>
                     {% else %}

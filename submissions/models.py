@@ -8,7 +8,7 @@ PROBLEM_STATEMENT_CHOICES = (
     ('Industry, Innovation and Infrastructure', 'Industry, Innovation and Infrastructure'),
     ('Life on Land', 'Life on Land'),
     ('Affordable and Clean Energy', 'Affordable and Clean Energy'),
-    ('Agriculture & Rural Development', 'Agriculture & Rural Development'),
+    ('Agriculture & Rural Development', 'Sustainable Cities and Communities'),
 )
 
 class Abstract(models.Model):
