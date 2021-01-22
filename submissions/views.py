@@ -29,7 +29,9 @@ def submit_abstract_view(request):
             try:
                 abstract = Abstract.objects.get(application=application)
             except Abstract.DoesNotExist:
-                abstract = Abstract(application=application)
+                # abstract = Abstract(application=application)
+                context['message'] = 'Abstract submission closed. You havent submitted an abstract. Please contact the organizers if you think this is a mistake'
+                return  render(request, 'messages.html', context)
                 # abstract.save()
             # if len(application)>0:
             #     application = application[0]
