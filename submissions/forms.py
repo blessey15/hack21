@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Abstract, PROBLEM_STATEMENT_CHOICES
+from .models import Abstract, PROBLEM_STATEMENT_CHOICES, Submission
 
 class AbstractForm(forms.ModelForm):
     problem_statement = forms.ChoiceField( choices=PROBLEM_STATEMENT_CHOICES,
@@ -32,3 +32,44 @@ class AbstractForm(forms.ModelForm):
     class Meta:
         model =  Abstract
         fields = ('problem_statement', 'project_title', 'abstract')
+
+
+class SubmissionForm(forms.ModelForm):
+    video_link = forms.URLField( required=True,
+        error_messages = {
+            'invalid': "Please enter a valid URL"
+        },
+        widget = forms.URLInput(
+            attrs={
+                "class": "form-control py-1 form-control-user",
+                "placeholder": "Link to the project Video(youtube)"
+            }
+        )
+    )
+
+    code_link = forms.URLField( required=False, help_text="Please make sure to submit any code that is involved in the project",
+        error_messages = {
+            'invalid': "Please enter a valid URL"
+        },
+        widget = forms.URLInput(
+            attrs={
+                "class": "form-control py-1 form-control-user",
+                "placeholder": "Link to the project code"
+            }
+        )
+    )
+    ppt_link = forms.URLField( required=False,
+        error_messages = {
+            'invalid': "Please enter a valid URL"
+        },
+        widget = forms.URLInput(
+            attrs={
+                "class": "form-control py-1 form-control-user",
+                "placeholder": "Link to  your presentation"
+            }
+        )
+    )
+
+    class Meta:
+        model = Submission
+        fields = ('video_link', 'code_link', 'ppt_link')

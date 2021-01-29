@@ -119,4 +119,8 @@ urlpatterns = [
     path('abstract/submit', submission_views.submit_abstract_view, name='submit_abstract'),
 
     path('abstract', submission_views.view_abstract, name='view_abstract'),
+
+    path('project/submit', submission_views.final_submission_view, name='submit_project'),
+
+    path('project', submission_views.view_submission, name='view_submission'),
 ]

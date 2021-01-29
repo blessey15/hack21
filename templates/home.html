@@ -159,15 +159,18 @@
                                 <p>Abstract Status: 
                                     {% if application.abstract_submitted %}
                                         <span class="btn btn-primary btn-icon-split">Submitted</span></p>
-                                        {% if request.user == application.team.admin %}
-                                            <a href="{% url 'submit_abstract' %}"> <button name="submit-abstract" class="btn btn-primary">Edit Abstract</button></a>
-                                        {% endif %}
                                             <a href="{% url 'view_abstract' %}"> <button name="view_abstract" class="btn btn-primary">View Abstract</button></a>
                                     {% else %}
                                         <span class="btn btn-danger btn-icon-split">Not Submitted</span></p>
                                         {% if request.user == application.team.admin %}
                                         <a href="{% url 'submit_abstract' %}"> <button name="submit-abstract" class="btn btn-primary">Submit Abstract</button></a>
                                         {% endif %}
+                                    {% endif %}
+
+                                    {% if application.project_submitted %}
+                                        <a href="{% url 'submit_project' %}"> <button name="submit-abstract" class="btn btn-primary">Edit Project</button></a>
+                                    {% else %}
+                                        <a href="{% url 'submit_project' %}"> <button name="submit-abstract" class="btn btn-primary">Submit Project</button></a>
                                     {% endif %}
                                 
                                 {% elif application.application_status == 'Declined' %}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% block breadcrumb %}
+<!-- <a class="navbar-brand" href="{% url 'home' %}"> <li class="breadcrumb-item active">.hack( ); 2021</li></a> -->
+{% endblock %} {% block content %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<style>
+    .shadow-sm {
+    box-shadow: 0 0.525rem 0.95rem 0 rgba(58, 59, 69, 0.2) !important;
+}
+</style>
+<div class="container">
+    <div class="main-body">
+        <div class="row gutters-sm">
+            
+
+            <div class="col-md-8 offset-2">
+                <div class="row gutters-sm">
+                    <div class="col">
+                        <div class="card shadow-smmb-3">
+                            <div class="card-body shadow-sm">
+                                <h2 class="text-center">{{ abstract.project_title }}</h2>
+                                {% if abstract.problem_statement == 'Agriculture & Rural Development' %}
+                                    <div class="text-center"><p class="btn btn-info btn-icon-split mb-3 text-center">Sustainable Cities and Communities </p></div>
+                                {% else %}
+                                    <div class="text-center"><p class="btn btn-info btn-icon-split mb-3 text-center">{{ abstract.problem_statement }} </p></div>
+                                {% endif %}
+                                    {{ abstract.abstract }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

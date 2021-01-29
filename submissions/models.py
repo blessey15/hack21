@@ -28,3 +28,22 @@ class Abstract(models.Model):
     
     def __str__(self):
         return self.project_title
+
+
+class Submission(models.Model):
+    application = models.OneToOneField(Application,  on_delete=models.CASCADE, related_name='submission')
+    video_link = models.URLField(verbose_name="Link to video of project", blank=False)
+    code_link = models.URLField(verbose_name="Link To Code", blank=False)
+    ppt_link = models.URLField(verbose_name="Link To Presentation", blank=False)
+
+    date_submitted = models.DateTimeField(auto_now_add=True)
+    last_modified = models.DateTimeField(auto_now=True)
+    
+    def get_team(self):
+        return self.application.team.name
+    
+    def get_team_size(self):
+        return self.application.member_count()
+    
+    def __str__(self):
+        return self.project_title
