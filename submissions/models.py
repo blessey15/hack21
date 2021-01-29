@@ -46,4 +46,4 @@ class Submission(models.Model):
         return self.application.member_count()
     
     def __str__(self):
-        return self.project_title
+        return self.application.team.name
