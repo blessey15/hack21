@@ -399,6 +399,10 @@ def organizer_dashboard(request):
     context['no_of_abstract_submitted'] = len(abstract_submitted)
     context['abstract_submitted'] = abstract_submitted
 
+    final_submitted = Application.objects.filter(project_submitted=True)
+    context['no_of_submitted'] = len(final_submitted)
+    context['final_submitted'] = final_submitted
+
     return render(request, 'org_db.html', context)
 
 @login_required(login_url='login')

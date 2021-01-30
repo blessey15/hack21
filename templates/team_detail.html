@@ -98,6 +98,17 @@
                     {% endif %}
                     <br>
                     <hr>
+                     {% if application.project_submitted %}
+                        {% if application.submission.video_link %}
+                            <a href="{{ application.submission.video_link }}" target="_blank"><button class="btn btn-warning mr-2">video</button></a>
+                        {% endif %}
+                        {% if application.submission.video_link %}
+                            <a href="{{ application.submission.code_link }}" target="_blank"><button class="btn btn-warning mr-2">code</button></a>
+                        {% endif %}
+                        {% if application.submission.video_link %}
+                            <a href="{{ application.submission.ppt_link }}" target="_blank"><button class="btn btn-warning mr-2">Presentation</button></a>
+                        {% endif %}
+                     {% endif %}
                     {% if abstract %}
                         <p class="my-3">Abstract Status: <span class="btn btn-primary btn-icon-split">Submitted</span></p>
                         <div class="my-4">

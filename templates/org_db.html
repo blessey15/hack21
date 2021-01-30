@@ -289,6 +289,55 @@
                         </div>
 
 
+                        <!-- final submitted teams  -->
+                        <div class="align-content-center" style="width: 100%;">
+                            <div class="card shadow mb-4 mr-3 ml-3 alig">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Final Submissions({{ no_of_submitted }})</h6>
+                                </div>
+                                <!-- <div id="myBtnContainer">
+                                    <button class="btn active" onclick="filterSelection('all')"> Show all</button>
+                                    <button class="btn" onclick="filterSelection('Not')"> Not Submitted</button>
+                                    <button class="btn" onclick="filterSelection('Submitted')"> Submitted</button>
+                                    <button class="btn" onclick="filterSelection('Accepted')"> Accepted</button>
+                                    <button class="btn" onclick="filterSelection('Declined')"> Declined</button>
+                                    <button class="btn" onclick="filterSelection('Waitinglist')"> Waitinglist</button>
+                                </div> -->
+
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered" id="dataTable2" width="100%" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Team Name</th>
+                                                    <th>Team Admin</th>
+                                                    <th>Contact</th>
+                                                    <th>Member Count</th>
+                                                    <th>Application Status</th>
+                                                    <!-- <th>Salary</th> -->
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for application in applications %}
+                                                    {% if application.project_submitted %}
+                                                        <tr class="FilterRow Not" style="display: none;">
+                                                            <td><a href="{% url 'team_detail' application.team.id %}">{{ application.team.name }}</a></td>
+                                                            <td>{{ application.team.admin.profile.name }}</td>
+                                                            <td>{{ application.team.admin.profile.contact }}</td>
+                                                            <td>{{ application.member_count }}</td>
+                                                            <td>{{ application.application_status }}</td>
+                                                            <!-- <td>$320,800</td> -->
+                                                        </tr>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
                         <div class="align-content-center" style="width: 100%;">
                             <div class="card shadow mb-4 mr-3 ml-3 alig">
                                 <div class="card-header py-3">
@@ -335,6 +384,9 @@
                                 </div>
                             </div>
                         </div>
+
+
+
 
                     </div>
 
