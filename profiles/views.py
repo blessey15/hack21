@@ -176,7 +176,7 @@ def export_xls(request):
                     final_list.append(data_tuple)
                     if teamname.project_submitted:
                         data_tuple = (profile.team_status, profile.name, profile.contact, profile.gender, profile.educational_status, profile.educational_institution, 
-                        profile.field_of_study, profile.year_of_graduation, profile.is_ieee, profile.bio, profile.projects, profile.shipping_address,
+                        profile.field_of_study, profile.year_of_graduation, profile.tshirt_size, profile.is_ieee, profile.bio, profile.projects, profile.shipping_address,
                         profile.state, profile.pin_code, profile.website_link, profile.github_profile_link, profile.twitter_profile_link, profile.linkedin_profile_link,
                         profile.referral_id, profile.user.email, profile.user.username, teamname.team.name, teamname.team.admin.email, str(teamname.team.id), 
                         teamname.abstract.problem_statement, teamname.abstract.project_title, teamname.abstract.abstract, teamname.application_status, 
@@ -184,7 +184,7 @@ def export_xls(request):
                         final_list.append(data_tuple)
                     else:
                         data_tuple = (profile.team_status, profile.name, profile.contact, profile.gender, profile.educational_status, profile.educational_institution, 
-                        profile.field_of_study, profile.year_of_graduation, profile.is_ieee, profile.bio, profile.projects, profile.shipping_address,
+                        profile.field_of_study, profile.year_of_graduation, profile.tshirt_size, profile.is_ieee, profile.bio, profile.projects, profile.shipping_address,
                         profile.state, profile.pin_code, profile.website_link, profile.github_profile_link, profile.twitter_profile_link, profile.linkedin_profile_link,
                         profile.referral_id, profile.user.email, profile.user.username, teamname.team.name, teamname.team.admin.email, str(teamname.team.id), 
                         teamname.abstract.problem_statement, teamname.abstract.project_title, teamname.abstract.abstract, teamname.application_status, 
@@ -193,7 +193,7 @@ def export_xls(request):
                     # final_list.append(data_tuple)
                 else:
                     data_tuple = (profile.team_status, profile.name, profile.contact, profile.gender, profile.educational_status, profile.educational_institution, 
-                    profile.field_of_study, profile.year_of_graduation, profile.is_ieee, profile.bio, profile.projects, profile.shipping_address,
+                    profile.field_of_study, profile.year_of_graduation, profile.tshirt_size, profile.is_ieee, profile.bio, profile.projects, profile.shipping_address,
                     profile.state, profile.pin_code, profile.website_link, profile.github_profile_link, profile.twitter_profile_link, profile.linkedin_profile_link,
                     profile.referral_id, profile.user.email, profile.user.username, teamname.team.name, teamname.team.admin.email, str(teamname.team.id), 
                     'N/A', 'N/A', 'N/A', teamname.application_status, 'N/A', 'N/A', 'N/A', )
@@ -201,7 +201,7 @@ def export_xls(request):
                 
         else:
             data_tuple = (profile.team_status, profile.name, profile.contact, profile.gender, profile.educational_status, profile.educational_institution, 
-            profile.field_of_study, profile.year_of_graduation, profile.is_ieee, profile.bio, profile.projects, profile.shipping_address,
+            profile.field_of_study, profile.year_of_graduation, profile.tshirt_size, profile.is_ieee, profile.bio, profile.projects, profile.shipping_address,
             profile.state, profile.pin_code, profile.website_link, profile.github_profile_link, profile.twitter_profile_link, profile.linkedin_profile_link,
             profile.referral_id, profile.user.email, profile.user.username, 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A', 'N/A' )
 
