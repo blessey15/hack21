@@ -152,7 +152,7 @@ def export_xls(request):
     font_style.font.bold = True
 
     columns = ['Team Status', 'Name', 'Contact', 'Gender', 'Educational Status', 'Educational Institution', 
-    'Field of study', 'Year of Graduation', 'Is IEEE', 'Bio', 'projects', 'Shipping Address', 'State of Residence', 'PIN Code',
+    'Field of study', 'Year of Graduation', 'T-Shirt Size', 'Is IEEE', 'Bio', 'projects', 'Shipping Address', 'State of Residence', 'PIN Code',
      'Personal Website', 'GitHub','Twitter', 'LinkedIn', 'Referral ID', 'Email', 'Username', 'Team Name', 'Team Admin', 'Team ID',
      'Problem Satement', 'Project Title', 'Abstract', 'Application Status', 'Video Link', 'Code Link', 'Ppt Link']
 
@@ -169,11 +169,11 @@ def export_xls(request):
             for teamname in profile.user.application_team.all():
                 if teamname.abstract_submitted:
                     data_tuple = (profile.team_status, profile.name, profile.contact, profile.gender, profile.educational_status, profile.educational_institution, 
-                    profile.field_of_study, profile.year_of_graduation, profile.is_ieee, profile.bio, profile.projects, profile.shipping_address,
+                    profile.field_of_study, profile.year_of_graduation, profile.tshirt_size, profile.is_ieee, profile.bio, profile.projects, profile.shipping_address,
                     profile.state, profile.pin_code, profile.website_link, profile.github_profile_link, profile.twitter_profile_link, profile.linkedin_profile_link,
                     profile.referral_id, profile.user.email, profile.user.username, teamname.team.name, teamname.team.admin.email, str(teamname.team.id), 
                     teamname.abstract.problem_statement, teamname.abstract.project_title, teamname.abstract.abstract, teamname.application_status )
-                    final_list.append(data_tuple)
+                    # final_list.append(data_tuple)
                     if teamname.project_submitted:
                         data_tuple = (profile.team_status, profile.name, profile.contact, profile.gender, profile.educational_status, profile.educational_institution, 
                         profile.field_of_study, profile.year_of_graduation, profile.is_ieee, profile.bio, profile.projects, profile.shipping_address,
@@ -181,7 +181,7 @@ def export_xls(request):
                         profile.referral_id, profile.user.email, profile.user.username, teamname.team.name, teamname.team.admin.email, str(teamname.team.id), 
                         teamname.abstract.problem_statement, teamname.abstract.project_title, teamname.abstract.abstract, teamname.application_status, 
                         teamname.submission.video_link, teamname.submission.code_link, teamname.submission.ppt_link )
-                        final_list.append(data_tuple)
+                        # final_list.append(data_tuple)
                     else:
                         data_tuple = (profile.team_status, profile.name, profile.contact, profile.gender, profile.educational_status, profile.educational_institution, 
                         profile.field_of_study, profile.year_of_graduation, profile.is_ieee, profile.bio, profile.projects, profile.shipping_address,
@@ -189,7 +189,8 @@ def export_xls(request):
                         profile.referral_id, profile.user.email, profile.user.username, teamname.team.name, teamname.team.admin.email, str(teamname.team.id), 
                         teamname.abstract.problem_statement, teamname.abstract.project_title, teamname.abstract.abstract, teamname.application_status, 
                         "N/A", "N/A", "N/A" )
-                        final_list.append(data_tuple)
+                        # final_list.append(data_tuple)
+                    final_list.append(data_tuple)
                 else:
                     data_tuple = (profile.team_status, profile.name, profile.contact, profile.gender, profile.educational_status, profile.educational_institution, 
                     profile.field_of_study, profile.year_of_graduation, profile.is_ieee, profile.bio, profile.projects, profile.shipping_address,
